@@ -1,9 +1,9 @@
 # Beboena
 
-`
+```
 bcdedit /set hypervisorlaunchtype off
 bcdedit /set hypervisorlaunchtype auto
-`
+```
 
 https://developer.android.com/training/constraint-layout/  
 https://developer.android.com/guide/topics/ui/look-and-feel/  
