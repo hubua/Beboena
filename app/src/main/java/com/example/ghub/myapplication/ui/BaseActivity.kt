@@ -1,20 +1,26 @@
-/*package com.example.ghub.myapplication.ui
+package com.example.ghub.myapplication.ui
 
 import android.view.ViewGroup
 import android.content.Intent
 import android.support.v4.content.LocalBroadcastManager
-import android.view.Window.ID_ANDROID_CONTENT
 import android.view.ViewTreeObserver
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.Window
 import com.example.ghub.myapplication.R
 
 
-class BaseActivity : Activity() {
-    private val keyboardLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
-        val heightDiff = rootLayout!!.rootView.height - rootLayout!!.height
-        val contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop()
+open class BaseAppCompatActivity : AppCompatActivity() {
 
-        val broadcastManager = LocalBroadcastManager.getInstance(this@BaseActivity)
+    private var _keyboardListenerAttached = false
+    private var _rootLayout: ViewGroup? = null
+
+    private val keyboardLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
+
+        val heightDiff = _rootLayout!!.rootView.height - _rootLayout!!.height
+        val contentViewTop = window.findViewById<View>(Window.ID_ANDROID_CONTENT).top
+
+        val broadcastManager = LocalBroadcastManager.getInstance(this@BaseAppCompatActivity)
 
         if (heightDiff <= contentViewTop) {
             onHideKeyboard()
@@ -31,28 +37,26 @@ class BaseActivity : Activity() {
         }
     }
 
-    private var keyboardListenersAttached = false
-    private var rootLayout: ViewGroup? = null
-
-    protected fun onShowKeyboard(keyboardHeight: Int) {}
-    protected fun onHideKeyboard() {}
+    protected open fun onShowKeyboard(keyboardHeight: Int) {}
+    protected open fun onHideKeyboard() {}
 
     protected fun attachKeyboardListeners() {
-        if (keyboardListenersAttached) {
+
+        if (_keyboardListenerAttached) {
             return
         }
 
-        rootLayout = findViewById(R.id.rootLayout) as ViewGroup
-        rootLayout!!.viewTreeObserver.addOnGlobalLayoutListener(keyboardLayoutListener)
+        _rootLayout = findViewById<ViewGroup>(R.id.rootLayout)
+        _rootLayout!!.viewTreeObserver.addOnGlobalLayoutListener(keyboardLayoutListener)
 
-        keyboardListenersAttached = true
+        _keyboardListenerAttached = true
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        if (keyboardListenersAttached) {
-            rootLayout!!.viewTreeObserver.removeGlobalOnLayoutListener(keyboardLayoutListener)
+        if (_keyboardListenerAttached) {
+            _rootLayout!!.viewTreeObserver.removeGlobalOnLayoutListener(keyboardLayoutListener)
         }
     }
-}*/
+}

@@ -5,14 +5,18 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import com.example.ghub.myapplication.ui.BaseAppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 const val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        attachKeyboardListeners()
     }
 
     /** Called when the user taps the Send button */
@@ -25,4 +29,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
+
+    override fun onHideKeyboard() {
+        textView.text = "hidden"
+    }
+
+
 }
