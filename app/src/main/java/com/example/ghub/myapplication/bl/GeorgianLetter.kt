@@ -13,10 +13,10 @@ data class GeorgianLetter(
         val name: String,
         val read: String,
         val learnOrder: Int,
-        val words: List<String>) {
+        val sentences: List<String>) {
 
     private val _random = Random()
 
-    val wordsShuffled get() = words.shuffled(_random)
+    val sentencesShuffled get() = sentences.shuffled(_random)
 
 }

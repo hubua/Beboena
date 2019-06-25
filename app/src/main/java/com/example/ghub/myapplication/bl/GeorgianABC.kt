@@ -4,8 +4,6 @@ import com.opencsv.CSVParserBuilder
 import com.opencsv.CSVReaderBuilder
 import java.io.InputStream
 import java.io.InputStreamReader
-import kotlin.math.absoluteValue
-import kotlin.math.max
 
 
 object GeorgianABC {
@@ -65,7 +63,7 @@ object GeorgianABC {
                     name = row[7],
                     read = row[8],
                     learnOrder = row[9].toInt(),
-                    words = mapLetterSentences[row[1].toChar()]!!.toList()
+                    sentences = mapLetterSentences[row[1].toChar()]!!.toList()
             )
             _letters.add(letter)
         }

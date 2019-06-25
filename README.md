@@ -1,12 +1,23 @@
 # Beboena
+https://guides.github.com/features/mastering-markdown/
 
-```
-bcdedit /set hypervisorlaunchtype off
-bcdedit /set hypervisorlaunchtype auto
-```
 
-https://developer.android.com/training/constraint-layout/  
-https://developer.android.com/guide/topics/ui/look-and-feel/  
-https://developer.android.com/studio/write/theme-editor  
-http://kotlinlang.org/docs/reference/  
-https://try.kotlinlang.org/  
+## Android
+
+- [Introduction to Activities](https://developer.android.com/guide/components/activities/intro-activities)
+
+- [Build a Responsive UI with ConstraintLayout](https://developer.android.com/training/constraint-layout/)
+- [Material Design for Android](https://developer.android.com/guide/topics/ui/look-and-feel/)
+- [Design app themes with Theme Editor](https://developer.android.com/studio/write/theme-editor)
+
+## Kotlin
+
+- http://kotlinlang.org/docs/reference/
+- https://try.kotlinlang.org/
+
+## Emulator
+
+`bcdedit /set hypervisorlaunchtype off`
+
+`bcdedit /set hypervisorlaunchtype auto`
+

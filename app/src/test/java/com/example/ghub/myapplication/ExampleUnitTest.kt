@@ -1,17 +1,11 @@
 package com.example.ghub.myapplication
 
-import android.content.res.Resources
 import com.example.ghub.myapplication.bl.GeorgianABC
 import com.example.ghub.myapplication.bl.toKhucuri
-import com.opencsv.CSVParserBuilder
-import com.opencsv.CSVReaderBuilder
-import org.apache.commons.lang3.ClassUtils.getPackageName
 import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
-import org.junit.BeforeClass
-import java.io.InputStreamReader
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -30,7 +24,7 @@ class ExampleUnitTest {
     fun setup() {
         val strOga = this.javaClass.classLoader.getResourceAsStream("assets/oga.tsv")
         val strSentences = this.javaClass.classLoader.getResourceAsStream("assets/sentences.txt")
-        GeorgianABC.initialize(strOga, strSentences);
+        GeorgianABC.initialize(strOga, strSentences)
     }
 
     @Test
@@ -54,11 +48,11 @@ class ExampleUnitTest {
 
         val letters = GeorgianABC.lettersToLearn
 
-        assertEquals(0, letters['ა']!!.words.count())
+        assertEquals(0, letters['ა']!!.sentences.count())
 
-        assertEquals("აი ია", letters['ი']!!.words[0])
+        assertEquals("აი ია", letters['ი']!!.sentences[0])
 
-        assertNotEquals(letters['ო']!!.words[0], letters['ო']!!.wordsShuffled[0])
+        assertNotEquals(letters['ო']!!.sentences[0], letters['ო']!!.sentencesShuffled[0])
     }
 
 }
