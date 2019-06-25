@@ -1,4 +1,4 @@
-package com.example.ghub.myapplication.ui
+package com.example.ghub.beboena.ui
 
 import android.view.ViewGroup
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.view.ViewTreeObserver
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
-import com.example.ghub.myapplication.R
+import com.example.ghub.beboena.R
 
 
 open class BaseAppCompatActivity : AppCompatActivity() {

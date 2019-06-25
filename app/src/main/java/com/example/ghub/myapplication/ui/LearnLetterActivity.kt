@@ -1,4 +1,4 @@
-package com.example.ghub.myapplication
+package com.example.ghub.beboena
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

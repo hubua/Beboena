@@ -1,11 +1,11 @@
-package com.example.ghub.myapplication
+package com.example.ghub.beboena
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
-import com.example.ghub.myapplication.ui.BaseAppCompatActivity
+import com.example.ghub.beboena.ui.BaseAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 const val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"

@@ -1,9 +1,9 @@
-package com.example.ghub.myapplication
+package com.example.ghub.beboena
 
 import android.content.Context
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.example.ghub.myapplication.bl.GeorgianABC
+import com.example.ghub.beboena.bl.GeorgianABC
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -36,7 +36,7 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
-        assertEquals("com.example.ghub.myapplication", appContext.packageName)
+        assertEquals("com.example.ghub.beboena", appContext.packageName)
 
     }
 

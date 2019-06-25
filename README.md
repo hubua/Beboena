@@ -15,6 +15,11 @@ https://guides.github.com/features/mastering-markdown/
 - http://kotlinlang.org/docs/reference/
 - https://try.kotlinlang.org/
 
+# Unit tests
+
+- https://medium.com/@yair.kukielka/android-unit-tests-explained-219b04dc55b5
+- https://medium.com/@yair.kukielka/android-unit-tests-explained-part-2-a0f1e1413569
+
 ## Emulator
 
 `bcdedit /set hypervisorlaunchtype off`

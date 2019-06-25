@@ -1,7 +1,7 @@
-package com.example.ghub.myapplication
+package com.example.ghub.beboena
 
-import com.example.ghub.myapplication.bl.GeorgianABC
-import com.example.ghub.myapplication.bl.toKhucuri
+import com.example.ghub.beboena.bl.GeorgianABC
+import com.example.ghub.beboena.bl.toKhucuri
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,12 +13,6 @@ import org.junit.Before
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-
-    /*
-    https://medium.com/@yair.kukielka/android-unit-tests-explained-219b04dc55b5
-    https://medium.com/@yair.kukielka/android-unit-tests-explained-part-2-a0f1e1413569
-    */
-
 
     @Before
     fun setup() {
