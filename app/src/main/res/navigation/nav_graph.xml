@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/mainFragment">
+
+    <fragment android:id="@+id/mainFragment" android:name="com.ghub.beboena.MainFragment" android:label="fragment_main"
+              tools:layout="@layout/fragment_main">
+        <action android:id="@+id/action_mainFragment_to_learnLetter" app:destination="@id/learnLetter"/>
+    </fragment>
+    <fragment android:id="@+id/learnLetter" android:name="com.ghub.beboena.LearnLetter"
+              android:label="fragment_learn_letter" tools:layout="@layout/fragment_learn_letter">
+        <action android:id="@+id/action_learnLetter_to_sampleActivity" app:destination="@id/sampleActivity"/>
+        <action android:id="@+id/action_learnLetter_to_transcriptSentencesFragment"
+                app:destination="@id/transcriptSentencesFragment"/>
+    </fragment>
+    <activity android:id="@+id/sampleActivity" android:name="com.ghub.beboena.SampleActivity"
+              android:label="activity_sample" tools:layout="@layout/activity_sample"/>
+    <fragment android:id="@+id/transcriptSentencesFragment" android:name="com.ghub.beboena.TranscriptSentencesFragment"
+              android:label="fragment_transcript_sentences" tools:layout="@layout/fragment_transcript_sentences"/>
+    <fragment android:id="@+id/blankFragment" android:name="com.ghub.beboena.BlankFragment"
+              android:label="fragment_blank" tools:layout="@layout/fragment_blank"/>
+</navigation>

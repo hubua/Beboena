@@ -1,4 +1,4 @@
-package com.example.ghub.beboena.bl
+package com.ghub.beboena.bl
 
 import java.util.*
 

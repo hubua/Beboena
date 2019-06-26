@@ -10,6 +10,8 @@ https://guides.github.com/features/mastering-markdown/
 - [Material Design for Android](https://developer.android.com/guide/topics/ui/look-and-feel/)
 - [Design app themes with Theme Editor](https://developer.android.com/studio/write/theme-editor)
 
+- Communicate with other fragments https://developer.android.com/training/basics/fragments/communicating
+
 ## Kotlin
 
 - http://kotlinlang.org/docs/reference/

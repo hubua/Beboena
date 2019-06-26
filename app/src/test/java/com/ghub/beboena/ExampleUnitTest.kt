@@ -1,7 +1,7 @@
-package com.example.ghub.beboena
+package com.ghub.beboena
 
-import com.example.ghub.beboena.bl.GeorgianABC
-import com.example.ghub.beboena.bl.toKhucuri
+import com.ghub.beboena.bl.GeorgianABC
+import com.ghub.beboena.bl.toKhucuri
 import org.junit.Test
 
 import org.junit.Assert.*
