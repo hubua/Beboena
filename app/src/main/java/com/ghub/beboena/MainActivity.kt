@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 
-class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), LearnLetterFragment.OnFragmentInteractionListener, TranscriptSentencesFragment.OnFragmentInteractionListener {
 
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

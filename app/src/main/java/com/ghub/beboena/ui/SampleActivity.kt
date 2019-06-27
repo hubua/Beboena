@@ -30,7 +30,7 @@ class SampleActivity : BaseAppCompatActivity() {
     }
 
     override fun onHideKeyboard() {
-        textView.text = "hidden"
+        tvHello.text = "hidden"
     }
 
 

@@ -10,6 +10,8 @@ https://guides.github.com/features/mastering-markdown/
 - [Material Design for Android](https://developer.android.com/guide/topics/ui/look-and-feel/)
 - [Design app themes with Theme Editor](https://developer.android.com/studio/write/theme-editor)
 
+
+- Get started with the Navigation component https://developer.android.com/guide/navigation/navigation-getting-started
 - Communicate with other fragments https://developer.android.com/training/basics/fragments/communicating
 
 ## Kotlin
@@ -28,3 +30,4 @@ https://guides.github.com/features/mastering-markdown/
 
 `bcdedit /set hypervisorlaunchtype auto`
 
+select deployment target / same selection

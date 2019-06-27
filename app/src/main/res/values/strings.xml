@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Beboena</string>
     <string name="app_name_geo">ბებოენა</string>
+    <string name="app_name_nus">ႡႤႡႭႤႬႠ</string>
     <string name="txtv_translate_sentence">გადათარგმნეთ წინადადება</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>

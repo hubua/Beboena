@@ -35,7 +35,7 @@ object GeorgianABC {
         */
 
         val orderedLetters = ogaData.associateBy({it[1].toChar()}, {it[9].toInt()})
-        val orderedLetters2 = ogaData.map {it[1].toChar() to it[9].toInt()}.sortedBy { it.second }.toMap()
+        // val orderedLetters2 = ogaData.map {it[1].toChar() to it[9].toInt()}.sortedBy { it.second }.toMap()
 
         val mapLetterSentences: MutableMap<Char, MutableList<String>> = mutableMapOf()
         orderedLetters.forEach { mapLetterSentences[it.key] = mutableListOf() }
