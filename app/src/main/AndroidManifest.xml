@@ -11,7 +11,7 @@
             android:theme="@style/AppTheme">
         <activity android:name=".PreferencesActivity">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,7 +20,7 @@
         </activity>
         <activity
                 android:name=".LearnLetterActivity"
-                android:parentActivityName=".MainActivity"
+                android:parentActivityName=".ui.MainActivity"
                 android:windowSoftInputMode="stateHidden|adjustResize"/>
     </application>
 

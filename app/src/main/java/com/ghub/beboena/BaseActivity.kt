@@ -1,4 +1,4 @@
-package com.ghub.beboena.ui
+package com.ghub.beboena
 
 import android.view.ViewGroup
 import android.content.Intent

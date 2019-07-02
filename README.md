@@ -10,21 +10,33 @@ https://guides.github.com/features/mastering-markdown/
 - [Material Design for Android](https://developer.android.com/guide/topics/ui/look-and-feel/)
 - [Design app themes with Theme Editor](https://developer.android.com/studio/write/theme-editor)
 
-
+- Fragments https://developer.android.com/guide/components/fragments
 - Get started with the Navigation component https://developer.android.com/guide/navigation/navigation-getting-started
 - Communicate with other fragments https://developer.android.com/training/basics/fragments/communicating
 
-## Kotlin
+- Settings screen https://developer.android.com/guide/topics/ui/settings.html
+
+Android UI
+------------------------------
+
+- Navigating between fragments https://www.youtube.com/watch?v=0yH1qDxqZMo
+
+- Navigation drawer from scratch https://codinginflow.com/tutorials/android/navigation-drawer/part-1-menu-activity-theme
+
+Kotlin
+------------------------------
 
 - http://kotlinlang.org/docs/reference/
 - https://try.kotlinlang.org/
 
-# Unit tests
+Unit tests
+------------------------------
 
 - https://medium.com/@yair.kukielka/android-unit-tests-explained-219b04dc55b5
 - https://medium.com/@yair.kukielka/android-unit-tests-explained-part-2-a0f1e1413569
 
-## Emulator
+Emulator
+------------------------------
 
 `bcdedit /set hypervisorlaunchtype off`
 
