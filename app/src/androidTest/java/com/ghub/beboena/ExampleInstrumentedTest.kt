@@ -3,13 +3,12 @@ package com.ghub.beboena
 import android.content.Context
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.ghub.beboena.bl.GeorgianABC
+import com.ghub.beboena.bl.GeorgianAlphabet
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
-import org.junit.Before
 import org.junit.BeforeClass
 
 /**
@@ -45,9 +44,9 @@ class ExampleInstrumentedTest {
 
         val strOga = appContext.assets.open("oga.tsv")
         val strSentences = appContext.assets.open("sentences.txt")
-        GeorgianABC.initialize(strOga, strSentences);
+        GeorgianAlphabet.initialize(strOga, strSentences);
 
-        val letters = GeorgianABC.lettersToLearn
+        val letters = GeorgianAlphabet.lettersToLearn
 
         assertEquals(33 + 5, letters.count())
     }

@@ -1,6 +1,6 @@
 package com.ghub.beboena
 
-import com.ghub.beboena.bl.GeorgianABC
+import com.ghub.beboena.bl.GeorgianAlphabet
 import com.ghub.beboena.bl.toKhucuri
 import org.junit.Test
 
@@ -18,13 +18,13 @@ class ExampleUnitTest {
     fun setup() {
         val strOga = this.javaClass.classLoader.getResourceAsStream("assets/oga.tsv")
         val strSentences = this.javaClass.classLoader.getResourceAsStream("assets/sentences.txt")
-        GeorgianABC.initialize(strOga, strSentences)
+        GeorgianAlphabet.initialize(strOga, strSentences)
     }
 
     @Test
     fun initialize_isCorrect() {
 
-        val letters = GeorgianABC.lettersToLearn
+        val letters = GeorgianAlphabet.lettersToLearn
 
         assertEquals(33 + 5, letters.count())
     }
@@ -40,7 +40,7 @@ class ExampleUnitTest {
     @Test
     fun words_loaded() {
 
-        val letters = GeorgianABC.lettersToLearn
+        val letters = GeorgianAlphabet.lettersToLearn
 
         assertEquals(0, letters['ა']!!.sentences.count())
 

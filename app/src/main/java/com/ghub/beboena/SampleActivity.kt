@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
-import kotlinx.android.synthetic.main.activity_sample.*
+import kotlinx.android.synthetic.main._activity_sample.*
 
 const val EXTRA_MESSAGE = "com.myfirstapp.MESSAGE"
 
@@ -12,7 +12,7 @@ class SampleActivity : BaseAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sample)
+        setContentView(R.layout._activity_sample)
 
         attachKeyboardListeners()
     }

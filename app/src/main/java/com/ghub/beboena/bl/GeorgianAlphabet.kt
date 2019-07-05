@@ -6,7 +6,7 @@ import java.io.InputStream
 import java.io.InputStreamReader
 
 
-object GeorgianABC {
+object GeorgianAlphabet {
 
     private val _letters = mutableListOf<GeorgianLetter>()
 
@@ -18,8 +18,9 @@ object GeorgianABC {
 
     fun initialize(strOga: InputStream, strSentences: InputStream) {
 
-        /* http://zetcode.com/articles/opencsv/ */
-
+        /**
+         *  http://zetcode.com/articles/opencsv/
+         */
         val isr = InputStreamReader(strOga)
         val tsvParser = CSVParserBuilder().withSeparator('\t').build()
         val tsvReader = CSVReaderBuilder(isr).withCSVParser(tsvParser).build()
@@ -27,12 +28,11 @@ object GeorgianABC {
 
         val sentencesData = strSentences.bufferedReader().readLines().distinct()
 
-        /*
-            OGA.csv format
-
-            [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent
-            [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
-        */
+        /**
+         * OGA.csv format
+         * [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent
+         * [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
+         */
 
         val orderedLetters = ogaData.associateBy({it[1].toChar()}, {it[9].toInt()})
         // val orderedLetters2 = ogaData.map {it[1].toChar() to it[9].toInt()}.sortedBy { it.second }.toMap()
@@ -78,8 +78,8 @@ fun String.toKhucuri(withCapital: Boolean = false): String {
     var khucuri = ""
 
     for ((index, letter) in mkhedruli.withIndex()) {
-        if (GeorgianABC.lettersToLearn.contains(letter)) {
-            khucuri = khucuri + if (withCapital && index == 0) GeorgianABC.lettersToLearn[letter]?.asomtavruli else GeorgianABC.lettersToLearn[letter]?.nuskhuri
+        if (GeorgianAlphabet.lettersToLearn.contains(letter)) {
+            khucuri = khucuri + if (withCapital && index == 0) GeorgianAlphabet.lettersToLearn[letter]?.asomtavruli else GeorgianAlphabet.lettersToLearn[letter]?.nuskhuri
         }
         else {
             khucuri = khucuri + letter

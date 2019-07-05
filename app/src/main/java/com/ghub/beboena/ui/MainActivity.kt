@@ -6,8 +6,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.ghub.beboena.*
+import com.ghub.beboena.bl.GeorgianAlphabet
 
-class MainActivity : AppCompatActivity(), HomeLettersFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteractionListener {
 
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -16,6 +17,13 @@ class MainActivity : AppCompatActivity(), HomeLettersFragment.OnFragmentInteract
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val strOga = applicationContext.assets.open("oga.tsv")
+        val strSentences = applicationContext.assets.open("sentences.txt")
+        GeorgianAlphabet.initialize(strOga, strSentences);
+
+        val letters = GeorgianAlphabet.lettersToLearn
+
     }
 
     override fun onStart() {

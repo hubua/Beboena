@@ -45,7 +45,7 @@ class LearnLetterFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_learn_letter, container, false)
+        val view = inflater.inflate(R.layout._fragment_learn_letter, container, false)
 
         val btn = view.findViewById(R.id.button) as Button
 

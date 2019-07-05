@@ -4,11 +4,13 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ghub.beboena.R
-
+import com.ghub.beboena.ui.view.SlidingTabLayout
+import com.ghub.beboena.view.LettersPagerAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,13 +20,13 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [HomeLettersFragment.OnFragmentInteractionListener] interface
+ * [LettersHomeFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [HomeLettersFragment.newInstance] factory method to
+ * Use the [LettersHomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class HomeLettersFragment : Fragment() {
+class LettersHomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -44,6 +46,19 @@ class HomeLettersFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home_letters, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // A [ViewPager] which will be used in conjunction with the [SlidingTabLayout] below.
+        // Get the ViewPager and set it's PagerAdapter so that it can display items.
+        val lettersViewPager = view.findViewById<View>(R.id.view_pager) as ViewPager
+        lettersViewPager!!.adapter = LettersPagerAdapter()
+
+        // A custom [ViewPager] title strip which looks much like Tabs present in Android v4.0 and
+        // above, but is designed to give continuous feedback to the user when scrolling.
+        // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had it's PagerAdapter set.
+        val lettersSlidingTabLayout = view.findViewById<View>(R.id.sliding_tab_layout) as SlidingTabLayout
+        lettersSlidingTabLayout!!.setViewPager(lettersViewPager)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -88,12 +103,12 @@ class HomeLettersFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeLettersFragment.
+         * @return A new instance of fragment LettersHomeFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            HomeLettersFragment().apply {
+            LettersHomeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -101,3 +116,4 @@ class HomeLettersFragment : Fragment() {
             }
     }
 }
+
