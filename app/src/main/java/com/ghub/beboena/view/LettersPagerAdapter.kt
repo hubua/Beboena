@@ -36,7 +36,7 @@ internal class LettersPagerAdapter : PagerAdapter() {
      */
     override fun getPageTitle(position: Int): CharSequence? {
         val letter = letters.values.toList()[position]
-        return "Aa ${letter.mkhedruli} ${letter.asomtavruli} ${letter.nuskhuri}"
+        return "${letter.asomtavruli} ${letter.nuskhuri} (${letter.name})"
     }
 
     /**

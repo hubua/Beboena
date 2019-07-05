@@ -19,6 +19,7 @@ package com.ghub.beboena.ui.view
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
@@ -28,6 +29,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.TextView
+import com.ghub.beboena.R
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -164,6 +166,8 @@ class SlidingTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         textView.gravity = Gravity.CENTER
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP.toFloat())
         textView.typeface = Typeface.DEFAULT_BOLD
+        textView.typeface = ResourcesCompat.getFont(context, R.font.sylfaen_w10)
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // If we're running on Honeycomb or newer, then we can use the Theme's
@@ -176,10 +180,10 @@ class SlidingTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
             textView.setBackgroundResource(outValue.resourceId)
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            // If we're running on ICS or newer, enable all-caps to match the Action Bar tab style
-            textView.isAllCaps = true
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+//            // If we're running on ICS or newer, enable all-caps to match the Action Bar tab style
+//            textView.isAllCaps = true
+//        }
 
         val padding = (TAB_VIEW_PADDING_DIPS * resources.displayMetrics.density).toInt()
         textView.setPadding(padding, padding, padding, padding)
@@ -308,7 +312,8 @@ class SlidingTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
 
         private val TITLE_OFFSET_DIPS = 24
         private val TAB_VIEW_PADDING_DIPS = 16
-        private val TAB_VIEW_TEXT_SIZE_SP = 12
+        private val TAB_VIEW_TEXT_SIZE_SP = 28
+
     }
 
 }
