@@ -51,14 +51,22 @@ class LettersHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // A [ViewPager] which will be used in conjunction with the [SlidingTabLayout] below.
         // Get the ViewPager and set it's PagerAdapter so that it can display items.
-        val lettersViewPager = view.findViewById<View>(R.id.view_pager) as ViewPager
-        lettersViewPager!!.adapter = LettersPagerAdapter()
+        val letterViewPager = view.findViewById<View>(R.id.view_pager) as ViewPager
+        letterViewPager!!.adapter = LettersPagerAdapter()
 
         // A custom [ViewPager] title strip which looks much like Tabs present in Android v4.0 and
         // above, but is designed to give continuous feedback to the user when scrolling.
         // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had it's PagerAdapter set.
         val lettersSlidingTabLayout = view.findViewById<View>(R.id.sliding_tab_layout) as SlidingTabLayout
-        lettersSlidingTabLayout!!.setViewPager(lettersViewPager)
+        lettersSlidingTabLayout!!.setViewPager(letterViewPager)
+
+        lettersSlidingTabLayout.setOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+            override fun onPageSelected(position: Int) {
+
+            }
+        })
+
+        //lettersSlidingTabLayout.scrollToPage(3)
     }
 
     // TODO: Rename method, update argument and hook method into UI event

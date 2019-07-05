@@ -44,16 +44,13 @@ internal class LettersPagerAdapter : PagerAdapter() {
      * inflate a layout from the apps resources and then change the text view to signify the position.
      */
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        // Inflate a new layout from our resources
+
         val view = LayoutInflater.from(container.context).inflate(R.layout.pager_item_letter, container, false)
-        // Add the newly created View to the ViewPager
         container.addView(view)
 
-        // Retrieve a TextView from the inflated View, and update it's text
         val title = view.findViewById(R.id.txt_item_title) as TextView
         title.text = (position + 1).toString()
 
-        // Return the View
         return view
     }
 

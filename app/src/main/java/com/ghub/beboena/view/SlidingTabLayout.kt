@@ -151,10 +151,16 @@ class SlidingTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         mTabStrip.removeAllViews()
 
         mViewPager = viewPager
-        if (viewPager != null) {
-            viewPager.setOnPageChangeListener(InternalViewPagerListener())
+        if (mViewPager != null) {
+            mViewPager!!.addOnPageChangeListener(InternalViewPagerListener())
             populateTabStrip()
         }
+    }
+
+    fun scrollToPage(pageIndex: Int) {
+
+        mViewPager?.setCurrentItem(pageIndex, false)
+
     }
 
     /**
@@ -191,6 +197,14 @@ class SlidingTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         return textView
     }
 
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+
+        if (mViewPager != null) {
+            scrollToTab(mViewPager!!.currentItem, 0)
+        }
+    }
+
     private fun populateTabStrip() {
         val adapter = mViewPager!!.adapter
         val tabClickListener = TabClickListener()
@@ -220,14 +234,6 @@ class SlidingTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
             tabView.setOnClickListener(tabClickListener)
 
             mTabStrip.addView(tabView)
-        }
-    }
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-
-        if (mViewPager != null) {
-            scrollToTab(mViewPager!!.currentItem, 0)
         }
     }
 
