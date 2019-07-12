@@ -10,4 +10,13 @@
         <item name="android:editTextBackground">@color/colorWhite</item>
     </style>
 
+    <style name="TextElementTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextElementValue" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
 </resources>
