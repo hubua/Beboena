@@ -8,24 +8,79 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/txtLeterName"
+        android:id="@+id/txt_letter_mkhedruli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:text="txtLeterName"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_horizontal"
+        tools:text="ა - &quot;ან&quot;"
         android:textAppearance="@style/TextElementValue"
-        app:layout_constraintStart_toEndOf="@+id/txtAso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtAso"
+        android:id="@+id/txt_asomtavruli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/txt_asomtavruli"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_letter_mkhedruli" />
+
+    <TextView
+        android:id="@+id/txt_asmt_bech"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        tools:text="Ⴀ"
+        android:textAppearance="@style/TextGeoBechduri"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nuskhuri" />
+
+    <TextView
+        android:id="@+id/txt_asmt_khel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        tools:text="( Ⴀ )"
+        android:textAppearance="@style/TextGeoKhelnatseri"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_asmt_bech"
+        app:layout_constraintStart_toEndOf="@+id/txt_asmt_bech" />
+
+    <TextView
+        android:id="@+id/txt_nskh_bech"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        tools:text="ⴀ"
+        android:textAppearance="@style/TextGeoBechduri"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_asmt_bech" />
+
+    <TextView
+        android:id="@+id/txt_nskh_khel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        tools:text="( ⴀ )"
+        android:textAppearance="@style/TextGeoKhelnatseri"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_nskh_bech"
+        app:layout_constraintStart_toEndOf="@+id/txt_nskh_bech" />
+
+    <TextView
+        android:id="@+id/txt_nuskhuri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="ასო"
-        android:textAppearance="@style/TextElementTitle"
+        android:text="@string/txt_nuskhuri"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_asomtavruli" />
+
 </android.support.constraint.ConstraintLayout>

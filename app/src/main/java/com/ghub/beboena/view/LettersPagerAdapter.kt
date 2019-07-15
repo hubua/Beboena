@@ -1,6 +1,7 @@
 package com.ghub.beboena.view
 
 import android.support.v4.view.PagerAdapter
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,8 +50,26 @@ internal class LettersPagerAdapter : PagerAdapter() {
         val view = LayoutInflater.from(container.context).inflate(R.layout.pager_item_letter, container, false)
         container.addView(view)
 
-        val title = view.findViewById(R.id.txtLeterName) as TextView
-        title.text = letter.name
+        val txtLetterMkhedruli = view.findViewById(R.id.txt_letter_mkhedruli) as TextView
+        txtLetterMkhedruli.text = "${letter.mkhedruli.toString()} - \"${letter.name}\""
+
+        val txtAsomtavruli = view.findViewById(R.id.txt_asomtavruli) as TextView
+        txtAsomtavruli.text = Html.fromHtml(container.context.resources.getString(R.string.txt_asomtavruli), Html.FROM_HTML_MODE_LEGACY)
+
+        val txtNuskhuri = view.findViewById(R.id.txt_nuskhuri) as TextView
+        txtNuskhuri.text = Html.fromHtml(container.context.resources.getString(R.string.txt_nuskhuri), Html.FROM_HTML_MODE_LEGACY)
+
+        val txtAsmtBech = view.findViewById(R.id.txt_asmt_bech) as TextView
+        txtAsmtBech.text = letter.asomtavruli.toString()
+
+        val txtAsmtKhel = view.findViewById(R.id.txt_asmt_khel) as TextView
+        txtAsmtKhel.text = "( ${letter.asomtavruli} )"
+
+        val txtNskhBech = view.findViewById(R.id.txt_nskh_bech) as TextView
+        txtNskhBech.text = letter.nuskhuri.toString()
+
+        val txtNskhKhel = view.findViewById(R.id.txt_nskh_khel) as TextView
+        txtNskhKhel.text = "( ${letter.nuskhuri} )"
 
         return view
     }

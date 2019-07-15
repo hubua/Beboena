@@ -19,4 +19,14 @@
         <item name="android:textSize">30sp</item>
     </style>
 
+    <style name="TextGeoBechduri" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/sylfaen_w10</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="TextGeoKhelnatseri" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/sylfaen</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
 </resources>
