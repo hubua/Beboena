@@ -1,6 +1,6 @@
 package com.ghub.beboena.view
 
-import android.support.v4.view.PagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
 
-internal class LettersPagerAdapter : PagerAdapter() {
+internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
 
     private val letters = GeorgianAlphabet.lettersToLearn
 

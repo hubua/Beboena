@@ -2,9 +2,9 @@ package com.ghub.beboena
 
 import android.view.ViewGroup
 import android.content.Intent
-import android.support.v4.content.LocalBroadcastManager
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import android.view.ViewTreeObserver
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.Window
 import com.ghub.beboena.R
@@ -20,7 +20,7 @@ open class BaseAppCompatActivity : AppCompatActivity() {
         val heightDiff = _rootLayout!!.rootView.height - _rootLayout!!.height
         val contentViewTop = window.findViewById<View>(Window.ID_ANDROID_CONTENT).top
 
-        val broadcastManager = LocalBroadcastManager.getInstance(this@BaseAppCompatActivity)
+        val broadcastManager = androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(this@BaseAppCompatActivity)
 
         if (heightDiff <= contentViewTop) {
             onHideKeyboard()

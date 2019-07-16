@@ -3,8 +3,8 @@ package com.ghub.beboena.ui
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +30,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class LettersHomeFragment : Fragment() {
+class LettersHomeFragment : androidx.fragment.app.Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -55,7 +55,7 @@ class LettersHomeFragment : Fragment() {
 
         btnCheck.setOnClickListener { view ->
 
-            val letterId = 'დ'
+            val letterId = "დ"
             var bundle = bundleOf("letterId" to letterId)
             view.findNavController().navigate(R.id.frg_dest_transcript, bundle)
 
@@ -69,7 +69,7 @@ class LettersHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // A [ViewPager] which will be used in conjunction with the [SlidingTabLayout] below.
         // Get the ViewPager and set it's PagerAdapter so that it can display items.
-        val letterViewPager = view.findViewById<View>(R.id.view_pager) as ViewPager
+        val letterViewPager = view.findViewById<View>(R.id.view_pager) as androidx.viewpager.widget.ViewPager
         letterViewPager.adapter = LettersPagerAdapter()
 
         // A custom [ViewPager] title strip which looks much like Tabs present in Android v4.0 and
@@ -78,7 +78,7 @@ class LettersHomeFragment : Fragment() {
         val lettersSlidingTabLayout = view.findViewById<View>(R.id.sliding_tab_layout) as SlidingTabLayout
         lettersSlidingTabLayout.setViewPager(letterViewPager)
 
-        lettersSlidingTabLayout.setOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+        lettersSlidingTabLayout.setOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
 
             }

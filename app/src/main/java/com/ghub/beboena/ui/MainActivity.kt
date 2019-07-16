@@ -2,13 +2,13 @@ package com.ghub.beboena.ui
 
 import android.content.Intent
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.ghub.beboena.*
 import com.ghub.beboena.bl.GeorgianAlphabet
 
-class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteractionListener, TranscriptDestFragment.OnFragmentInteractionListener {
 
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
