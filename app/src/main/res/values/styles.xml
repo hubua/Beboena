@@ -10,23 +10,19 @@
         <item name="android:editTextBackground">@color/colorWhite</item>
     </style>
 
-    <style name="TextElementTitle" parent="TextAppearance.AppCompat">
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="TextElementValue" parent="TextAppearance.AppCompat">
+    <style name="TextTitle" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">30sp</item>
     </style>
 
     <style name="TextGeoBechduri" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/sylfaen_w10</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">40sp</item>
     </style>
 
     <style name="TextGeoKhelnatseri" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/sylfaen</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">40sp</item>
     </style>
 
 </resources>

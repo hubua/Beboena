@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/frgHomeLetters">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/frg_home_letters">
 
-    <fragment android:id="@+id/frgHomeLetters" android:name="com.ghub.beboena.ui.LettersHomeFragment"
-              android:label="fragment_home_letters" tools:layout="@layout/fragment_home_letters"/>
-    <fragment android:id="@+id/frgDestTranscript"
-              android:name="com.ghub.beboena.ui.TranscriptDestFragment"
-              android:label="fragment_destination_transcript" tools:layout="@layout/fragment_dest_transcript"/>
+    <fragment
+        android:id="@+id/frg_home_letters"
+        android:name="com.ghub.beboena.ui.LettersHomeFragment"
+        tools:layout="@layout/fragment_home_letters" >
+        <action
+            android:id="@+id/action_frg_home_letters_to_frg_dest_transcript"
+            app:destination="@id/frg_dest_transcript" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/frg_dest_transcript"
+        android:name="com.ghub.beboena.ui.TranscriptDestFragment"
+        tools:layout="@layout/fragment_dest_transcript" >
+        <argument
+            android:name="letterId"
+            app:argType="string" />
+    </fragment>
 </navigation>

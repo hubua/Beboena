@@ -7,6 +7,7 @@ https://guides.github.com/features/mastering-markdown/
 - [Introduction to Activities](https://developer.android.com/guide/components/activities/intro-activities)
 
 - [Build a Responsive UI with ConstraintLayout](https://developer.android.com/training/constraint-layout/)
+
 - [Material Design for Android](https://developer.android.com/guide/topics/ui/look-and-feel/)
 - [Design app themes with Theme Editor](https://developer.android.com/studio/write/theme-editor)
 

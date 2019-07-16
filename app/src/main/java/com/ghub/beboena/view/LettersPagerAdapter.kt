@@ -53,23 +53,23 @@ internal class LettersPagerAdapter : PagerAdapter() {
         val txtLetterMkhedruli = view.findViewById(R.id.txt_letter_mkhedruli) as TextView
         txtLetterMkhedruli.text = "${letter.mkhedruli.toString()} - \"${letter.name}\""
 
-        val txtAsomtavruli = view.findViewById(R.id.txt_asomtavruli) as TextView
+        val txtAsomtavruli = view.findViewById(R.id.txt_asomtavruli_label) as TextView
         txtAsomtavruli.text = Html.fromHtml(container.context.resources.getString(R.string.txt_asomtavruli), Html.FROM_HTML_MODE_LEGACY)
 
-        val txtNuskhuri = view.findViewById(R.id.txt_nuskhuri) as TextView
+        val txtNuskhuri = view.findViewById(R.id.txt_nuskhuri_label) as TextView
         txtNuskhuri.text = Html.fromHtml(container.context.resources.getString(R.string.txt_nuskhuri), Html.FROM_HTML_MODE_LEGACY)
 
         val txtAsmtBech = view.findViewById(R.id.txt_asmt_bech) as TextView
         txtAsmtBech.text = letter.asomtavruli.toString()
 
         val txtAsmtKhel = view.findViewById(R.id.txt_asmt_khel) as TextView
-        txtAsmtKhel.text = "( ${letter.asomtavruli} )"
+        txtAsmtKhel.text = " ${letter.asomtavruli}"
 
         val txtNskhBech = view.findViewById(R.id.txt_nskh_bech) as TextView
         txtNskhBech.text = letter.nuskhuri.toString()
 
         val txtNskhKhel = view.findViewById(R.id.txt_nskh_khel) as TextView
-        txtNskhKhel.text = "( ${letter.nuskhuri} )"
+        txtNskhKhel.text = " ${letter.nuskhuri}"
 
         return view
     }

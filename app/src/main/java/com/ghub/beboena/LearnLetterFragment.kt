@@ -50,7 +50,7 @@ class LearnLetterFragment : Fragment() {
         val btn = view.findViewById(R.id.button) as Button
 
         btn.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.frgDestTranscript)
+            view.findNavController().navigate(R.id.frg_dest_transcript)
         }
 
         // btn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.fragmentTranscriptSentences, null))

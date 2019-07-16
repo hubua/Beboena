@@ -8,6 +8,10 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.ghub.beboena.R
 import com.ghub.beboena.ui.view.SlidingTabLayout
 import com.ghub.beboena.view.LettersPagerAdapter
@@ -45,7 +49,21 @@ class LettersHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_letters, container, false)
+        val view =  inflater.inflate(R.layout.fragment_home_letters, container, false)
+
+        val btnCheck = view.findViewById(R.id.btn_check) as Button
+
+        btnCheck.setOnClickListener { view ->
+
+            val letterId = 'დ'
+            var bundle = bundleOf("letterId" to letterId)
+            view.findNavController().navigate(R.id.frg_dest_transcript, bundle)
+
+        }
+
+        //btnCheck.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.frg_dest_transcript, null))
+
+        return  view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

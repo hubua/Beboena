@@ -6,6 +6,11 @@
              android:orientation="vertical"
              tools:context=".ui.LettersHomeFragment">
 
+
+
+
+
+
     <TextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -14,7 +19,9 @@
     <com.ghub.beboena.ui.view.SlidingTabLayout
             android:id="@+id/sliding_tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" >
+
+    </com.ghub.beboena.ui.view.SlidingTabLayout>
 
     <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"
@@ -23,6 +30,18 @@
             android:layout_weight="1"
             android:background="@android:color/white"/>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
 
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="24dp"
+            android:background="@drawable/btn_background_rounded"
+            android:text="@string/btn_check" />
+    </FrameLayout>
 
 </LinearLayout>
