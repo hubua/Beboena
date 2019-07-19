@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="vertical"
-             tools:context=".ui.LettersHomeFragment">
-
-
-
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.LettersHomeFragment">
 
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="HomeLettersFragment" />
+        android:id="@+id/txt_letters_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/txt_letters_hint" />
 
     <com.ghub.beboena.ui.view.SlidingTabLayout
-            android:id="@+id/sliding_tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+        android:id="@+id/sliding_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     </com.ghub.beboena.ui.view.SlidingTabLayout>
 
     <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
-            android:background="@android:color/white"/>
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="@android:color/white" />
 
     <FrameLayout
         android:layout_width="match_parent"

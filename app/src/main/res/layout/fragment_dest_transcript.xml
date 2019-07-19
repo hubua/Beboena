@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.TranscriptDestFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.TranscriptDestFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+        android:id="@+id/txt_lbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txt_translate_sentence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtv_translate_sentence" />
+
+    <ProgressBar
+        android:id="@+id/pb_transcript_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:progress="3"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/txt_sentence_to_transcript"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextGeoBechduri"
+        tools:text="@string/txt_sample" />
+
+    <EditText
+        android:id="@+id/edit_transcription"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:inputType="textMultiLine"
+        android:padding="8dp"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textCursorDrawable="@null"
+        tools:text="ტექსტი" />
+
+    <Button
+        android:id="@+id/btn_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background_rounded"
+        android:text="@string/btn_check"
+        android:textColor="@drawable/btn_textcolor_colored" />
+
+</LinearLayout>

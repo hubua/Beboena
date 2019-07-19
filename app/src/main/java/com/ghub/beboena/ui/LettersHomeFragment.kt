@@ -56,8 +56,10 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
         btnCheck.setOnClickListener { view ->
 
             val letterId = "დ"
-            var bundle = bundleOf("letterId" to letterId)
-            view.findNavController().navigate(R.id.frg_dest_transcript, bundle)
+
+            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgDestTranscript(letterId)
+
+            view.findNavController().navigate(action)
 
         }
 

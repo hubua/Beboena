@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.navigation.fragment.navArgs
 import com.ghub.beboena.R
 
 
@@ -44,6 +46,14 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dest_transcript, container, false)
+    }
+
+    val args: TranscriptDestFragmentArgs by navArgs()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val txtLbl: TextView = view.findViewById(R.id.txt_lbl)
+        val letterId = args.letterId
+        txtLbl.text = letterId
     }
 
     // TODO: Rename method, update argument and hook method into UI event

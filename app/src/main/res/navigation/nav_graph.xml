@@ -11,7 +11,11 @@
         tools:layout="@layout/fragment_home_letters" >
         <action
             android:id="@+id/action_frg_home_letters_to_frg_dest_transcript"
-            app:destination="@id/frg_dest_transcript" />
+            app:destination="@id/frg_dest_transcript"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
