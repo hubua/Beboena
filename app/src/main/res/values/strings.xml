@@ -1,32 +1,31 @@
 <resources>
     <string name="app_name">Beboena</string>
     <string name="app_name_geo">ბებოენა</string>
-    <string name="app_name_nus">ႡႤႡႭႤႬႠ</string>
-    <string name="txtv_translate_sentence">გადათარგმნეთ წინადადება</string>
-    <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
-    <string name="btn_check">შევამოწმოთ ცოდნა</string>
-    <string name="txt_sample">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ</string>
-    <string name="txt_sample_long">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ, ⴟⴃⴀ ⴋⴒⴈⴐⴀⴊⴈ ⴜⴗⴊⴈⴑⴀ ⴎⴈⴐⴑⴀ</string>
+    <string name="app_name_khucuri">ႡႤႡႭႤႬႠ</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
+
+    <string name="btn_check_knowlegde">შევამოწმოთ ცოდნა</string>
+    <string name="btn_check">შევამოწმოთ</string>
 
     <string name="txt_letter_sample">ⴀ</string>
+    <string name="txt_sentence_sample">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ</string>
+    <string name="txt_long_sentence_sample">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ, ⴟⴃⴀ ⴋⴒⴈⴐⴀⴊⴈ ⴜⴗⴊⴈⴑⴀ ⴎⴈⴐⴑⴀ</string>
 
-    <string name="txt_asomtavruli">
+    <string name="txt_asomtavruli_label">
 <![CDATA[
 <b>ასომთავრული</b><br/>
 ბეჭდური და ხელნაწერი
 ]]>
     </string>
 
-    <string name="txt_nuskhuri">
+    <string name="txt_nuskhuri_label">
 <![CDATA[
 <b>ნუსხური</b><br/>
 ბეჭდური და ხელნაწერი
 ]]>
     </string>
+
     <string name="txt_letters_hint">აირჩიეთ ასო და დაიწყეთ სწავლა</string>
 
 </resources>

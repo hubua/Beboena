@@ -16,7 +16,7 @@
         android:id="@+id/txt_translate_sentence"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtv_translate_sentence" />
+        android:text="@string/txt_translate_sentence_hint" />
 
     <ProgressBar
         android:id="@+id/pb_transcript_progress"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextGeoBechduri"
-        tools:text="@string/txt_sample" />
+        tools:text="@string/txt_sentence_sample" />
 
     <EditText
         android:id="@+id/edit_transcription"

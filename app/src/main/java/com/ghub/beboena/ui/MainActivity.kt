@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
         val strSentences = applicationContext.assets.open("sentences.txt")
         GeorgianAlphabet.initialize(strOga, strSentences);
 
-        val letters = GeorgianAlphabet.lettersToLearn
-
     }
 
     override fun onStart() {
@@ -32,12 +30,4 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
 
     }
 
-    fun btnClick(view: View) {
-
-        val intent = Intent(this, LearnLetterActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, "msg1")
-        }
-        startActivity(intent)
-
-    }
 }
