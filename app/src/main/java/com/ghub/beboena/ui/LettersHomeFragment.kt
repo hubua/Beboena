@@ -4,15 +4,13 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.os.bundleOf
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.ghub.beboena.R
+import com.ghub.beboena.bl.GeorgianAlphabet
 import com.ghub.beboena.ui.view.SlidingTabLayout
 import com.ghub.beboena.view.LettersPagerAdapter
 
@@ -31,6 +29,9 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class LettersHomeFragment : androidx.fragment.app.Fragment() {
+
+    private var currentLetterId: Char = GeorgianAlphabet.lettersByOrder[0].letterId
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -51,13 +52,11 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_home_letters, container, false)
 
-        val btnCheck = view.findViewById(R.id.btn_check) as Button
+        val btnStartExercise = view.findViewById(R.id.btn_start_exercise) as Button
 
-        btnCheck.setOnClickListener { view ->
+        btnStartExercise.setOnClickListener { view ->
 
-            val letterId = "დ"
-
-            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgDestTranscript(letterId)
+            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgDestTranscript(currentLetterId.toString())
 
             view.findNavController().navigate(action)
 
@@ -83,10 +82,11 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
         lettersSlidingTabLayout.setOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
 
+                currentLetterId = GeorgianAlphabet.lettersByOrder[position].letterId
             }
         })
 
-        //lettersSlidingTabLayout.scrollToPage(3)
+        // lettersSlidingTabLayout.scrollToPage(1) //TODO load from saved state
     }
 
     // TODO: Rename method, update argument and hook method into UI event

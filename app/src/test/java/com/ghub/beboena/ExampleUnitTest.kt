@@ -24,7 +24,7 @@ class ExampleUnitTest {
     @Test
     fun initialize_isCorrect() {
 
-        val letters = GeorgianAlphabet.lettersToLearn
+        val letters = GeorgianAlphabet.lettersByOrder
 
         assertEquals(33 + 5, letters.count())
     }
@@ -40,13 +40,13 @@ class ExampleUnitTest {
     @Test
     fun words_loaded() {
 
-        val letters = GeorgianAlphabet.lettersToLearn
+        val lettersMap = GeorgianAlphabet.lettersById
 
-        assertEquals(0, letters['ა']!!.sentences.count())
+        assertEquals(0, lettersMap['ა']!!.sentences.count())
 
-        assertEquals("აი ია", letters['ი']!!.sentences[0])
+        assertEquals("აი ია", lettersMap['ი']!!.sentences[0])
 
-        assertNotEquals(letters['ო']!!.sentences[0], letters['ო']!!.sentencesShuffled[0])
+        assertNotEquals(lettersMap['ო']!!.sentences[0], lettersMap['ო']!!.sentencesShuffled[0]) //TODO flickering test because of random
     }
 
 }

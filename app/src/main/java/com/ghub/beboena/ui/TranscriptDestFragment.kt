@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import com.ghub.beboena.R
@@ -45,15 +46,27 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dest_transcript, container, false)
+        val view = inflater.inflate(R.layout.fragment_dest_transcript, container, false)
+
+        val btnCheck = view.findViewById(R.id.btn_check) as Button
+
+        btnCheck.setOnClickListener { view -> onBtnCheckClick(view) }
+
+        return  view
     }
 
     val args: TranscriptDestFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val txtLbl: TextView = view.findViewById(R.id.txt_lbl)
+        val txtCurrentLetter: TextView = view.findViewById(R.id.txt_current_letter)
         val letterId = args.letterId
-        txtLbl.text = letterId
+        txtCurrentLetter.text = letterId
+    }
+
+    fun onBtnCheckClick(view: View)
+    {
+        val txtCurrentLetter: TextView = view.findViewById(R.id.txt_current_letter)
+        txtCurrentLetter.text = "a"
     }
 
     // TODO: Rename method, update argument and hook method into UI event

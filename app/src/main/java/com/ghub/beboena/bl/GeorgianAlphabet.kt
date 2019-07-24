@@ -10,7 +10,20 @@ object GeorgianAlphabet {
 
     private val _letters = mutableListOf<GeorgianLetter>()
 
-    val lettersToLearn get() = _letters.sortedBy({ it.learnOrder }).associateBy({ it.mkhedruli}, {it})
+    val lettersByOrder get() = _letters.sortedBy{ it.learnOrder }
+
+    val lettersById get() = _letters.associateBy({ it.mkhedruli}, {it})
+
+    //val firstLetterToLearnId get() = _letters.sortedBy{ it.learnOrder }[0].mkhedruli
+
+    /*fun getLetterToLearnByPosition(position: Int): GeorgianLetter
+    {
+        return when {
+            (position < 0) -> lettersByOrder.first()
+            (position > lettersByOrder.count()) -> lettersByOrder.last()
+            else -> lettersByOrder[position]
+        }
+    }*/
 
     private fun String.toChar(): Char {
         return this.toCharArray()[0]
@@ -78,11 +91,11 @@ fun String.toKhucuri(withCapital: Boolean = false): String {
     var khucuri = ""
 
     for ((index, letter) in mkhedruli.withIndex()) {
-        if (GeorgianAlphabet.lettersToLearn.contains(letter)) {
-            khucuri = khucuri + if (withCapital && index == 0) GeorgianAlphabet.lettersToLearn[letter]?.asomtavruli else GeorgianAlphabet.lettersToLearn[letter]?.nuskhuri
+        if (GeorgianAlphabet.lettersById.contains(letter)) {
+            khucuri += if (withCapital && index == 0) GeorgianAlphabet.lettersById[letter]?.asomtavruli else GeorgianAlphabet.lettersById[letter]?.nuskhuri
         }
         else {
-            khucuri = khucuri + letter
+            khucuri += letter
         }
     }
 

@@ -29,8 +29,12 @@ Android Navigation
 Kotlin
 ------------------------------
 
+
 - http://kotlinlang.org/docs/reference/
 - https://try.kotlinlang.org/
+
+https://kotlinlang.org/docs/reference/coding-conventions.html
+- https://developer.android.com/kotlin/style-guide
 
 
 Unit tests

@@ -17,6 +17,8 @@ data class GeorgianLetter(
 
     private val _random = Random()
 
+    val letterId get() = mkhedruli
+
     val sentencesShuffled get() = sentences.shuffled(_random)
 
 }

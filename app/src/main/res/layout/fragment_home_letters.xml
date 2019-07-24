@@ -33,13 +33,13 @@
         android:layout_height="100dp">
 
         <Button
-            android:id="@+id/btn_check"
+            android:id="@+id/btn_start_exercise"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="24dp"
             android:background="@drawable/btn_background_rounded"
-            android:text="@string/btn_check_knowlegde" />
+            android:text="@string/btn_start_exercise" />
     </FrameLayout>
 
 </LinearLayout>

@@ -15,13 +15,13 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        // GeorgianAlphabet initialization must happen first
         val strOga = applicationContext.assets.open("oga.tsv")
         val strSentences = applicationContext.assets.open("sentences.txt")
         GeorgianAlphabet.initialize(strOga, strSentences);
 
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
     }
 
     override fun onStart() {

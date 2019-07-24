@@ -5,7 +5,7 @@
 
     <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
 
-    <string name="btn_check_knowlegde">შევამოწმოთ ცოდნა</string>
+    <string name="btn_start_exercise">ვივარჯიშოთ</string>
     <string name="btn_check">შევამოწმოთ</string>
 
     <string name="txt_letter_sample">ⴀ</string>
@@ -26,6 +26,6 @@
 ]]>
     </string>
 
-    <string name="txt_letters_hint">აირჩიეთ ასო და დაიწყეთ სწავლა</string>
+    <string name="txt_letters_hint">აირჩიეთ ასო და დაიწყეთ სავარჯიშო დავალება</string>
 
 </resources>
