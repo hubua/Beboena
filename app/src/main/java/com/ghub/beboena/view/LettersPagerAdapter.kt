@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
+import kotlinx.android.synthetic.main.pager_item_letter.view.*
 
 internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
 
-    val lettersByPosition = GeorgianAlphabet.lettersByOrder
+    private val lettersByPosition = GeorgianAlphabet.lettersByOrder
 
     /**
      * @return the number of pages to display
@@ -49,25 +50,25 @@ internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
         val view = LayoutInflater.from(container.context).inflate(R.layout.pager_item_letter, container, false)
         container.addView(view)
 
-        val txtLetterMkhedruli = view.findViewById(R.id.txt_letter_mkhedruli) as TextView
+        val txtLetterMkhedruli = view.findViewById(R.id.txtLetterMkhedruli) as TextView //TODO use synthetic binding
         txtLetterMkhedruli.text = "${letter.mkhedruli.toString()} - \"${letter.name}\""
 
-        val txtAsomtavruli = view.findViewById(R.id.txt_asomtavruli_label) as TextView
+        val txtAsomtavruli = view.findViewById(R.id.txtAsomtavruliLabel) as TextView
         txtAsomtavruli.text = Html.fromHtml(container.context.resources.getString(R.string.txt_asomtavruli_label), Html.FROM_HTML_MODE_LEGACY)
 
-        val txtNuskhuri = view.findViewById(R.id.txt_nuskhuri_label) as TextView
+        val txtNuskhuri = view.findViewById(R.id.txtNuskhuriLabel) as TextView
         txtNuskhuri.text = Html.fromHtml(container.context.resources.getString(R.string.txt_nuskhuri_label), Html.FROM_HTML_MODE_LEGACY)
 
-        val txtAsmtBech = view.findViewById(R.id.txt_asmt_bech) as TextView
+        val txtAsmtBech = view.findViewById(R.id.txtAsmtBech) as TextView
         txtAsmtBech.text = letter.asomtavruli.toString()
 
-        val txtAsmtKhel = view.findViewById(R.id.txt_asmt_khel) as TextView
+        val txtAsmtKhel = view.findViewById(R.id.txtAsmtKhel) as TextView
         txtAsmtKhel.text = " ${letter.asomtavruli}"
 
-        val txtNskhBech = view.findViewById(R.id.txt_nskh_bech) as TextView
+        val txtNskhBech = view.findViewById(R.id.txtNskhBech) as TextView
         txtNskhBech.text = letter.nuskhuri.toString()
 
-        val txtNskhKhel = view.findViewById(R.id.txt_nskh_khel) as TextView
+        val txtNskhKhel = view.findViewById(R.id.txtNskhKhel) as TextView
         txtNskhKhel.text = " ${letter.nuskhuri}"
 
         return view

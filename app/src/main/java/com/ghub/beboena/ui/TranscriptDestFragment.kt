@@ -1,5 +1,6 @@
 package com.ghub.beboena.ui
 
+import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -9,9 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.IdRes
 import androidx.navigation.fragment.navArgs
 import com.ghub.beboena.R
-
+import kotlinx.android.synthetic.main.fragment_dest_transcript.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,25 +50,25 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_dest_transcript, container, false)
 
-        val btnCheck = view.findViewById(R.id.btn_check) as Button
-
-        btnCheck.setOnClickListener { view -> onBtnCheckClick(view) }
 
         return  view
     }
 
-    val args: TranscriptDestFragmentArgs by navArgs()
+    private val args: TranscriptDestFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        btn_check.setOnClickListener { view -> onBtnCheckClick(view) }
+
+
         val txtCurrentLetter: TextView = view.findViewById(R.id.txt_current_letter)
         val letterId = args.letterId
         txtCurrentLetter.text = letterId
     }
 
-    fun onBtnCheckClick(view: View)
+    private fun onBtnCheckClick(view: View)
     {
-        val txtCurrentLetter: TextView = view.findViewById(R.id.txt_current_letter)
-        txtCurrentLetter.text = "a"
+        txt_current_letter.text = "a"
     }
 
     // TODO: Rename method, update argument and hook method into UI event
