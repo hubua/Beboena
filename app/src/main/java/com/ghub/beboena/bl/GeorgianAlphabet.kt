@@ -25,10 +25,6 @@ object GeorgianAlphabet {
         }
     }*/
 
-    private fun String.toChar(): Char {
-        return this.toCharArray()[0]
-    }
-
     fun initialize(strOga: InputStream, strSentences: InputStream) {
 
         /**
@@ -100,4 +96,8 @@ fun String.toKhucuri(withCapital: Boolean = false): String {
     }
 
     return khucuri
+}
+
+fun String.toChar(): Char {
+    return this.toCharArray()[0]
 }

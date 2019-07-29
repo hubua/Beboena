@@ -2,8 +2,12 @@ package com.ghub.beboena.ui
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +17,10 @@ import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.navigation.fragment.navArgs
 import com.ghub.beboena.R
+import com.ghub.beboena.bl.GeorgianAlphabet
+import com.ghub.beboena.bl.GeorgianLetter
+import com.ghub.beboena.bl.toChar
+import com.ghub.beboena.bl.toKhucuri
 import kotlinx.android.synthetic.main.fragment_dest_transcript.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,6 +43,10 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
+    private val args: TranscriptDestFragmentArgs by navArgs()
+
+    private val currentLetter get() = GeorgianAlphabet.lettersById[args.letterId.toChar()]!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -48,27 +60,29 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_dest_transcript, container, false)
-
-
-        return  view
+        return inflater.inflate(R.layout.fragment_dest_transcript, container, false)
     }
 
-    private val args: TranscriptDestFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         btn_check.setOnClickListener { view -> onBtnCheckClick(view) }
 
-
         val txtCurrentLetter: TextView = view.findViewById(R.id.txt_current_letter)
-        val letterId = args.letterId
-        txtCurrentLetter.text = letterId
+
+        val spannable = SpannableString(String.format(resources.getString(R.string.txt_learning_letter), currentLetter.letterId))
+        spannable.setSpan(ForegroundColorSpan(Color.MAGENTA), 14, 15, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        txtCurrentLetter.text = spannable
+
+        pb_transcript_progress.max = currentLetter.sentences.count()
+        pb_transcript_progress.progress = 1
+        txt_transcript_progress.text = "1 / ${currentLetter.sentences.count()}"
+        txt_sentence.text = currentLetter.sentences[0].toKhucuri()
     }
 
     private fun onBtnCheckClick(view: View)
     {
-        txt_current_letter.text = "a"
+        txt_current_letter.text = currentLetter.mkhedruli.toString()
     }
 
     // TODO: Rename method, update argument and hook method into UI event

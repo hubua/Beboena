@@ -29,13 +29,12 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class LettersHomeFragment : androidx.fragment.app.Fragment() {
-
-    private var currentLetterId: Char = GeorgianAlphabet.lettersByOrder[0].letterId
-
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+
+    private var currentLetterId: Char = GeorgianAlphabet.lettersByOrder[0].letterId
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +80,6 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
 
         lettersSlidingTabLayout.setOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
-
                 currentLetterId = GeorgianAlphabet.lettersByOrder[position].letterId
             }
         })

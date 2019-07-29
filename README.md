@@ -21,6 +21,7 @@ Android Navigation
 ------------------------------
 
 - Get started with the Navigation component https://developer.android.com/guide/navigation/navigation-getting-started
+- Pass data between destinations https://developer.android.com/guide/navigation/navigation-pass-data
 - Navigating between fragments https://www.youtube.com/watch?v=0yH1qDxqZMo
 
 - Navigation drawer from scratch https://codinginflow.com/tutorials/android/navigation-drawer/part-1-menu-activity-theme
@@ -33,7 +34,7 @@ Kotlin
 - http://kotlinlang.org/docs/reference/
 - https://try.kotlinlang.org/
 
-https://kotlinlang.org/docs/reference/coding-conventions.html
+- https://kotlinlang.org/docs/reference/coding-conventions.html
 - https://developer.android.com/kotlin/style-guide
 
 
