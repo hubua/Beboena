@@ -1,4 +1,4 @@
-package com.ghub.beboena.view
+package com.ghub.beboena.customview
 
 import android.text.Html
 import android.view.LayoutInflater
@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
-import kotlinx.android.synthetic.main.pager_item_letter.view.*
 
 internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
 
-    private val lettersByPosition = GeorgianAlphabet.lettersByOrder
+    private val lettersByPosition = GeorgianAlphabet.lettersByOrderIndex
 
     /**
      * @return the number of pages to display

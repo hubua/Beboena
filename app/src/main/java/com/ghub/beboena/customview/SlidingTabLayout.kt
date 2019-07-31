@@ -158,9 +158,7 @@ class SlidingTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
     }
 
     fun scrollToPage(pageIndex: Int) {
-
-        mViewPager?.setCurrentItem(pageIndex, false)
-
+        mViewPager?.setCurrentItem(pageIndex, true)
     }
 
     /**

@@ -10,7 +10,7 @@ object GeorgianAlphabet {
 
     private val _letters = mutableListOf<GeorgianLetter>()
 
-    val lettersByOrder get() = _letters.sortedBy{ it.learnOrder }
+    val lettersByOrderIndex get() = _letters.sortedBy{ it.learnOrder }
 
     val lettersById get() = _letters.associateBy({ it.mkhedruli}, {it})
 
@@ -19,9 +19,9 @@ object GeorgianAlphabet {
     /*fun getLetterToLearnByPosition(position: Int): GeorgianLetter
     {
         return when {
-            (position < 0) -> lettersByOrder.first()
-            (position > lettersByOrder.count()) -> lettersByOrder.last()
-            else -> lettersByOrder[position]
+            (position < 0) -> lettersByOrderIndex.first()
+            (position > lettersByOrderIndex.count()) -> lettersByOrderIndex.last()
+            else -> lettersByOrderIndex[position]
         }
     }*/
 

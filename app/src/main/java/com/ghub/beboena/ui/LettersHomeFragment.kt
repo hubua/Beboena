@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
+import androidx.viewpager.widget.ViewPager
 import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
 import com.ghub.beboena.ui.view.SlidingTabLayout
-import com.ghub.beboena.view.LettersPagerAdapter
+import com.ghub.beboena.customview.LettersPagerAdapter
+import kotlinx.android.synthetic.main.fragment_home_letters.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +36,7 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
-    private var currentLetterId: Char = GeorgianAlphabet.lettersByOrder[0].letterId
+    private var currentLetter = GeorgianAlphabet.lettersByOrderIndex[0]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,26 +46,9 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_home_letters, container, false)
-
-        val btnStartExercise = view.findViewById(R.id.btn_start_exercise) as Button
-
-        btnStartExercise.setOnClickListener { view ->
-
-            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgDestTranscript(currentLetterId.toString())
-
-            view.findNavController().navigate(action)
-
-        }
-
-        //btnCheck.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.frg_dest_transcript, null))
-
-        return  view
+        return inflater.inflate(R.layout.fragment_home_letters, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,13 +63,28 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
         val lettersSlidingTabLayout = view.findViewById<View>(R.id.sliding_tab_layout) as SlidingTabLayout
         lettersSlidingTabLayout.setViewPager(letterViewPager)
 
-        lettersSlidingTabLayout.setOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener() {
+        btn_start_exercise.visibility = View.GONE
+
+        lettersSlidingTabLayout.setOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
-                currentLetterId = GeorgianAlphabet.lettersByOrder[position].letterId
+                currentLetter = GeorgianAlphabet.lettersByOrderIndex[position]
+
+                btn_next_letter.visibility = if (position == 0) View.VISIBLE else View.GONE
+                btn_start_exercise.visibility = if (position == 0) View.GONE else View.VISIBLE
             }
         })
 
-        // lettersSlidingTabLayout.scrollToPage(1) //TODO load from saved state
+        btn_start_exercise.setOnClickListener { view ->
+            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgDestTranscript(currentLetter.letterId.toString())
+            view.findNavController().navigate(action)
+            // Navigation.createNavigateOnClickListener(R.id.frg_dest_transcript, null)
+        }
+
+        btn_next_letter.setOnClickListener { view ->
+            lettersSlidingTabLayout.scrollToPage(1) //TODO add logic of position+1
+        }
+
+        // lettersSlidingTabLayout.jumpToPage(1) //TODO load from saved state
     }
 
     // TODO: Rename method, update argument and hook method into UI event

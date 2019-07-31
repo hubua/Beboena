@@ -36,7 +36,7 @@
             android:id="@+id/txt_transcript_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            tools:text="1 / 3" />
 
     </RelativeLayout>
 
@@ -47,25 +47,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextGeoBechduri"
-        tools:text="@string/txt_sentence_sample" />
+        tools:text="@string/txt_sentence_sample_geo" />
 
     <EditText
         android:id="@+id/edt_transcription"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="0px"
+        android:layout_weight="1"
         android:inputType="textMultiLine"
         android:padding="8dp"
         android:selectAllOnFocus="false"
         android:singleLine="false"
         android:textCursorDrawable="@null"
-        tools:text="ტექსტი" />
+        tools:text="@string/txt_sentence_sample_khucuri" />
 
     <Button
         android:id="@+id/btn_check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_background_rounded"
-        android:text="@string/btn_check"
-        android:textColor="@drawable/btn_textcolor_colored" />
+        android:text="@string/btn_check" />
+
+    <Button
+        android:id="@+id/btn_next_sentence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background_rounded"
+        android:text="@string/btn_next_sentence" />
 
 </LinearLayout>

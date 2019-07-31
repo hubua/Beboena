@@ -3,31 +3,34 @@
     <string name="app_name_geo">ბებოენა</string>
     <string name="app_name_khucuri">ႡႤႡႭႤႬႠ</string>
 
-    <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
-
-    <string name="btn_start_exercise">ვივარჯიშოთ</string>
-    <string name="btn_check">შევამოწმოთ</string>
-
-    <string name="txt_learning_letter">ვსწავლობთ ასო "%s"-ს</string>
-
     <string name="txt_letter_sample">ⴀ</string>
-    <string name="txt_sentence_sample">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ</string>
+    <string name="txt_sentence_sample_geo">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ</string>
+    <string name="txt_sentence_sample_khucuri">ნახეს უცხო მოყმე ვინმე</string>
     <string name="txt_long_sentence_sample">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ, ⴟⴃⴀ ⴋⴒⴈⴐⴀⴊⴈ ⴜⴗⴊⴈⴑⴀ ⴎⴈⴐⴑⴀ</string>
 
+    <string name="txt_letters_hint">აირჩიეთ ასო და დაიწყეთ სავარჯიშო დავალება</string>
     <string name="txt_asomtavruli_label">
 <![CDATA[
 <b>ასომთავრული</b><br/>
 ბეჭდური და ხელნაწერი
 ]]>
     </string>
-
     <string name="txt_nuskhuri_label">
 <![CDATA[
 <b>ნუსხური</b><br/>
 ბეჭდური და ხელნაწერი
 ]]>
     </string>
+    <string name="btn_next_letter">შემდეგი</string>
+    <string name="btn_start_exercise">ვივარჯიშოთ</string>
 
-    <string name="txt_letters_hint">აირჩიეთ ასო და დაიწყეთ სავარჯიშო დავალება</string>
+    <string name="txt_learning_letter">ვსწავლობთ ასო "%s"-ს</string>
+    <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
+    <string name="btn_check">შევამოწმოთ</string>
+    <string name="btn_next_sentence">შემდეგი</string>
+
+    <string name="toast_correct">სწორია!</string>
+    <string name="toast_wrong">ვაი, შეცდომა...</string>
+    <string name="toast_blank">დაწერეთ თარგმანი</string>
 
 </resources>

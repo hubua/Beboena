@@ -39,4 +39,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
 
     implementation 'com.opencsv:opencsv:3.10'
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 }

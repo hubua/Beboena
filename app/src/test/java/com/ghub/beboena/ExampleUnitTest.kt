@@ -24,7 +24,7 @@ class ExampleUnitTest {
     @Test
     fun initialize_isCorrect() {
 
-        val letters = GeorgianAlphabet.lettersByOrder
+        val letters = GeorgianAlphabet.lettersByOrderIndex
 
         assertEquals(33 + 5, letters.count())
     }
