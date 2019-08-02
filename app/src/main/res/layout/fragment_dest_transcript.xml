@@ -46,6 +46,7 @@
         android:id="@+id/txt_sentence"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:textAppearance="@style/TextGeoBechduri"
         tools:text="@string/txt_sentence_sample_geo" />
 
@@ -53,7 +54,9 @@
         android:id="@+id/edt_transcription"
         android:layout_width="match_parent"
         android:layout_height="0px"
+        android:layout_margin="8dp"
         android:layout_weight="1"
+        android:background="@drawable/edt_background_rounded"
         android:inputType="textMultiLine"
         android:padding="8dp"
         android:selectAllOnFocus="false"
@@ -61,18 +64,43 @@
         android:textCursorDrawable="@null"
         tools:text="@string/txt_sentence_sample_khucuri" />
 
+    <TextView
+        android:id="@+id/txt_correct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorCorrectBackground"
+        android:padding="8dp"
+        android:text="@string/txt_correct"
+        android:textColor="@color/colorCorrectText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/txt_wrong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWrongBackground"
+        android:padding="8dp"
+        android:text="@string/txt_wrong"
+        android:textColor="@color/colorWrongText"
+        android:textSize="24sp"
+        android:visibility="visible" />
+
     <Button
         android:id="@+id/btn_check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:background="@drawable/btn_background_rounded"
         android:text="@string/btn_check" />
 
     <Button
-        android:id="@+id/btn_next_sentence"
+        android:id="@+id/btn_continue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:background="@drawable/btn_background_rounded"
-        android:text="@string/btn_next_sentence" />
+        android:text="@string/btn_continue" />
 
 </LinearLayout>

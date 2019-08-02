@@ -1,35 +1,37 @@
 package com.ghub.beboena.ui
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.IdRes
 import androidx.navigation.fragment.navArgs
 import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
-import com.ghub.beboena.bl.GeorgianLetter
 import com.ghub.beboena.bl.toChar
 import com.ghub.beboena.bl.toKhucuri
 import com.ghub.beboena.utils.KeyboardUtils
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_dest_transcript.*
 
+//region OnFragmentInteractionListener pattern
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+//endregion
 
 /**
  * A simple [Fragment] subclass.
@@ -41,10 +43,15 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class TranscriptDestFragment : androidx.fragment.app.Fragment() {
+
+    //region OnFragmentInteractionListener pattern
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+
+    //endregion
 
     private val args: TranscriptDestFragmentArgs by navArgs()
 
@@ -67,24 +74,40 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        btn_check.setOnClickListener { view -> onBtnCheckClick(view) }
-
         val txtCurrentLetter: TextView = view.findViewById(R.id.txt_current_letter)
-
         val spannable = SpannableString(String.format(resources.getString(R.string.txt_learning_letter), currentLetter.letterId))
         spannable.setSpan(ForegroundColorSpan(Color.MAGENTA), 14, 15, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         txtCurrentLetter.text = spannable
 
-        displaySentenceAndProgress()
+        edt_transcription.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
 
-        btn_next_sentence.isEnabled = false
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
 
-        edt_transcription.setOnFocusChangeListener { view, hasFocus -> onFocusChangeListener(view, hasFocus) }
-    }
+            override fun afterTextChanged(s: Editable) {
+                btn_check.isEnabled = !s.isBlank()
+            }
+        })
+        edt_transcription.text.clear()
 
-    private fun onFocusChangeListener(view: View, hasFocus: Boolean){
-        edt_transcription.isFocusableInTouchMode = false
-        edt_transcription.isFocusable = false
+        txt_correct.visibility = View.INVISIBLE
+        txt_wrong.visibility = View.GONE
+
+        txt_correct.animate()
+            .translationX(0.0f)
+            .alpha(0.0f)
+
+        btn_check.isEnabled = false
+
+        btn_check.visibility = View.VISIBLE
+        btn_check.setOnClickListener { view -> onBtnCheckClick(view) }
+
+        btn_continue.visibility = View.GONE
+        btn_continue.setOnClickListener { view -> onBtnContinueClick(view) }
+
+        displaySentenceAndProgress(currentSentenceIndex)
     }
 
     private fun onBtnCheckClick(view: View) {
@@ -92,27 +115,56 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
         if (!edt_transcription.text.toString().isBlank()) {
 
             if (edt_transcription.text.toString().equals(currentLetter.sentences[currentSentenceIndex])) {
-                Toasty.success(context!!, R.string.toast_correct, Toast.LENGTH_SHORT, true).show();
+                //Toasty.success(context!!, R.string.txt_correct, Toast.LENGTH_SHORT, true).show();
             } else {
-                Toasty.error(context!!, R.string.toast_wrong, Toast.LENGTH_SHORT, true).show();
+                //Toasty.error(context!!, R.string.txt_wrong, Toast.LENGTH_SHORT, true).show();
             }
             KeyboardUtils.hideKeyboard(this.activity!!)
 
-            currentSentenceIndex++
-            displaySentenceAndProgress()
+            edt_transcription.text.clear()
+
+            btn_check.visibility = View.GONE
+            btn_continue.visibility = View.VISIBLE
+
+            edt_transcription.isFocusableInTouchMode = false
+            edt_transcription.isFocusable = false
+
+
+            txt_correct.setVisibility(View.VISIBLE);
+            txt_correct.setAlpha(0.0f);
+
+            txt_correct.animate()
+                .translationX(txt_correct.getWidth().toFloat())
+                .alpha(1.0f)
+                .setDuration(1000)
+                .setListener(null);
 
         } else {
-            Toasty.info(context!!, R.string.toast_blank, Toast.LENGTH_SHORT, true).show();
+            Toasty.info(context!!, R.string.txt_blank, Toast.LENGTH_SHORT, true).show();
         }
 
     }
 
-    private fun displaySentenceAndProgress() {
-        pb_transcript_progress.max = currentLetter.sentences.count()
-        pb_transcript_progress.progress = currentSentenceIndex + 1
-        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
-        txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
+    private fun onBtnContinueClick(view: View) {
+        btn_check.visibility = View.VISIBLE
+        btn_continue.visibility = View.GONE
+
+        edt_transcription.isFocusableInTouchMode = true
+        edt_transcription.isFocusable = true
+
+        if (currentSentenceIndex + 1 < currentLetter.sentences.count()) {
+            displaySentenceAndProgress(++currentSentenceIndex)
+        }
     }
+
+    private fun displaySentenceAndProgress(sentenceIndex: Int) {
+        pb_transcript_progress.max = currentLetter.sentences.count()
+        pb_transcript_progress.progress = sentenceIndex + 1
+        txt_transcript_progress.text = "${sentenceIndex + 1} / ${currentLetter.sentences.count()}"
+        txt_sentence.text = currentLetter.sentences[sentenceIndex].toKhucuri()
+    }
+
+    //region OnFragmentInteractionListener pattern
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
@@ -168,4 +220,6 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
                 }
             }
     }
+
+    //endregion
 }

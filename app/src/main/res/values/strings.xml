@@ -27,10 +27,10 @@
     <string name="txt_learning_letter">ვსწავლობთ ასო "%s"-ს</string>
     <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
     <string name="btn_check">შევამოწმოთ</string>
-    <string name="btn_next_sentence">შემდეგი</string>
+    <string name="btn_continue">შემდეგი</string>
 
-    <string name="toast_correct">სწორია!</string>
-    <string name="toast_wrong">ვაი, შეცდომა...</string>
-    <string name="toast_blank">დაწერეთ თარგმანი</string>
+    <string name="txt_correct">სწორია!</string>
+    <string name="txt_wrong">ვაი, შეცდომა...</string>
+    <string name="txt_blank">დაწერეთ თარგმანი</string>
 
 </resources>
