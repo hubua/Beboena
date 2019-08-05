@@ -9,18 +9,8 @@
     <string name="txt_long_sentence_sample">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ, ⴟⴃⴀ ⴋⴒⴈⴐⴀⴊⴈ ⴜⴗⴊⴈⴑⴀ ⴎⴈⴐⴑⴀ</string>
 
     <string name="txt_letters_hint">აირჩიეთ ასო და დაიწყეთ სავარჯიშო დავალება</string>
-    <string name="txt_asomtavruli_label">
-<![CDATA[
-<b>ასომთავრული</b><br/>
-ბეჭდური და ხელნაწერი
-]]>
-    </string>
-    <string name="txt_nuskhuri_label">
-<![CDATA[
-<b>ნუსხური</b><br/>
-ბეჭდური და ხელნაწერი
-]]>
-    </string>
+    <string name="txt_asomtavruli_label"><![CDATA[<b>ასომთავრული</b><br/>ბეჭდური და ხელნაწერი]]></string>
+    <string name="txt_nuskhuri_label"><![CDATA[<b>ნუსხური</b><br/>ბეჭდური და ხელნაწერი]]></string>
     <string name="btn_next_letter">შემდეგი</string>
     <string name="btn_start_exercise">ვივარჯიშოთ</string>
 

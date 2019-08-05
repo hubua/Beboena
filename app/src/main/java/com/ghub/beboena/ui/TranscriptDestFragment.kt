@@ -16,13 +16,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
-import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
 import com.ghub.beboena.bl.toChar
 import com.ghub.beboena.bl.toKhucuri
 import com.ghub.beboena.utils.KeyboardUtils
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_dest_transcript.*
+import androidx.transition.TransitionManager
+import com.ghub.beboena.R
+import com.ghub.beboena.utils.CircularRevealTransition
+
 
 //region OnFragmentInteractionListener pattern
 
@@ -75,9 +78,16 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val txtCurrentLetter: TextView = view.findViewById(R.id.txt_current_letter)
-        val spannable = SpannableString(String.format(resources.getString(R.string.txt_learning_letter), currentLetter.letterId))
+        val spannable =
+            SpannableString(String.format(resources.getString(R.string.txt_learning_letter), currentLetter.letterId))
         spannable.setSpan(ForegroundColorSpan(Color.MAGENTA), 14, 15, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         txtCurrentLetter.text = spannable
+
+        pb_transcript_progress.max = currentLetter.sentences.count()
+
+        pb_transcript_progress.progress = currentSentenceIndex + 1
+        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
+        txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
 
         edt_transcription.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -91,77 +101,82 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
             }
         })
         edt_transcription.text.clear()
+        edt_transcription.isFocusableInTouchMode = true
+        edt_transcription.isFocusable = true
 
-        txt_correct.visibility = View.INVISIBLE
-        txt_wrong.visibility = View.GONE
+        txt_transcripted_correct.visibility = View.GONE
+        txt_transcripted_wrong.visibility = View.GONE
 
-        txt_correct.animate()
-            .translationX(0.0f)
-            .alpha(0.0f)
+        /*txt_wrong.animate().alpha(0.0f)
+        txt_wrong.animate().translationX(0.0f)*/
 
         btn_check.isEnabled = false
-
         btn_check.visibility = View.VISIBLE
-        btn_check.setOnClickListener { view -> onBtnCheckClick(view) }
+        btn_check.setOnClickListener { onBtnCheckClick(it) }
 
         btn_continue.visibility = View.GONE
-        btn_continue.setOnClickListener { view -> onBtnContinueClick(view) }
-
-        displaySentenceAndProgress(currentSentenceIndex)
+        btn_continue.setOnClickListener { btn -> onBtnContinueClick(btn) }
     }
 
     private fun onBtnCheckClick(view: View) {
 
-        if (!edt_transcription.text.toString().isBlank()) {
-
-            if (edt_transcription.text.toString().equals(currentLetter.sentences[currentSentenceIndex])) {
-                //Toasty.success(context!!, R.string.txt_correct, Toast.LENGTH_SHORT, true).show();
-            } else {
-                //Toasty.error(context!!, R.string.txt_wrong, Toast.LENGTH_SHORT, true).show();
-            }
-            KeyboardUtils.hideKeyboard(this.activity!!)
-
-            edt_transcription.text.clear()
-
-            btn_check.visibility = View.GONE
-            btn_continue.visibility = View.VISIBLE
-
-            edt_transcription.isFocusableInTouchMode = false
-            edt_transcription.isFocusable = false
-
-
-            txt_correct.setVisibility(View.VISIBLE);
-            txt_correct.setAlpha(0.0f);
-
-            txt_correct.animate()
-                .translationX(txt_correct.getWidth().toFloat())
-                .alpha(1.0f)
-                .setDuration(1000)
-                .setListener(null);
-
-        } else {
-            Toasty.info(context!!, R.string.txt_blank, Toast.LENGTH_SHORT, true).show();
+        if (edt_transcription.text.toString().isBlank()) {
+            Toasty.info(context!!, R.string.txt_blank, Toast.LENGTH_SHORT, true).show()
+            return
         }
+
+        KeyboardUtils.hideKeyboard(this.activity!!)
+
+        //val isCorrect = (edt_transcription.text.toString() == currentLetter.sentences[currentSentenceIndex])
+        val isCorrect = (edt_transcription.text.toString() == "a")
+
+        val txt_transcripted = if (isCorrect) txt_transcripted_correct else txt_transcripted_wrong
+
+        edt_transcription.isFocusableInTouchMode = false
+        edt_transcription.isFocusable = false
+
+        val transition = CircularRevealTransition() // Slide(Gravity.LEFT) // Fade()
+        transition.setDuration(1000)
+        transition.addTarget(txt_transcripted)
+        TransitionManager.beginDelayedTransition(txt_transcripted.parent!! as ViewGroup, transition)
+
+        txt_transcripted.visibility = View.VISIBLE
+
+        /*txt_wrong.animate().alpha(1.0f).setDuration(1000);
+        txt_wrong.animate().translationX(100.0f).setDuration(1000)*/
+
+        btn_check.visibility = View.GONE
+        btn_continue.visibility = View.VISIBLE
 
     }
 
     private fun onBtnContinueClick(view: View) {
-        btn_check.visibility = View.VISIBLE
-        btn_continue.visibility = View.GONE
 
+        if (currentSentenceIndex + 1 < currentLetter.sentences.count()) {
+            currentSentenceIndex++
+        } else {
+            return
+        }
+
+        pb_transcript_progress.progress = currentSentenceIndex + 1
+        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
+        txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
+
+        edt_transcription.text.clear()
         edt_transcription.isFocusableInTouchMode = true
         edt_transcription.isFocusable = true
 
-        if (currentSentenceIndex + 1 < currentLetter.sentences.count()) {
-            displaySentenceAndProgress(++currentSentenceIndex)
-        }
-    }
+        txt_transcripted_correct.visibility = View.GONE
+        txt_transcripted_wrong.visibility = View.GONE
 
-    private fun displaySentenceAndProgress(sentenceIndex: Int) {
-        pb_transcript_progress.max = currentLetter.sentences.count()
-        pb_transcript_progress.progress = sentenceIndex + 1
-        txt_transcript_progress.text = "${sentenceIndex + 1} / ${currentLetter.sentences.count()}"
-        txt_sentence.text = currentLetter.sentences[sentenceIndex].toKhucuri()
+        /*txt_wrong.animate().alpha(0.0f)
+        txt_wrong.animate().translationX(0.0f)*/
+
+        btn_check.isEnabled = false
+        btn_check.visibility = View.VISIBLE
+
+        btn_continue.visibility = View.GONE
+
     }
 
     //region OnFragmentInteractionListener pattern
