@@ -51,7 +51,7 @@ object GeorgianAlphabet {
         for (sentence in sentencesData) {
             var maxLetter = 0.toChar()
             for (currentLetter in sentence) {
-                val currentLetterOrder = orderedLetters.getOrDefault(currentLetter, 0)
+                val currentLetterOrder = orderedLetters[currentLetter] ?: 0
                 val maxLetterOrder = orderedLetters[maxLetter]
                 maxLetter = if (currentLetterOrder > maxLetterOrder ?: 0) currentLetter else maxLetter
             }
