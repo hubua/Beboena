@@ -8,13 +8,16 @@ https://guides.github.com/features/mastering-markdown/
 
 - [Build a Responsive UI with ConstraintLayout](https://developer.android.com/training/constraint-layout/)
 
+https://developer.android.com/training/multiscreen/screensizes
+https://medium.com/androiddevelopers/building-a-responsive-ui-in-android-7dc7e4efcbb3
+
 - [Material Design for Android](https://developer.android.com/guide/topics/ui/look-and-feel/)
 - [Design app themes with Theme Editor](https://developer.android.com/studio/write/theme-editor)
 
-
-
 - Settings screen https://developer.android.com/guide/topics/ui/settings.html
 
+- HAXM https://github.com/intel/haxm/blob/master/docs/manual-windows.md
+- SDP https://github.com/intuit/sdp
 
 Fragments
 ------------------------------

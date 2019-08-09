@@ -41,12 +41,17 @@ class ExampleUnitTest {
     fun words_loaded() {
 
         val lettersMap = GeorgianAlphabet.lettersById
+        val lettersList = GeorgianAlphabet.lettersByOrderIndex.sortedBy { it.sentences.count() }
 
         assertEquals(0, lettersMap['ა']!!.sentences.count())
 
         assertEquals("აი ია", lettersMap['ი']!!.sentences[0])
 
-        assertNotEquals(lettersMap['ო']!!.sentences[0], lettersMap['ო']!!.sentencesShuffled[0]) //TODO flickering test because of random
+        println("Loaded sentences count:");
+        for (letter in lettersList) {
+            println("${letter.letterId} ${letter.sentences.count()}")
+        }
+
     }
 
 }

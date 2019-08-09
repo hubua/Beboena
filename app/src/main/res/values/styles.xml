@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here.-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -10,19 +10,16 @@
         <item name="android:editTextBackground">@color/colorWhite</item>
     </style>
 
-    <style name="TextTitle" parent="TextAppearance.AppCompat">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">30sp</item>
+    <style name="TextH2" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">normal</item>
     </style>
 
     <style name="TextGeoBechduri" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/sylfaen_w10</item>
-        <item name="android:textSize">40sp</item>
     </style>
 
     <style name="TextGeoKhelnatseri" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/sylfaen</item>
-        <item name="android:textSize">40sp</item>
     </style>
 
 </resources>

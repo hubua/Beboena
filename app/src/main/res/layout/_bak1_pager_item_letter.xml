@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/txtLetterMkhedruli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_horizontal"
+        android:textAppearance="@style/TextH2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="ა - &quot;ან&quot;" />
+
+    <View
+        android:id="@+id/viewSeparator"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLetterMkhedruli" />
+
+    <TextView
+        android:id="@+id/txtAsmtBech"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textAppearance="@style/TextGeoBechduri"
+        app:layout_constraintEnd_toStartOf="@+id/txtAsmtKhel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLetterMkhedruli"
+        tools:text="Ⴀ" />
+
+    <TextView
+        android:id="@+id/txtAsmtKhel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextGeoKhelnatseri"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtAsmtBech"
+        app:layout_constraintEnd_toStartOf="@+id/txtAsomtavruliLabel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txtAsmtBech"
+        tools:text="( Ⴀ )" />
+
+    <TextView
+        android:id="@+id/txtAsomtavruliLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtAsmtKhel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txtAsmtKhel"
+        tools:text="..(ბეჭდური და ხელნაწერი)" />
+
+    <TextView
+        android:id="@+id/txtNskhBech"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAppearance="@style/TextGeoBechduri"
+        app:layout_constraintEnd_toStartOf="@+id/txtNskhKhel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAsmtBech"
+        tools:text="ⴀ" />
+
+    <TextView
+        android:id="@+id/txtNskhKhel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextGeoKhelnatseri"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtNskhBech"
+        app:layout_constraintEnd_toStartOf="@+id/txtNuskhuriLabel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txtNskhBech"
+        tools:text="( ⴀ )" />
+
+    <TextView
+        android:id="@+id/txtNuskhuriLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtNskhKhel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txtNskhKhel"
+        tools:text="..(ბეჭდური და ხელნაწერი)" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

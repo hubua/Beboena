@@ -74,13 +74,13 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
             }
         })
 
-        btn_start_exercise.setOnClickListener { view ->
+        btn_start_exercise.setOnClickListener {
             val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgDestTranscript(currentLetter.letterId.toString())
             view.findNavController().navigate(action)
             // Navigation.createNavigateOnClickListener(R.id.frg_dest_transcript, null)
         }
 
-        btn_next_letter.setOnClickListener { view ->
+        btn_next_letter.setOnClickListener {
             lettersSlidingTabLayout.scrollToPage(1) //TODO add logic of position+1
         }
 
