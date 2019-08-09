@@ -16,7 +16,7 @@
     <string name="btn_next_letter">შემდეგი</string>
     <string name="btn_start_exercise">ვივარჯიშოთ</string>
 
-    <string name="txt_learning_letter">ვსწავლობთ ასო "%s"-ს</string>
+    <string name="txt_learning_letter">სავარჯიშო - ასო &quot;"%s"&quot;</string>
     <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
     <string name="btn_check">შევამოწმოთ</string>
     <string name="btn_continue">შემდეგი</string>

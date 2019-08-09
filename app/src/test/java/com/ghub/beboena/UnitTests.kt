@@ -12,7 +12,7 @@ import org.junit.Before
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class UnitTests {
 
     @Before
     fun setup() {
@@ -46,6 +46,10 @@ class ExampleUnitTest {
         assertEquals(0, lettersMap['ა']!!.sentences.count())
 
         assertEquals("აი ია", lettersMap['ი']!!.sentences[0])
+
+        println("Longest sentence:");
+        val longestSentence = lettersList.flatMap { it.sentences }.maxBy { it.length }
+        println(longestSentence)
 
         println("Loaded sentences count:");
         for (letter in lettersList) {

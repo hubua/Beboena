@@ -45,7 +45,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class TranscriptDestFragment : androidx.fragment.app.Fragment() {
+class TranscriptDestFragment : androidx.fragment.app.Fragment(), KeyboardUtils.OnKeyboardVisibilityListener {
 
     //region OnFragmentInteractionListener pattern
 
@@ -89,6 +89,9 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
         txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
         txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
 
+        val longestSentence = GeorgianAlphabet.lettersByOrderIndex.flatMap { it.sentences }.maxBy { it.length }
+        txt_sentence.text = longestSentence!!.toKhucuri()
+
         edt_transcription.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
@@ -116,6 +119,13 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
 
         btn_continue.visibility = View.GONE
         btn_continue.setOnClickListener { btn -> onBtnContinueClick(btn) }
+
+        KeyboardUtils.addKeyboardVisibilityListener(this.view!!, this)
+    }
+
+    override fun onVisibilityChange(isKeyboardVisible: Boolean) { //TODO Convert to delegate
+        txt_current_letter.visibility = if (isKeyboardVisible) View.GONE else View.VISIBLE
+        frame_layout_progress.visibility = if (isKeyboardVisible) View.GONE else View.VISIBLE
     }
 
     private fun onBtnCheckClick(view: View) {
@@ -130,17 +140,17 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment() {
         //val isCorrect = (edt_transcription.text.toString() == currentLetter.sentences[currentSentenceIndex])
         val isCorrect = (edt_transcription.text.toString() == "a")
 
-        val txt_transcripted = if (isCorrect) txt_transcripted_correct else txt_transcripted_wrong
+        val txtTranscripted = if (isCorrect) txt_transcripted_correct else txt_transcripted_wrong
 
         edt_transcription.isFocusableInTouchMode = false
         edt_transcription.isFocusable = false
 
         val transition = CircularRevealTransition() // Slide(Gravity.LEFT) // Fade()
         transition.setDuration(1000)
-        transition.addTarget(txt_transcripted)
-        TransitionManager.beginDelayedTransition(txt_transcripted.parent!! as ViewGroup, transition)
+        transition.addTarget(txtTranscripted)
+        TransitionManager.beginDelayedTransition(txtTranscripted.parent!! as ViewGroup, transition)
 
-        txt_transcripted.visibility = View.VISIBLE
+        txtTranscripted.visibility = View.VISIBLE
 
         /*txt_wrong.animate().alpha(1.0f).setDuration(1000);
         txt_wrong.animate().translationX(100.0f).setDuration(1000)*/

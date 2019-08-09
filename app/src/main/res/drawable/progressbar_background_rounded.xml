@@ -1,38 +1,32 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@android:id/background"
-        android:gravity="center_vertical|fill_horizontal">
+        android:id="@android:id/background">
         <shape
             android:shape="rectangle"
-            android:tint="?attr/colorControlNormal">
-            <corners android:radius="8dp" />
-            <size android:height="10dp" />
-            <solid android:color="#2FFC44" />
+            android:tint="#ADADAD">
+            <corners android:radius="32dp" />
+            <size android:height="30dp" />
         </shape>
     </item>
     <item
-        android:id="@android:id/progress"
-        android:gravity="center_vertical|fill_horizontal">
+        android:id="@android:id/progress">
         <scale android:scaleWidth="100%">
             <shape
                 android:shape="rectangle"
-                android:tint="?attr/colorControlActivated">
-                <corners android:radius="8dp" />
+                android:tint="#77c924">
+                <corners android:radius="32dp" />
                 <size android:height="10dp" />
-                <solid android:color="#b9f6ca" />
             </shape>
         </scale>
     </item>
     <item
-        android:id="@android:id/secondaryProgress"
-        android:gravity="center_vertical|fill_horizontal">
+        android:id="@android:id/secondaryProgress">
         <scale android:scaleWidth="100%">
             <shape
                 android:shape="rectangle"
-                android:tint="?attr/colorControlHighlight">
-                <corners android:radius="8dp" />
+                android:tint="#8A2BE2">
+                <corners android:radius="32dp" />
                 <size android:height="10dp" />
-                <solid android:color="#90caf9" />
             </shape>
         </scale>
     </item>

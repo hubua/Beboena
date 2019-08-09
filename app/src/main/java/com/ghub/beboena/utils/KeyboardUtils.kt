@@ -36,7 +36,8 @@ object KeyboardUtils {
         }
     }
 
+
     interface OnKeyboardVisibilityListener {
-        fun onVisibilityChange(isVisible: Boolean)
+        fun onVisibilityChange(isKeyboardVisible: Boolean)
     }
 }
