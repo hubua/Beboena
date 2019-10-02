@@ -16,6 +16,8 @@ https://medium.com/androiddevelopers/building-a-responsive-ui-in-android-7dc7e4e
 
 - Settings screen https://developer.android.com/guide/topics/ui/settings.html
 
+- Autobackup https://developer.android.com/guide/topics/data/autobackup
+
 - HAXM https://github.com/intel/haxm/blob/master/docs/manual-windows.md
 - SDP https://github.com/intuit/sdp
 
@@ -40,14 +42,10 @@ UI notifications
 
 Kotlin
 ------------------------------
-
-
-- http://kotlinlang.org/docs/reference/
 - https://try.kotlinlang.org/
-
+- http://kotlinlang.org/docs/reference/
 - https://kotlinlang.org/docs/reference/coding-conventions.html
 - https://developer.android.com/kotlin/style-guide
-
 
 Unit tests
 ------------------------------

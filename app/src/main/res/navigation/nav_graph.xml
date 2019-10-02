@@ -26,4 +26,14 @@
             android:name="letterId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/frg_dest_resultgood"
+        android:name="com.ghub.beboena.ui.ResultgoodDestFragment"
+        android:label="frg_dest_result_good"
+        tools:layout="@layout/fragment_dest_resultgood" />
+    <fragment
+        android:id="@+id/frg_dest_resultbad"
+        android:name="com.ghub.beboena.ui.ResultbadDestFragment"
+        android:label="fragment_dest_resultbad"
+        tools:layout="@layout/fragment_dest_resultbad" />
 </navigation>

@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ghub.beboena.bl.GeorgianAlphabet
 import com.ghub.beboena.bl.toChar
@@ -45,7 +46,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class TranscriptDestFragment : androidx.fragment.app.Fragment(), KeyboardUtils.OnKeyboardVisibilityListener {
+class TranscriptDestFragment : androidx.fragment.app.Fragment() {
 
     //region OnFragmentInteractionListener pattern
 
@@ -61,6 +62,9 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment(), KeyboardUtils.O
     private val currentLetter get() = GeorgianAlphabet.lettersById[args.letterId.toChar()]!!
 
     private var currentSentenceIndex = 0
+
+    private var transcriptedCorrectCount = 0
+    private var transcriptedWrongCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,6 +93,7 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment(), KeyboardUtils.O
         txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
         txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
 
+        //TODO remove DEBUG
         val longestSentence = GeorgianAlphabet.lettersByOrderIndex.flatMap { it.sentences }.maxBy { it.length }
         txt_sentence.text = longestSentence!!.toKhucuri()
 
@@ -120,12 +125,12 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment(), KeyboardUtils.O
         btn_continue.visibility = View.GONE
         btn_continue.setOnClickListener { btn -> onBtnContinueClick(btn) }
 
-        KeyboardUtils.addKeyboardVisibilityListener(this.view!!, this)
-    }
-
-    override fun onVisibilityChange(isKeyboardVisible: Boolean) { //TODO Convert to delegate
-        txt_current_letter.visibility = if (isKeyboardVisible) View.GONE else View.VISIBLE
-        frame_layout_progress.visibility = if (isKeyboardVisible) View.GONE else View.VISIBLE
+        KeyboardUtils.addKeyboardVisibilityListener(this.view!!, object : KeyboardUtils.OnKeyboardVisibilityListener {
+            override fun onVisibilityChange(isVisible: Boolean) {
+                txt_current_letter?.visibility = if (isVisible) View.GONE else View.VISIBLE
+                frame_layout_progress?.visibility = if (isVisible) View.GONE else View.VISIBLE
+            }
+        })
     }
 
     private fun onBtnCheckClick(view: View) {
@@ -137,10 +142,12 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment(), KeyboardUtils.O
 
         KeyboardUtils.hideKeyboard(this.activity!!)
 
+        //TODO remove DEBUG
         //val isCorrect = (edt_transcription.text.toString() == currentLetter.sentences[currentSentenceIndex])
         val isCorrect = (edt_transcription.text.toString() == "a")
 
         val txtTranscripted = if (isCorrect) txt_transcripted_correct else txt_transcripted_wrong
+        if (isCorrect) transcriptedCorrectCount++ else transcriptedWrongCount++
 
         edt_transcription.isFocusableInTouchMode = false
         edt_transcription.isFocusable = false
@@ -165,11 +172,12 @@ class TranscriptDestFragment : androidx.fragment.app.Fragment(), KeyboardUtils.O
         if (currentSentenceIndex + 1 < currentLetter.sentences.count()) {
             currentSentenceIndex++
         } else {
-            return
+            view.findNavController().navigate(R.id.frg_dest_resultgood)
         }
 
         pb_transcript_progress.progress = currentSentenceIndex + 1
-        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
+        txt_transcript_progress.text =
+            "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()} c$transcriptedCorrectCount w$transcriptedWrongCount"
         txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
 
         edt_transcription.text.clear()

@@ -123,7 +123,7 @@ internal class SlidingTabStrip @JvmOverloads constructor(context: Context, attrs
             var color = tabColorizer!!.getIndicatorColor(mSelectedPosition)
 
             if (mSelectionOffset > 0f && mSelectedPosition < getChildCount() - 1) {
-                val nextColor = tabColorizer!!.getIndicatorColor(mSelectedPosition + 1)
+                val nextColor = tabColorizer.getIndicatorColor(mSelectedPosition + 1)
                 if (color != nextColor) {
                     color = blendColors(nextColor, color, mSelectionOffset)
                 }
