@@ -1,14 +1,22 @@
 # Beboena
-https://guides.github.com/features/mastering-markdown/
 
 
-## Android
+## Project structure
 
-- [Introduction to Activities](https://developer.android.com/guide/components/activities/intro-activities)
+`SlidingTabStrip` draws the strip of letters
+`SlidingTabLayout` displays the strip and bounds to pager adapters
+`LettersPagerAdapter` contains and renders the layout for letter details
 
-- [Build a Responsive UI with ConstraintLayout](https://developer.android.com/training/constraint-layout/)
+`activity_main.xml (MainActivity)` contains `nav_host_fragment (NavHostFragment)` with `fragment_home_letters.xml (LettersHomeFragment)` as Home.
+`fragment_home_letters.xml` contains `sliding_tab_layout (SlidingTabLayout)` and `view_pager (ViewPager)` to display list of letters.
+In the `LettersHomeFragment`, the `LettersPagerAdapter` is assigned to `view_pager` and then `SlidingTabLayout` uses it.
 
-https://developer.android.com/training/multiscreen/screensizes
+## Android documentation
+
+- [Introduction to Activities] https://developer.android.com/guide/components/activities/intro-activities
+- [Build a Responsive UI with ConstraintLayout] https://developer.android.com/training/constraint-layout/
+
+- Support different screen sizes https://developer.android.com/training/multiscreen/screensizes
 https://medium.com/androiddevelopers/building-a-responsive-ui-in-android-7dc7e4efcbb3
 
 - [Material Design for Android](https://developer.android.com/guide/topics/ui/look-and-feel/)
@@ -69,4 +77,8 @@ Features todo
 
 - დამატებითი სიტყვები და წინადადებები.
 - ფიქსირებული ზომის ქვე-სიმრავლის შემთხვევითად არჩევა ასოს წინადადებების სრული სიმრავლიდან.
-- წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.   
+- წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
+
+
+
+[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)   
