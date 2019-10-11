@@ -32,6 +32,9 @@ import android.widget.TextView
 import com.ghub.beboena.R
 
 /**
+ * A custom title strip for ViewPager which looks much like Tabs present in Android v4.0 and
+ * above, but is designed to give continuous feedback to the user when scrolling.
+ *
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
  * the user's scroll progress.
  *

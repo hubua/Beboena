@@ -16,10 +16,13 @@ import com.ghub.beboena.ui.view.SlidingTabLayout
 import com.ghub.beboena.customview.LettersPagerAdapter
 import kotlinx.android.synthetic.main.fragment_home_letters.*
 
-// TODO: Rename parameter arguments, choose names that match
+//region OnFragmentInteractionListener pattern
+
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+//endregion
 
 /**
  * A simple [Fragment] subclass.
@@ -31,12 +34,11 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class LettersHomeFragment : androidx.fragment.app.Fragment() {
-    // TODO: Rename and change types of parameters
+
+//region OnFragmentInteractionListener pattern
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
-
-    private var currentLetter = GeorgianAlphabet.lettersByOrderIndex[0]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,9 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+//endregion
+
+    private var currentLetter = GeorgianAlphabet.lettersByOrderIndex[0]
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -52,13 +57,11 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // A [ViewPager] which will be used in conjunction with the [SlidingTabLayout] below.
+
         // Get the ViewPager and set it's PagerAdapter so that it can display items.
-        val letterViewPager = view.findViewById<View>(R.id.view_pager) as androidx.viewpager.widget.ViewPager
+        val letterViewPager = view.findViewById<View>(R.id.view_pager) as ViewPager
         letterViewPager.adapter = LettersPagerAdapter()
 
-        // A custom [ViewPager] title strip which looks much like Tabs present in Android v4.0 and
-        // above, but is designed to give continuous feedback to the user when scrolling.
         // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had it's PagerAdapter set.
         val lettersSlidingTabLayout = view.findViewById<View>(R.id.sliding_tab_layout) as SlidingTabLayout
         lettersSlidingTabLayout.setViewPager(letterViewPager)
@@ -75,7 +78,7 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
         })
 
         btn_start_exercise.setOnClickListener {
-            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgDestTranscript(currentLetter.letterId.toString())
+            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript(currentLetter.letterId.toString())
             view.findNavController().navigate(action)
             // Navigation.createNavigateOnClickListener(R.id.frg_dest_transcript, null)
         }
@@ -87,7 +90,9 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
         // lettersSlidingTabLayout.jumpToPage(1) //TODO load from saved state
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+//region OnFragmentInteractionListener pattern
+
+    // to do - Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
@@ -118,7 +123,7 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+        // to do - Update argument type and name
         fun onFragmentInteraction(uri: Uri)
     }
 
@@ -131,7 +136,6 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment LettersHomeFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             LettersHomeFragment().apply {
@@ -141,5 +145,8 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
                 }
             }
     }
+
+    //endregion
+
 }
 

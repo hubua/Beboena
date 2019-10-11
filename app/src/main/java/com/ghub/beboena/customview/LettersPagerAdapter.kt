@@ -9,6 +9,9 @@ import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
 import kotlinx.android.synthetic.main.pager_item_letter.view.*
 
+/**
+ * A ViewPager which will be used in conjunction with the SlidingTabLayout.
+ */
 internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
 
     private val lettersByPosition = GeorgianAlphabet.lettersByOrderIndex

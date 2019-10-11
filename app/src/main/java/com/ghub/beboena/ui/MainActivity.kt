@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import com.ghub.beboena.*
 import com.ghub.beboena.bl.GeorgianAlphabet
 
-class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteractionListener, TranscriptDestFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteractionListener {
 
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
 
     override fun onStart() {
         super.onStart()
-
 
     }
 
