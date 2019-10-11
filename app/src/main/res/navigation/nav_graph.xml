@@ -35,19 +35,17 @@
     <fragment
         android:id="@+id/frg_resultgood"
         android:name="com.ghub.beboena.ui.ResultGoodFragment"
-        android:label="frg_result_good"
         tools:layout="@layout/fragment_resultgood">
         <argument
             android:name="transcriptedCorrectCount"
-            app:argType="Int" />
+            app:argType="string" />
         <argument
             android:name="transcriptedWrongCount"
-            app:argType="Int" />
+            app:argType="string" />
     </fragment>
 
     <fragment
         android:id="@+id/frg_resultbad"
         android:name="com.ghub.beboena.ui.ResultBadFragment"
-        android:label="fragment_resultbad"
         tools:layout="@layout/fragment_resultbad" />
 </navigation>

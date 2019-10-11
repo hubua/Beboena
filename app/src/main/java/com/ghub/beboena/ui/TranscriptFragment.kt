@@ -126,9 +126,9 @@ class TranscriptFragment : Fragment() {
 
         KeyboardUtils.hideKeyboard(this.activity!!)
 
-        //TODO REMOVE DEBUG correct if 'a'
+        //TODO REMOVE DEBUG correct if more than one letter
         //val isCorrect = (edt_transcription.text.toString() == currentLetter.sentences[currentSentenceIndex])
-        val isCorrect = (edt_transcription.text.toString() == "a")
+        val isCorrect = (edt_transcription.text.length > 1)
 
         val txtTranscripted = if (isCorrect) txt_transcripted_correct else txt_transcripted_wrong
         if (isCorrect) transcriptedCorrectCount++ else transcriptedWrongCount++
@@ -156,10 +156,9 @@ class TranscriptFragment : Fragment() {
         if (currentSentenceIndex + 1 < currentLetter.sentences.count()) {
             currentSentenceIndex++
         } else {
-            // Navigation is done to action instead of fragment (R.id.frg_dest_resultgood) to allow back-stack directly to the home
-
+            // Navigation is done to action instead of fragment (R.id.frg_resultgood) to allow back-stack directly to the home
             view.findNavController()
-                .navigate(TranscriptFragmentDirections.actionFrgTranscriptToFrgResultgood(transcriptedCorrectCount, transcriptedWrongCount))
+                .navigate(TranscriptFragmentDirections.actionFrgTranscriptToFrgResultgood(transcriptedCorrectCount.toString(), transcriptedWrongCount.toString()))
         }
 
         pb_transcript_progress.progress = currentSentenceIndex + 1
