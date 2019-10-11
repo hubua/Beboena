@@ -3,36 +3,36 @@
 
 ## Project structure
 
-`SlidingTabStrip` draws the strip of letters
-`SlidingTabLayout` displays the strip and bounds to pager adapters
-`LettersPagerAdapter` contains and renders the layout for letter details
+- `SlidingTabStrip` draws the strip of letters
+- `SlidingTabLayout` displays the strip and bounds to pager adapters
+- `LettersPagerAdapter` contains and renders the layout for letter details
 
-`activity_main.xml (MainActivity)` contains `nav_host_fragment (NavHostFragment)` with `fragment_home_letters.xml (LettersHomeFragment)` as Home.
-`fragment_home_letters.xml` contains `sliding_tab_layout (SlidingTabLayout)` and `view_pager (ViewPager)` to display list of letters.
-In the `LettersHomeFragment`, the `LettersPagerAdapter` is assigned to `view_pager` and then `SlidingTabLayout` uses it.
+- `activity_main.xml (MainActivity)` contains `nav_host_fragment (NavHostFragment)` with `fragment_home_letters.xml (LettersHomeFragment)` as Home.
+- `fragment_home_letters.xml` contains `sliding_tab_layout (SlidingTabLayout)` and `view_pager (ViewPager)` to display list of letters.
+- In the `LettersHomeFragment`, the `LettersPagerAdapter` is assigned to `view_pager` and then `SlidingTabLayout` uses it.
 
 ## Android documentation
 
-- [Introduction to Activities] https://developer.android.com/guide/components/activities/intro-activities
-- [Build a Responsive UI with ConstraintLayout] https://developer.android.com/training/constraint-layout/
+- Introduction to Activities                    https://developer.android.com/guide/components/activities/intro-activities
+- Build a Responsive UI with ConstraintLayout   https://developer.android.com/training/constraint-layout/
 
-- Support different screen sizes https://developer.android.com/training/multiscreen/screensizes
-https://medium.com/androiddevelopers/building-a-responsive-ui-in-android-7dc7e4efcbb3
+- Support different screen sizes                https://developer.android.com/training/multiscreen/screensizes
+- Building a Responsive UI in Android           https://medium.com/androiddevelopers/building-a-responsive-ui-in-android-7dc7e4efcbb3
 
-- [Material Design for Android](https://developer.android.com/guide/topics/ui/look-and-feel/)
-- [Design app themes with Theme Editor](https://developer.android.com/studio/write/theme-editor)
+- Material Design for Android                   https://developer.android.com/guide/topics/ui/look-and-feel/
+- Design app themes with Theme Editor           https://developer.android.com/studio/write/theme-editor
 
-- Settings screen https://developer.android.com/guide/topics/ui/settings.html
+- Settings screen                               https://developer.android.com/guide/topics/ui/settings.html
 
-- Autobackup https://developer.android.com/guide/topics/data/autobackup
+- Autobackup                                    https://developer.android.com/guide/topics/data/autobackup
 
-- HAXM https://github.com/intel/haxm/blob/master/docs/manual-windows.md
-- SDP https://github.com/intuit/sdp
+- HAXM                                          https://github.com/intel/haxm/blob/master/docs/manual-windows.md
+- SDP                                           https://github.com/intuit/sdp
 
 Fragments
 ------------------------------
-- Fragments                         https://developer.android.com/guide/components/fragments
-- Communicate with other fragments  https://developer.android.com/training/basics/fragments/communicating
+- Fragments                                     https://developer.android.com/guide/components/fragments
+- Communicate with other fragments              https://developer.android.com/training/basics/fragments/communicating
 
 Android Navigation
 ------------------------------
@@ -57,7 +57,6 @@ Kotlin
 
 Unit tests
 ------------------------------
-
 - https://medium.com/@yair.kukielka/android-unit-tests-explained-219b04dc55b5
 - https://medium.com/@yair.kukielka/android-unit-tests-explained-part-2-a0f1e1413569
 
