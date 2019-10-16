@@ -156,9 +156,9 @@ class TranscriptFragment : Fragment() {
         if (currentSentenceIndex + 1 < currentLetter.sentences.count()) {
             currentSentenceIndex++
         } else {
-            // Navigation is done to action instead of fragment (R.id.frg_resultgood) to allow back-stack directly to the home
+            // Navigation is done to action instead of fragment (R.id.frg_result) to allow back-stack directly to the home
             view.findNavController()
-                .navigate(TranscriptFragmentDirections.actionFrgTranscriptToFrgResultgood(transcriptedCorrectCount.toString(), transcriptedWrongCount.toString()))
+                .navigate(TranscriptFragmentDirections.actionFrgTranscriptToFrgResult(transcriptedCorrectCount, transcriptedWrongCount))
         }
 
         pb_transcript_progress.progress = currentSentenceIndex + 1

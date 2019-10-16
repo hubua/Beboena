@@ -26,26 +26,22 @@
             android:name="letterId"
             app:argType="string" />
         <action
-            android:id="@+id/action_frg_transcript_to_frg_resultgood"
-            app:destination="@id/frg_resultgood"
+            android:id="@+id/action_frg_transcript_to_frg_result"
+            app:destination="@id/frg_result"
             app:popUpTo="@+id/frg_home_letters"
             app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
-        android:id="@+id/frg_resultgood"
-        android:name="com.ghub.beboena.ui.ResultGoodFragment"
-        tools:layout="@layout/fragment_resultgood">
+        android:id="@+id/frg_result"
+        android:name="com.ghub.beboena.ui.ResultFragment"
+        tools:layout="@layout/fragment_result">
         <argument
             android:name="transcriptedCorrectCount"
-            app:argType="string" />
+            app:argType="integer" />
         <argument
             android:name="transcriptedWrongCount"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 
-    <fragment
-        android:id="@+id/frg_resultbad"
-        android:name="com.ghub.beboena.ui.ResultBadFragment"
-        tools:layout="@layout/fragment_resultbad" />
 </navigation>

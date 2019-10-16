@@ -25,6 +25,12 @@
     <string name="txt_wrong">ვაი, შეცდომა...</string>
     <string name="txt_blank">დაწერეთ თარგმანი</string>
 
+    <string name="txt_result_excellent">ბრწყინვალეა!</string>
+    <string name="txt_result_satisfactory">კარგია</string>
+    <string name="txt_result_unsatisfactory">არადამაკმაყოფილებელია</string>
+    <string name="txt_result_bad">ცუდია!</string>
+    <string name="txt_correct_count">%s-დან %s სწორია</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
