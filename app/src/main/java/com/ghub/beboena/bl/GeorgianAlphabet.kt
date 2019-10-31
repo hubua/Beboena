@@ -14,17 +14,6 @@ object GeorgianAlphabet {
 
     val lettersById get() = _letters.associateBy({ it.mkhedruli}, {it})
 
-    //val firstLetterToLearnId get() = _letters.sortedBy{ it.learnOrder }[0].mkhedruli
-
-    /*fun getLetterToLearnByPosition(position: Int): GeorgianLetter
-    {
-        return when {
-            (position < 0) -> lettersByOrderIndex.first()
-            (position > lettersByOrderIndex.count()) -> lettersByOrderIndex.last()
-            else -> lettersByOrderIndex[position]
-        }
-    }*/
-
     fun initialize(strOga: InputStream, strSentences: InputStream) {
 
         /**
@@ -75,6 +64,37 @@ object GeorgianAlphabet {
                     sentences = mapLetterSentences[row[1].toChar()]!!.toList()
             )
             _letters.add(letter)
+        }
+
+    }
+
+    object Cursor {
+
+        private var _currentLetter = GeorgianAlphabet.lettersByOrderIndex[0]
+
+        val currentLetter get() = _currentLetter
+
+        fun setCurrentPosition(pos: Int): Boolean {
+            _currentLetter = GeorgianAlphabet.lettersByOrderIndex[pos]
+            return true
+        }
+
+        fun getCurrentPosition(): Int {
+            return _currentLetter.learnOrder
+        }
+
+        fun nextLetter(): GeorgianLetter {
+            var pos = _currentLetter.learnOrder
+            pos++
+            _currentLetter = GeorgianAlphabet.lettersByOrderIndex[pos]
+            return _currentLetter
+        }
+
+        fun prevLetter(): GeorgianLetter {
+            var pos = _currentLetter.learnOrder
+            pos--
+            _currentLetter = GeorgianAlphabet.lettersByOrderIndex[pos]
+            return _currentLetter
         }
 
     }

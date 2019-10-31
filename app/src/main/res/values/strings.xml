@@ -13,7 +13,7 @@
     <string name="txt_bechduri_label">ბეჭდური (ასომთავრული / ნუსხური)</string>
     <string name="txt_khelnatseri_label">ხელნაწერი (ასომთავრული / ნუსხური)</string>
     <string name="txt_number_label">რიცხვითი მნიშვნელობა</string>
-    <string name="btn_next_letter">შემდეგი</string>
+    <string name="btn_next_letter">შემდეგი ასო</string>
     <string name="btn_start_exercise">ვივარჯიშოთ</string>
 
     <string name="txt_learning_letter">სავარჯიშო - ასო &quot;"%s"&quot;</string>
@@ -31,7 +31,6 @@
     <string name="txt_result_bad">ცუდია!</string>
     <string name="txt_correct_count">%s-დან %s სწორია</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_try_again">ვცადოთ ხელახლა</string>
 
 </resources>

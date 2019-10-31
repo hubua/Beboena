@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
@@ -33,7 +33,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class LettersHomeFragment : androidx.fragment.app.Fragment() {
+class LettersHomeFragment : Fragment() {
 
 //region OnFragmentInteractionListener pattern
     private var param1: String? = null
@@ -49,11 +49,13 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
     }
 //endregion
 
-    private var currentLetter = GeorgianAlphabet.lettersByOrderIndex[0]
+    init {
+        println("Fragment init") // Only happens when navigating to fragment, but not after back is pressed
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_letters, container, false)
+        return view ?: inflater.inflate(R.layout.fragment_home_letters, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,20 +68,18 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
         val lettersSlidingTabLayout = view.findViewById<View>(R.id.sliding_tab_layout) as SlidingTabLayout
         lettersSlidingTabLayout.setViewPager(letterViewPager)
 
-        btn_start_exercise.visibility = View.GONE
-
         lettersSlidingTabLayout.setOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
-                currentLetter = GeorgianAlphabet.lettersByOrderIndex[position]
+                GeorgianAlphabet.Cursor.setCurrentPosition(position)
 
                 btn_next_letter.visibility = if (position == 0) View.VISIBLE else View.GONE
-                btn_start_exercise.visibility = if (position == 0) View.GONE else View.VISIBLE
+                btn_start_exercise.visibility = if (position != 0) View.VISIBLE else View.GONE
             }
         })
 
         btn_start_exercise.setOnClickListener {
-            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript(currentLetter.letterId.toString())
-            view.findNavController().navigate(action)
+            view.findNavController()
+                .navigate(LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript())
             // Navigation.createNavigateOnClickListener(R.id.frg_dest_transcript, null)
         }
 
@@ -87,8 +87,9 @@ class LettersHomeFragment : androidx.fragment.app.Fragment() {
             lettersSlidingTabLayout.scrollToPage(1) //TODO add logic of position+1
         }
 
-        // lettersSlidingTabLayout.jumpToPage(1) //TODO load from saved state
+        lettersSlidingTabLayout.scrollToPage(GeorgianAlphabet.Cursor.getCurrentPosition())
     }
+
 
 //region OnFragmentInteractionListener pattern
 

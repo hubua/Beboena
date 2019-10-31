@@ -44,9 +44,7 @@
             android:padding="10dp"
 
             android:text="@string/btn_next_letter"
-            app:autoSizeTextType="uniform"
-
-            />
+            app:autoSizeTextType="uniform" />
 
         <Button
             android:id="@+id/btn_start_exercise"

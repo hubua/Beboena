@@ -32,9 +32,7 @@ import com.ghub.beboena.utils.CircularRevealTransition
  */
 class TranscriptFragment : Fragment() {
 
-    private val args: TranscriptFragmentArgs by navArgs()
-
-    private val currentLetter get() = GeorgianAlphabet.lettersById[args.letterId.toChar()]!!
+    private val currentLetter = GeorgianAlphabet.Cursor.currentLetter
 
     private var currentSentenceIndex = 0
 
@@ -78,6 +76,7 @@ class TranscriptFragment : Fragment() {
         val longestSentence =
             GeorgianAlphabet.lettersByOrderIndex.flatMap { it.sentences }.maxBy { it.length }
         txt_sentence.text = longestSentence!!.toKhucuri()
+        ////
 
         edt_transcription.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {

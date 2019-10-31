@@ -10,12 +10,28 @@
         android:id="@+id/txt_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0" />
+        tools:text="0" />
 
     <TextView
-        android:id="@+id/txt_correct_count"
+        android:id="@+id/txt_result_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0" />
+        tools:text="0" />
+
+    <Button
+        android:id="@+id/btn_try_again"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_background_rounded"
+        android:text="@string/btn_try_again" />
+
+    <Button
+        android:id="@+id/btn_next_letter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_background_rounded"
+        android:text="@string/btn_next_letter" />
 
 </LinearLayout>

@@ -8,6 +8,7 @@
     <fragment
         android:id="@+id/frg_home_letters"
         android:name="com.ghub.beboena.ui.LettersHomeFragment"
+        android:label="Home Letters Fragment"
         tools:layout="@layout/fragment_home_letters">
         <action
             android:id="@+id/action_frg_home_letters_to_frg_transcript"
@@ -21,10 +22,7 @@
     <fragment
         android:id="@+id/frg_transcript"
         android:name="com.ghub.beboena.ui.TranscriptFragment"
-        tools:layout="@layout/fragment_transcript" >
-        <argument
-            android:name="letterId"
-            app:argType="string" />
+        tools:layout="@layout/fragment_transcript">
         <action
             android:id="@+id/action_frg_transcript_to_frg_result"
             app:destination="@id/frg_result"
@@ -42,6 +40,11 @@
         <argument
             android:name="transcriptedWrongCount"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_frg_result_to_frg_home_letters"
+            app:destination="@id/frg_home_letters"
+            app:popUpTo="@+id/frg_home_letters"
+            app:popUpToInclusive="false" />
     </fragment>
 
 </navigation>
