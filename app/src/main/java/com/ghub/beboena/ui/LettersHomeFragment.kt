@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
@@ -50,7 +49,7 @@ class LettersHomeFragment : Fragment() {
 //endregion
 
     init {
-        println("Fragment init") // Only happens when navigating to fragment, but not after back is pressed
+        println("Fragment init") // Only happens when navigating to fragment, but not after back is pressed!
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -68,26 +67,32 @@ class LettersHomeFragment : Fragment() {
         val lettersSlidingTabLayout = view.findViewById<View>(R.id.sliding_tab_layout) as SlidingTabLayout
         lettersSlidingTabLayout.setViewPager(letterViewPager)
 
+        lettersSlidingTabLayout.scrollToPage(GeorgianAlphabet.Cursor.getCurrentPosition())
+
+        val hasSentences = GeorgianAlphabet.Cursor.currentLetter.hasSentences
+        btn_next_letter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
+        btn_start_exercise.visibility = if (hasSentences) View.VISIBLE else View.GONE
+
         lettersSlidingTabLayout.setOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
+
                 GeorgianAlphabet.Cursor.setCurrentPosition(position)
 
-                btn_next_letter.visibility = if (position == 0) View.VISIBLE else View.GONE
-                btn_start_exercise.visibility = if (position != 0) View.VISIBLE else View.GONE
+                val hasSentences = GeorgianAlphabet.Cursor.currentLetter.hasSentences
+                btn_next_letter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
+                btn_start_exercise.visibility = if (hasSentences) View.VISIBLE else View.GONE
             }
         })
 
         btn_start_exercise.setOnClickListener {
-            view.findNavController()
-                .navigate(LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript())
-            // Navigation.createNavigateOnClickListener(R.id.frg_dest_transcript, null)
+            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript()
+            view.findNavController().navigate(action)
         }
 
         btn_next_letter.setOnClickListener {
-            lettersSlidingTabLayout.scrollToPage(1) //TODO add logic of position+1
+            val nextPosition = GeorgianAlphabet.Cursor.moveNext()
+            lettersSlidingTabLayout.scrollToPage(nextPosition)
         }
-
-        lettersSlidingTabLayout.scrollToPage(GeorgianAlphabet.Cursor.getCurrentPosition())
     }
 
 

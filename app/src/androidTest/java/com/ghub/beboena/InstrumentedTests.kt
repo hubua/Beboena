@@ -46,7 +46,7 @@ class InstrumentedTests {
         val strSentences = appContext.assets.open("sentences.txt")
         GeorgianAlphabet.initialize(strOga, strSentences);
 
-        val letters = GeorgianAlphabet.lettersByOrderIndex
+        val letters = GeorgianAlphabet.lettersLearnOrdered
 
         assertEquals(33 + 5, letters.count())
     }

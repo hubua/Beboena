@@ -1,8 +1,6 @@
 package com.ghub.beboena.ui
 
-import android.content.Context
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.Spannable
@@ -16,9 +14,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
 import com.ghub.beboena.bl.GeorgianAlphabet
-import com.ghub.beboena.bl.toChar
 import com.ghub.beboena.bl.toKhucuri
 import com.ghub.beboena.utils.KeyboardUtils
 import es.dmoral.toasty.Toasty
@@ -39,11 +35,7 @@ class TranscriptFragment : Fragment() {
     private var transcriptedCorrectCount: Int = 0
     private var transcriptedWrongCount: Int = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_transcript, container, false)
     }
@@ -54,13 +46,13 @@ class TranscriptFragment : Fragment() {
         val spannable = SpannableString(
             String.format(
                 resources.getString(R.string.txt_learning_letter),
-                currentLetter.letterId
+                currentLetter.letterKeySpelling
             )
         )
         spannable.setSpan(
             ForegroundColorSpan(Color.MAGENTA),
-            14,
-            15,
+            16,
+            17,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         txtCurrentLetter.text = spannable
@@ -68,14 +60,13 @@ class TranscriptFragment : Fragment() {
         pb_transcript_progress.max = currentLetter.sentences.count()
 
         pb_transcript_progress.progress = currentSentenceIndex + 1
-        txt_transcript_progress.text =
-            "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
+        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
         txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
 
         //TODO REMOVE DEBUG longestSentence
-        val longestSentence =
-            GeorgianAlphabet.lettersByOrderIndex.flatMap { it.sentences }.maxBy { it.length }
-        txt_sentence.text = longestSentence!!.toKhucuri()
+        //val longestSentence =
+        //    GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
+        //txt_sentence.text = longestSentence!!.toKhucuri()
         ////
 
         edt_transcription.addTextChangedListener(object : TextWatcher {
@@ -157,7 +148,12 @@ class TranscriptFragment : Fragment() {
         } else {
             // Navigation is done to action instead of fragment (R.id.frg_result) to allow back-stack directly to the home
             view.findNavController()
-                .navigate(TranscriptFragmentDirections.actionFrgTranscriptToFrgResult(transcriptedCorrectCount, transcriptedWrongCount))
+                .navigate(
+                    TranscriptFragmentDirections.actionFrgTranscriptToFrgResult(
+                        transcriptedCorrectCount,
+                        transcriptedWrongCount
+                    )
+                )
         }
 
         pb_transcript_progress.progress = currentSentenceIndex + 1

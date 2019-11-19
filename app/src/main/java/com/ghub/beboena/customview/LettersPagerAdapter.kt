@@ -1,10 +1,8 @@
 package com.ghub.beboena.customview
 
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.ghub.beboena.R
 import com.ghub.beboena.bl.GeorgianAlphabet
 import kotlinx.android.synthetic.main.pager_item_letter.view.*
@@ -14,13 +12,13 @@ import kotlinx.android.synthetic.main.pager_item_letter.view.*
  */
 internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
 
-    private val lettersByPosition = GeorgianAlphabet.lettersByOrderIndex
+    private val lettersOrdered = GeorgianAlphabet.lettersLearnOrdered
 
     /**
      * @return the number of pages to display
      */
     override fun getCount(): Int {
-        return lettersByPosition.count()
+        return lettersOrdered.count()
     }
 
     /**
@@ -39,7 +37,7 @@ internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
      * refer to the item's contents.
      */
     override fun getPageTitle(position: Int): CharSequence? {
-        val letter = lettersByPosition[position]
+        val letter = lettersOrdered[position]
         return "${letter.asomtavruli} ${letter.nuskhuri} (${letter.name})"
     }
 
@@ -48,7 +46,7 @@ internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
      * inflate a layout from the apps resources and then change the text view to signify the position.
      */
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val letter = lettersByPosition[position]
+        val letter = lettersOrdered[position]
 
         val view = LayoutInflater.from(container.context).inflate(R.layout.pager_item_letter, container, false)
         container.addView(view)

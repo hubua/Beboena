@@ -17,8 +17,10 @@ data class GeorgianLetter(
 
     private val _random = Random()
 
-    val letterId get() = mkhedruli
+    val letterKeySpelling get() = mkhedruli
 
     val sentencesShuffled get() = sentences.shuffled(_random)
+
+    val hasSentences get() = learnOrder > 1 && learnOrder < 100
 
 }

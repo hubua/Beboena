@@ -24,7 +24,7 @@ class UnitTests {
     @Test
     fun initialize_isCorrect() {
 
-        val letters = GeorgianAlphabet.lettersByOrderIndex
+        val letters = GeorgianAlphabet.lettersLearnOrdered
 
         assertEquals(33 + 5, letters.count())
     }
@@ -40,8 +40,8 @@ class UnitTests {
     @Test
     fun words_loaded() {
 
-        val lettersMap = GeorgianAlphabet.lettersById
-        val lettersList = GeorgianAlphabet.lettersByOrderIndex.sortedBy { it.sentences.count() }
+        val lettersMap = GeorgianAlphabet.lettersMap
+        val lettersList = GeorgianAlphabet.lettersLearnOrdered.sortedBy { it.sentences.count() }
 
         assertEquals(0, lettersMap['ა']!!.sentences.count())
 
@@ -53,7 +53,7 @@ class UnitTests {
 
         println("Loaded sentences count:");
         for (letter in lettersList) {
-            println("${letter.letterId} ${letter.sentences.count()}")
+            println("${letter.letterKeySpelling} ${letter.sentences.count()}")
         }
 
     }

@@ -10,9 +10,9 @@ object GeorgianAlphabet {
 
     private val _letters = mutableListOf<GeorgianLetter>()
 
-    val lettersByOrderIndex get() = _letters.sortedBy{ it.learnOrder }
+    val lettersLearnOrdered get() = _letters.sortedBy{ it.learnOrder }
 
-    val lettersById get() = _letters.associateBy({ it.mkhedruli}, {it})
+    val lettersMap get() = _letters.associateBy({ it.letterKeySpelling}, {it})
 
     fun initialize(strOga: InputStream, strSentences: InputStream) {
 
@@ -70,31 +70,27 @@ object GeorgianAlphabet {
 
     object Cursor {
 
-        private var _currentLetter = GeorgianAlphabet.lettersByOrderIndex[0]
+        private var _currentPosition = 0
 
-        val currentLetter get() = _currentLetter
-
-        fun setCurrentPosition(pos: Int): Boolean {
-            _currentLetter = GeorgianAlphabet.lettersByOrderIndex[pos]
-            return true
-        }
+        val currentLetter get() = lettersLearnOrdered[_currentPosition]
 
         fun getCurrentPosition(): Int {
-            return _currentLetter.learnOrder
+            return _currentPosition
         }
 
-        fun nextLetter(): GeorgianLetter {
-            var pos = _currentLetter.learnOrder
-            pos++
-            _currentLetter = GeorgianAlphabet.lettersByOrderIndex[pos]
-            return _currentLetter
+        fun setCurrentPosition(position: Int): Int {
+            _currentPosition = if (position > 0 && position < lettersLearnOrdered.count()) position else 0
+            return _currentPosition
         }
 
-        fun prevLetter(): GeorgianLetter {
-            var pos = _currentLetter.learnOrder
-            pos--
-            _currentLetter = GeorgianAlphabet.lettersByOrderIndex[pos]
-            return _currentLetter
+        fun moveNext(): Int {
+            setCurrentPosition(_currentPosition + 1)
+            return _currentPosition
+        }
+
+        fun movePrev(): Int {
+            setCurrentPosition(_currentPosition - 1)
+            return _currentPosition
         }
 
     }
@@ -107,8 +103,8 @@ fun String.toKhucuri(withCapital: Boolean = false): String {
     var khucuri = ""
 
     for ((index, letter) in mkhedruli.withIndex()) {
-        if (GeorgianAlphabet.lettersById.contains(letter)) {
-            khucuri += if (withCapital && index == 0) GeorgianAlphabet.lettersById[letter]?.asomtavruli else GeorgianAlphabet.lettersById[letter]?.nuskhuri
+        if (GeorgianAlphabet.lettersMap.contains(letter)) {
+            khucuri += if (withCapital && index == 0) GeorgianAlphabet.lettersMap[letter]?.asomtavruli else GeorgianAlphabet.lettersMap[letter]?.nuskhuri
         }
         else {
             khucuri += letter

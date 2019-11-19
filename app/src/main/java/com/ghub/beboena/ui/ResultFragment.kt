@@ -53,7 +53,7 @@ class ResultFragment : Fragment() {
 
         btn_next_letter.visibility = if (correctCount != 0) View.VISIBLE else View.GONE // Has correct answers
         btn_next_letter.setOnClickListener {
-            GeorgianAlphabet.Cursor.nextLetter()
+            GeorgianAlphabet.Cursor.moveNext()
             view.findNavController()
                 .navigate(ResultFragmentDirections.actionFrgResultToFrgHomeLetters())
         }
