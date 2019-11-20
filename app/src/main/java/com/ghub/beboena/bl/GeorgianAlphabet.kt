@@ -1,5 +1,6 @@
 package com.ghub.beboena.bl
 
+import android.content.SharedPreferences
 import com.opencsv.CSVParserBuilder
 import com.opencsv.CSVReaderBuilder
 import java.io.InputStream
@@ -70,16 +71,35 @@ object GeorgianAlphabet {
 
     object Cursor {
 
+        private const val SAVED_POSITION_KEY = "SAVED_POSITION_KEY"
+
+        private lateinit var _pref: SharedPreferences
+
         private var _currentPosition = 0
 
         val currentLetter get() = lettersLearnOrdered[_currentPosition]
+
+        fun initialize(sharedPref: SharedPreferences) {
+            _pref = sharedPref
+            val savedPosition = _pref?.getInt(SAVED_POSITION_KEY, 0)
+            _currentPosition = savedPosition
+        }
 
         fun getCurrentPosition(): Int {
             return _currentPosition
         }
 
         fun setCurrentPosition(position: Int): Int {
+
             _currentPosition = if (position > 0 && position < lettersLearnOrdered.count()) position else 0
+
+            if (::_pref.isInitialized) {
+                with(_pref.edit()) {
+                    putInt(SAVED_POSITION_KEY, _currentPosition)
+                    apply()
+                }
+            }
+
             return _currentPosition
         }
 

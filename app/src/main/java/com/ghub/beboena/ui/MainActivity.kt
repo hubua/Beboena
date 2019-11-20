@@ -1,6 +1,7 @@
 package com.ghub.beboena.ui
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
         val strOga = applicationContext.assets.open("oga.tsv")
         val strSentences = applicationContext.assets.open("sentences.txt")
         GeorgianAlphabet.initialize(strOga, strSentences);
+
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        GeorgianAlphabet.Cursor.initialize(sharedPref)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
