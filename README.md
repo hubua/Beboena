@@ -22,9 +22,11 @@
 - Material Design for Android                   https://developer.android.com/guide/topics/ui/look-and-feel/
 - Design app themes with Theme Editor           https://developer.android.com/studio/write/theme-editor
 
+
+- Data storage                                  https://developer.android.com/guide/topics/data/data-storage
 - Settings screen                               https://developer.android.com/guide/topics/ui/settings.html
 
-- Autobackup                                    https://developer.android.com/guide/topics/data/autobackup
+- Auto backup                                   https://developer.android.com/guide/topics/data/autobackup
 
 - HAXM                                          https://github.com/intel/haxm/blob/master/docs/manual-windows.md
 - SDP                                           https://github.com/intuit/sdp

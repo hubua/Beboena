@@ -19,7 +19,7 @@ data class GeorgianLetter(
 
     val letterKeySpelling get() = mkhedruli
 
-    val sentencesShuffled get() = sentences.shuffled(_random)
+    val sentencesShuffled get() = sentences.shuffled(_random) //TODO use shuffled, beware reshufling on each call!
 
     val hasSentences get() = learnOrder > 1 && learnOrder < 100
 
