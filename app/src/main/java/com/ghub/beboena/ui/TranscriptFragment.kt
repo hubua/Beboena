@@ -23,6 +23,9 @@ import androidx.transition.TransitionManager
 import com.ghub.beboena.R
 import com.ghub.beboena.utils.CircularRevealTransition
 
+val DEBUG_LongestSentenceFirst: Boolean = false
+val DEBUG_TwoLettersAreCorrect: Boolean = false
+
 /**
  * A simple [Fragment] subclass.
  */
@@ -63,11 +66,11 @@ class TranscriptFragment : Fragment() {
         txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
         txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
 
-        //TODO REMOVE DEBUG longestSentence
-        //val longestSentence =
-        //    GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
-        //txt_sentence.text = longestSentence!!.toKhucuri()
-        ////
+        if (DEBUG_LongestSentenceFirst) {
+            val longestSentence =
+                GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
+            txt_sentence.text = longestSentence!!.toKhucuri()
+        }
 
         edt_transcription.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -116,9 +119,10 @@ class TranscriptFragment : Fragment() {
 
         KeyboardUtils.hideKeyboard(this.activity!!)
 
-        //TODO REMOVE DEBUG correct if more than one letter
-        //val isCorrect = (edt_transcription.text.toString() == currentLetter.sentences[currentSentenceIndex])
-        val isCorrect = (edt_transcription.text.length > 1)
+        var isCorrect = (edt_transcription.text.toString() == currentLetter.sentences[currentSentenceIndex])
+        if (DEBUG_TwoLettersAreCorrect) {
+            isCorrect = (edt_transcription.text.length > 1)
+        }
 
         val txtTranscripted = if (isCorrect) txt_transcripted_correct else txt_transcripted_wrong
         if (isCorrect) transcriptedCorrectCount++ else transcriptedWrongCount++
@@ -147,18 +151,15 @@ class TranscriptFragment : Fragment() {
             currentSentenceIndex++
         } else {
             // Navigation is done to action instead of fragment (R.id.frg_result) to allow back-stack directly to the home
-            view.findNavController()
-                .navigate(
-                    TranscriptFragmentDirections.actionFrgTranscriptToFrgResult(
-                        transcriptedCorrectCount,
-                        transcriptedWrongCount
-                    )
-                )
+            val action = TranscriptFragmentDirections.actionFrgTranscriptToFrgResult(
+                transcriptedCorrectCount,
+                transcriptedWrongCount
+            )
+            view.findNavController().navigate(action)
         }
 
         pb_transcript_progress.progress = currentSentenceIndex + 1
-        txt_transcript_progress.text =
-            "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()} c$transcriptedCorrectCount w$transcriptedWrongCount"
+        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
         txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
 
         edt_transcription.text.clear()

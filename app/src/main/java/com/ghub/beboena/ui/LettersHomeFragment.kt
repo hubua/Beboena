@@ -85,8 +85,9 @@ class LettersHomeFragment : Fragment() {
         })
 
         btn_start_exercise.setOnClickListener {
-            val action = LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript()
-            view.findNavController().navigate(action)
+            view.findNavController().navigate(
+                LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript()
+            )
         }
 
         btn_next_letter.setOnClickListener {

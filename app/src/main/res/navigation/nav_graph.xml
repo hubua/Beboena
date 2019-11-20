@@ -14,9 +14,7 @@
             android:id="@+id/action_frg_home_letters_to_frg_transcript"
             app:destination="@id/frg_transcript"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
@@ -26,6 +24,8 @@
         <action
             android:id="@+id/action_frg_transcript_to_frg_result"
             app:destination="@id/frg_result"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:popUpTo="@+id/frg_home_letters"
             app:popUpToInclusive="false" />
     </fragment>
@@ -43,6 +43,8 @@
         <action
             android:id="@+id/action_frg_result_to_frg_home_letters"
             app:destination="@id/frg_home_letters"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
             app:popUpTo="@+id/frg_home_letters"
             app:popUpToInclusive="false" />
     </fragment>

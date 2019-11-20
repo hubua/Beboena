@@ -23,10 +23,7 @@ class ResultFragment : Fragment() {
     private val correctCount get() = args.transcriptedCorrectCount
     private val incorrectCount get() = args.transcriptedWrongCount
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_result, container, false)
     }
@@ -43,25 +40,26 @@ class ResultFragment : Fragment() {
                 txt_result.text = resources.getString(R.string.txt_result_satisfactory)
         }
 
-        txt_result_details.text = String.format(resources.getString(R.string.txt_correct_count), correctCount + incorrectCount, correctCount)
+        txt_result_details.text =
+            String.format(resources.getString(R.string.txt_correct_count), correctCount + incorrectCount, correctCount)
 
         btn_try_again.visibility = if (incorrectCount != 0) View.VISIBLE else View.GONE // Has incorrect answers
         btn_try_again.setOnClickListener {
-            view.findNavController()
-                .navigate(ResultFragmentDirections.actionFrgResultToFrgHomeLetters())
+
+            view.findNavController().navigate(
+                ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
+            )
         }
 
         btn_next_letter.visibility = if (correctCount != 0) View.VISIBLE else View.GONE // Has correct answers
         btn_next_letter.setOnClickListener {
+
             GeorgianAlphabet.Cursor.moveNext()
-            view.findNavController()
-                .navigate(ResultFragmentDirections.actionFrgResultToFrgHomeLetters())
+
+            view.findNavController().navigate(
+                ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
+            )
         }
     }
 
-}
-
-enum class TranscriptContinue(val value: Int) {
-    TRY_AGAIN(0),
-    NEXT_LETTER(1),
 }

@@ -19,7 +19,7 @@
     <string name="txt_learning_letter">სავარჯიშო - ასო &quot;"%s"&quot;</string>
     <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
     <string name="btn_check">შევამოწმოთ</string>
-    <string name="btn_continue">შემდეგი</string>
+    <string name="btn_continue">გავაგრძელოთ</string>
 
     <string name="txt_correct">სწორია!</string>
     <string name="txt_wrong">ვაი, შეცდომა...</string>
