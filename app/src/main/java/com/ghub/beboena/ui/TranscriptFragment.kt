@@ -23,7 +23,7 @@ import androidx.transition.TransitionManager
 import com.ghub.beboena.R
 import com.ghub.beboena.utils.CircularRevealTransition
 
-val DEBUG_LongestSentenceFirst: Boolean = false
+val DEBUG_LongestSentenceFirst: Boolean = true
 val DEBUG_TwoLettersAreCorrect: Boolean = false
 
 /**
