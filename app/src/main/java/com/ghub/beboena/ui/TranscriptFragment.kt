@@ -1,18 +1,21 @@
 package com.ghub.beboena.ui
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import com.ghub.beboena.bl.GeorgianAlphabet
 import com.ghub.beboena.bl.toKhucuri
@@ -23,7 +26,7 @@ import androidx.transition.TransitionManager
 import com.ghub.beboena.R
 import com.ghub.beboena.utils.CircularRevealTransition
 
-val DEBUG_LongestSentenceFirst: Boolean = true
+val DEBUG_LongestSentenceFirst: Boolean = false
 val DEBUG_TwoLettersAreCorrect: Boolean = false
 
 /**
@@ -53,7 +56,8 @@ class TranscriptFragment : Fragment() {
             )
         )
         spannable.setSpan(
-            ForegroundColorSpan(Color.MAGENTA),
+            StyleSpan(Typeface.BOLD),
+            //ForegroundColorSpan(ContextCompat.getColor(context!!, R.color.colorPrimary)),
             16,
             17,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

@@ -11,7 +11,7 @@
         android:id="@+id/txt_letters_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E762E0"
+        android:background="@color/colorAccent"
         android:padding="8dp"
         android:text="@string/txt_letters_hint" />
 
@@ -27,37 +27,21 @@
         android:layout_weight="1"
         android:background="@android:color/white" />
 
-    <LinearLayout
+
+
+    <Button
+        android:id="@+id/btn_next_letter"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/btn_next_letter" />
 
-        <Button
-            android:id="@+id/btn_next_letter"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    <Button
+        android:id="@+id/btn_start_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/btn_start_exercise" />
 
-            android:layout_margin="16dp"
-            android:layout_weight="0.5"
-
-            android:background="@drawable/btn_background_rounded"
-            android:padding="10dp"
-
-            android:text="@string/btn_next_letter"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMaxTextSize="20sp" />
-
-        <Button
-            android:id="@+id/btn_start_exercise"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:layout_margin="16dp"
-            android:layout_weight="0.5"
-            android:background="@drawable/btn_background_rounded"
-            android:text="@string/btn_start_exercise"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMaxTextSize="20sp" />
-    </LinearLayout>
 
 </LinearLayout>

@@ -1,12 +1,14 @@
 package com.ghub.beboena.ui
 
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.ghub.beboena.R
@@ -66,6 +68,8 @@ class LettersHomeFragment : Fragment() {
         // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had it's PagerAdapter set.
         val lettersSlidingTabLayout = view.findViewById<View>(R.id.sliding_tab_layout) as SlidingTabLayout
         lettersSlidingTabLayout.setViewPager(letterViewPager)
+
+        lettersSlidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(context!!, R.color.colorPrimary))
 
         lettersSlidingTabLayout.scrollToPage(GeorgianAlphabet.Cursor.getCurrentPosition())
 

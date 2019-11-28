@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorBackground">#bbdefb</color>
-    <color name="colorWhite">#ffffff</color>
-    <color name="colorBlack">#000000</color>
+    <color name="colorPrimary">#1CB0F6</color>
+    <color name="colorPrimaryDark">#1899D6</color>
+    <color name="colorAccent">#66FF00FF</color>
+
+    <color name="colorWindowBackground">#FFFFFD</color>
+    <color name="colorEditTextBackground">#F7F7F7</color>
+    <color name="colorEditTextBorder">#E1E1E1</color>
 
     <color name="colorCorrectBackground">#B8F28B</color>
     <color name="colorCorrectText">#54A400</color>

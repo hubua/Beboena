@@ -33,20 +33,16 @@
         android:id="@+id/btn_try_again"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@drawable/btn_background_rounded"
-        android:padding="20dp"
-        android:text="@string/btn_try_again"
-        android:textSize="20sp" />
+        android:layout_margin="16dp"
+        android:textSize="30dp"
+        android:text="@string/btn_try_again" />
 
     <Button
         android:id="@+id/btn_next_letter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@drawable/btn_background_rounded"
-        android:padding="20dp"
-        android:text="@string/btn_next_letter"
-        android:textSize="20sp" />
+        android:layout_margin="16dp"
+        android:textSize="30dp"
+        android:text="@string/btn_next_letter" />
 
 </LinearLayout>
