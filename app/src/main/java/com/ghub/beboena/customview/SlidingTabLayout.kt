@@ -100,7 +100,7 @@ class SlidingTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
     /**
      * Set the custom [TabColorizer] to be used.
      *
-     * If you only require simple custmisation then you can use
+     * If you only require simple customisation then you can use
      * [.setSelectedIndicatorColors] and [.setDividerColors] to achieve
      * similar effects.
      */
