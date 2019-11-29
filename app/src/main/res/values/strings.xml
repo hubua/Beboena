@@ -8,7 +8,7 @@
     <string name="txt_sentence_sample_khucuri">ნახეს უცხო მოყმე ვინმე</string>
     <string name="txt_long_sentence_sample">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ, ⴟⴃⴀ ⴋⴒⴈⴐⴀⴊⴈ ⴜⴗⴊⴈⴑⴀ ⴎⴈⴐⴑⴀ</string>
 
-    <string name="txt_letters_hint">აირჩიეთ ასო და დაიწყეთ სავარჯიშო დავალება</string>
+    <string name="txt_letters_hint">დაიმახსოვრეთ ასოს დამწერლობა და დაიწყეთ სავარჯიშო დავალება</string>
     <!--<string name="txt_asomtavruli_label"><![CDATA[<b>ასომთავრული</b><br/>ბეჭდური და ხელნაწერი]]></string>-->
     <string name="txt_bechduri_label">ბეჭდური (ასომთავრული / ნუსხური)</string>
     <string name="txt_khelnatseri_label">ხელნაწერი (ასომთავრული / ნუსხური)</string>
@@ -16,7 +16,7 @@
     <string name="btn_next_letter">შემდეგი ასო</string>
     <string name="btn_start_exercise">ვივარჯიშოთ</string>
 
-    <string name="txt_learning_letter">სავარჯიშო - ასო &quot;"%s"&quot;</string>
+    <string name="txt_learning_letter">სავარჯიშო \u2014 ასო &quot;"%s"&quot;</string>
     <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
     <string name="btn_check">შევამოწმოთ</string>
     <string name="btn_continue">გავაგრძელოთ</string>

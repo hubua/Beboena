@@ -35,6 +35,7 @@ val DEBUG_TwoLettersAreCorrect: Boolean = false
 class TranscriptFragment : Fragment() {
 
     private val currentLetter = GeorgianAlphabet.Cursor.currentLetter
+    private val currentSentences = GeorgianAlphabet.Cursor.currentSentencesShuffled
 
     private var currentSentenceIndex = 0
 
@@ -64,11 +65,11 @@ class TranscriptFragment : Fragment() {
         )
         txtCurrentLetter.text = spannable
 
-        pb_transcript_progress.max = currentLetter.sentences.count()
+        pb_transcript_progress.max = currentSentences.count()
 
         pb_transcript_progress.progress = currentSentenceIndex + 1
-        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
-        txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
+        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
+        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri()
 
         if (DEBUG_LongestSentenceFirst) {
             val longestSentence =
@@ -90,6 +91,7 @@ class TranscriptFragment : Fragment() {
         edt_transcription.text.clear()
         edt_transcription.isFocusableInTouchMode = true
         edt_transcription.isFocusable = true
+        edt_transcription.requestFocus()
 
         txt_transcripted_correct.visibility = View.GONE
         txt_transcripted_wrong.visibility = View.GONE
@@ -123,7 +125,7 @@ class TranscriptFragment : Fragment() {
 
         KeyboardUtils.hideKeyboard(this.activity!!)
 
-        var isCorrect = (edt_transcription.text.toString() == currentLetter.sentences[currentSentenceIndex])
+        var isCorrect = (edt_transcription.text.toString() == currentSentences[currentSentenceIndex])
         if (DEBUG_TwoLettersAreCorrect) {
             isCorrect = (edt_transcription.text.length > 1)
         }
@@ -151,7 +153,7 @@ class TranscriptFragment : Fragment() {
 
     private fun onBtnContinueClick(view: View) {
 
-        if (currentSentenceIndex + 1 < currentLetter.sentences.count()) {
+        if (currentSentenceIndex + 1 < currentSentences.count()) {
             currentSentenceIndex++
         } else {
             // Navigation is done to action instead of fragment (R.id.frg_result) to allow back-stack directly to the home
@@ -162,11 +164,11 @@ class TranscriptFragment : Fragment() {
             view.findNavController().navigate(action)
         }
 
-        pb_transcript_progress.progress = currentSentenceIndex + 1
-        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentLetter.sentences.count()}"
-        txt_sentence.text = currentLetter.sentences[currentSentenceIndex].toKhucuri()
+        pb_transcript_progress.progress = currentSentenceIndex + 1 //TODO Code duplication
+        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
+        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri()
 
-        edt_transcription.text.clear()
+        edt_transcription.text.clear() //TODO Code duplication
         edt_transcription.isFocusableInTouchMode = true
         edt_transcription.isFocusable = true
 

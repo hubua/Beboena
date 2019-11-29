@@ -38,7 +38,7 @@ internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
      */
     override fun getPageTitle(position: Int): CharSequence? {
         val letter = lettersOrdered[position]
-        return "${letter.asomtavruli} ${letter.nuskhuri} (${letter.name})"
+        return "${letter.asomtavruli} ${letter.nuskhuri} (${letter.mkhedruli})"
     }
 
     /**
@@ -51,7 +51,8 @@ internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
         val view = LayoutInflater.from(container.context).inflate(R.layout.pager_item_letter, container, false)
         container.addView(view)
 
-        view.txtLetterMkhedruli.text = "${letter.mkhedruli} - \"${letter.name}\""
+        val read = if (letter.read.isEmpty()) "" else " \"${letter.read}\""
+        view.txtLetterMkhedruli.text = "${letter.name} - ${letter.mkhedruli}${read}"
 
         view.txtBechduri.text = "${letter.asomtavruli} ${letter.nuskhuri}"
         view.txtKhelnatseri.text = "${letter.asomtavruli} ${letter.nuskhuri}"

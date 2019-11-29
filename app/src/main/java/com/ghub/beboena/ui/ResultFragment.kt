@@ -30,14 +30,18 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         when {
-            correctCount == 0 ->
+            correctCount == 0 -> {
                 txt_result.text = resources.getString(R.string.txt_result_bad)
-            incorrectCount == 0 ->
+                img_smiley.setImageResource(R.drawable.smile_bad) }
+            incorrectCount == 0 -> {
                 txt_result.text = resources.getString(R.string.txt_result_excellent)
-            correctCount < incorrectCount ->
+                img_smiley.setImageResource(R.drawable.smile_excellent) }
+            correctCount < incorrectCount -> {
                 txt_result.text = resources.getString(R.string.txt_result_unsatisfactory)
-            else -> // correctCount >= incorrectCount
+                img_smiley.setImageResource(R.drawable.smile_unsatisfactory) }
+            else -> { // correctCount >= incorrectCount
                 txt_result.text = resources.getString(R.string.txt_result_satisfactory)
+                img_smiley.setImageResource(R.drawable.smile_satisfactory) }
         }
 
         txt_result_details.text =

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="3dp"
-        tools:text="სავარჯიშო - ასო ა" />
+        tools:text="სავარჯიშო \u2014 ასო ა" />
 
     <FrameLayout
         android:id="@+id/frame_layout_progress"
@@ -54,7 +54,7 @@
         android:layout_marginRight="16dp"
         android:padding="8dp"
         android:textAppearance="@style/TextGeoBechduri"
-        android:textSize="30sp"
+        android:textSize="35sp"
         tools:text="@string/txt_sentence_sample_geo" />
 
     <FrameLayout

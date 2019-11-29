@@ -5,6 +5,7 @@ import com.opencsv.CSVParserBuilder
 import com.opencsv.CSVReaderBuilder
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.util.*
 
 
 object GeorgianAlphabet {
@@ -56,8 +57,6 @@ object GeorgianAlphabet {
                     mkhedruli = row[1].toChar(),
                     asomtavruli = row[2].toChar(),
                     nuskhuri = row[3].toChar(),
-                    alternativeAsomtavruliSpelling = row[4],
-                    latinEquivalent = row[5],
                     number = row[6],
                     name = row[7],
                     read = row[8],
@@ -77,7 +76,11 @@ object GeorgianAlphabet {
 
         private var _currentPosition = 0
 
+        private val _random = Random()
+
         val currentLetter get() = lettersLearnOrdered[_currentPosition]
+
+        val currentSentencesShuffled get() = currentLetter.sentences.shuffled(_random) // Beware reshuffling on each call
 
         fun initialize(sharedPref: SharedPreferences) {
             _pref = sharedPref
