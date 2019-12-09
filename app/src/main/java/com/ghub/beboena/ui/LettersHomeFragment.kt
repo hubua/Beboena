@@ -36,7 +36,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class LettersHomeFragment : Fragment() {
 
-//region OnFragmentInteractionListener pattern
+    //region OnFragmentInteractionListener pattern
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
@@ -73,18 +73,14 @@ class LettersHomeFragment : Fragment() {
 
         lettersSlidingTabLayout.scrollToPage(GeorgianAlphabet.Cursor.getCurrentPosition())
 
-        val hasSentences = GeorgianAlphabet.Cursor.currentLetter.hasSentences
-        btn_next_letter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
-        btn_start_exercise.visibility = if (hasSentences) View.VISIBLE else View.GONE
+        showNextStartButtons()
 
         lettersSlidingTabLayout.setOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
 
                 GeorgianAlphabet.Cursor.setCurrentPosition(position)
 
-                val hasSentences = GeorgianAlphabet.Cursor.currentLetter.hasSentences
-                btn_next_letter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
-                btn_start_exercise.visibility = if (hasSentences) View.VISIBLE else View.GONE
+                showNextStartButtons()
             }
         })
 
@@ -98,6 +94,12 @@ class LettersHomeFragment : Fragment() {
             val nextPosition = GeorgianAlphabet.Cursor.moveNext()
             lettersSlidingTabLayout.scrollToPage(nextPosition)
         }
+    }
+
+    private fun showNextStartButtons() {
+        val hasSentences = GeorgianAlphabet.Cursor.currentLetter.hasSentences
+        btn_next_letter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
+        btn_start_exercise.visibility = if (hasSentences) View.VISIBLE else View.GONE
     }
 
 

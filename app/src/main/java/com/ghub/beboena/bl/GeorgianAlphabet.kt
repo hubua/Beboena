@@ -84,7 +84,7 @@ object GeorgianAlphabet {
 
         fun initialize(sharedPref: SharedPreferences) {
             _pref = sharedPref
-            val savedPosition = _pref?.getInt(SAVED_POSITION_KEY, 0)
+            val savedPosition = _pref.getInt(SAVED_POSITION_KEY, 0)
             _currentPosition = savedPosition
         }
 

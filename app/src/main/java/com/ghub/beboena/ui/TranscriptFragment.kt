@@ -67,9 +67,7 @@ class TranscriptFragment : Fragment() {
 
         pb_transcript_progress.max = currentSentences.count()
 
-        pb_transcript_progress.progress = currentSentenceIndex + 1
-        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
-        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(withCapital = true)
+        showSentenceToTranscript()
 
         if (DEBUG_LongestSentenceFirst) {
             val longestSentence = GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
@@ -96,9 +94,6 @@ class TranscriptFragment : Fragment() {
         txt_transcripted_correct.visibility = View.GONE
         txt_transcripted_wrong.visibility = View.GONE
 
-        /*txt_wrong.animate().alpha(0.0f)
-        txt_wrong.animate().translationX(0.0f)*/
-
         btn_check.isEnabled = false
         btn_check.visibility = View.VISIBLE
         btn_check.setOnClickListener { onBtnCheckClick(it) } //TODO sort out the mess with it, this, view, btn
@@ -118,10 +113,10 @@ class TranscriptFragment : Fragment() {
 
     private fun onBtnCheckClick(view: View) {
 
-        if (edt_transcription.text.toString().isBlank()) {
+        /*if (edt_transcription.text.toString().isBlank()) {
             Toasty.info(context!!, R.string.txt_blank, Toast.LENGTH_SHORT, true).show()
             return
-        }
+        }*/
 
         KeyboardUtils.hideKeyboard(this.activity!!)
 
@@ -136,15 +131,12 @@ class TranscriptFragment : Fragment() {
         edt_transcription.isFocusableInTouchMode = false
         edt_transcription.isFocusable = false
 
-        val transition = CircularRevealTransition() // Slide(Gravity.LEFT) // Fade()
+        val transition = CircularRevealTransition() // Alternatives are Slide(Gravity.LEFT) Fade()
         transition.setDuration(1000)
         transition.addTarget(txtTranscripted)
         TransitionManager.beginDelayedTransition(txtTranscripted.parent!! as ViewGroup, transition)
 
         txtTranscripted.visibility = View.VISIBLE
-
-        /*txt_wrong.animate().alpha(1.0f).setDuration(1000);
-        txt_wrong.animate().translationX(100.0f).setDuration(1000)*/
 
         btn_check.visibility = View.GONE
         btn_continue.visibility = View.VISIBLE
@@ -164,9 +156,7 @@ class TranscriptFragment : Fragment() {
             view.findNavController().navigate(action)
         }
 
-        pb_transcript_progress.progress = currentSentenceIndex + 1 //TODO Code duplication
-        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
-        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(withCapital = true)
+        showSentenceToTranscript()
 
         edt_transcription.text.clear() //TODO Code duplication
         edt_transcription.isFocusableInTouchMode = true
@@ -175,14 +165,17 @@ class TranscriptFragment : Fragment() {
         txt_transcripted_correct.visibility = View.GONE
         txt_transcripted_wrong.visibility = View.GONE
 
-        /*txt_wrong.animate().alpha(0.0f)
-        txt_wrong.animate().translationX(0.0f)*/
-
         btn_check.isEnabled = false
         btn_check.visibility = View.VISIBLE
 
         btn_continue.visibility = View.GONE
 
+    }
+
+    private fun showSentenceToTranscript() {
+        pb_transcript_progress.progress = currentSentenceIndex + 1
+        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
+        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(withCapital = true)
     }
 
 }
