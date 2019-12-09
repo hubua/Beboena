@@ -12,9 +12,9 @@ object GeorgianAlphabet {
 
     private val _letters = mutableListOf<GeorgianLetter>()
 
-    val lettersLearnOrdered get() = _letters.sortedBy{ it.learnOrder }
+    val lettersLearnOrdered get() = _letters.sortedBy { it.learnOrder }
 
-    val lettersMap get() = _letters.associateBy({ it.letterKeySpelling}, {it})
+    val lettersMap get() = _letters.associateBy({ it.letterKeySpelling }, { it })
 
     fun initialize(strOga: InputStream, strSentences: InputStream) {
 
@@ -34,7 +34,7 @@ object GeorgianAlphabet {
          * [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
          */
 
-        val orderedLetters = ogaData.associateBy({it[1].toChar()}, {it[9].toInt()})
+        val orderedLetters = ogaData.associateBy({ it[1].toChar() }, { it[9].toInt() })
         // val orderedLetters2 = ogaData.map {it[1].toChar() to it[9].toInt()}.sortedBy { it.second }.toMap()
 
         val mapLetterSentences: MutableMap<Char, MutableList<String>> = mutableMapOf()
@@ -53,15 +53,15 @@ object GeorgianAlphabet {
 
         for (row in ogaData) {
             val letter = GeorgianLetter(
-                    order = row[0].toInt(),
-                    mkhedruli = row[1].toChar(),
-                    asomtavruli = row[2].toChar(),
-                    nuskhuri = row[3].toChar(),
-                    number = row[6],
-                    name = row[7],
-                    read = row[8],
-                    learnOrder = row[9].toInt(),
-                    sentences = mapLetterSentences[row[1].toChar()]!!.toList()
+                order = row[0].toInt(),
+                mkhedruli = row[1].toChar(),
+                asomtavruli = row[2].toChar(),
+                nuskhuri = row[3].toChar(),
+                number = row[6],
+                name = row[7],
+                read = row[8],
+                learnOrder = row[9].toInt(),
+                sentences = mapLetterSentences[row[1].toChar()]!!.toList()
             )
             _letters.add(letter)
         }
@@ -128,8 +128,7 @@ fun String.toKhucuri(withCapital: Boolean = false): String {
     for ((index, letter) in mkhedruli.withIndex()) {
         if (GeorgianAlphabet.lettersMap.contains(letter)) {
             khucuri += if (withCapital && index == 0) GeorgianAlphabet.lettersMap[letter]?.asomtavruli else GeorgianAlphabet.lettersMap[letter]?.nuskhuri
-        }
-        else {
+        } else {
             khucuri += letter
         }
     }

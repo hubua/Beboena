@@ -69,12 +69,13 @@ class TranscriptFragment : Fragment() {
 
         pb_transcript_progress.progress = currentSentenceIndex + 1
         txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
-        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri()
+        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(withCapital = true)
 
         if (DEBUG_LongestSentenceFirst) {
             val longestSentence =
                 GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
             txt_sentence.text = longestSentence!!.toKhucuri()
+            txt_sentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
         }
 
         edt_transcription.addTextChangedListener(object : TextWatcher {
@@ -166,7 +167,7 @@ class TranscriptFragment : Fragment() {
 
         pb_transcript_progress.progress = currentSentenceIndex + 1 //TODO Code duplication
         txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
-        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri()
+        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(withCapital = true)
 
         edt_transcription.text.clear() //TODO Code duplication
         edt_transcription.isFocusableInTouchMode = true

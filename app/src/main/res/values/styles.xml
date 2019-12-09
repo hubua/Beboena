@@ -17,7 +17,7 @@
     </style>
 
     <style name="TextGeoBechduri" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/sylfaen_w10</item>
+        <item name="android:fontFamily">@font/sylfaen_bechduri_khutsuri</item>
     </style>
 
     <style name="TextGeoKhelnatseri" parent="TextAppearance.AppCompat">
