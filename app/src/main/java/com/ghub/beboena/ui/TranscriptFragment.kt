@@ -72,10 +72,9 @@ class TranscriptFragment : Fragment() {
         txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(withCapital = true)
 
         if (DEBUG_LongestSentenceFirst) {
-            val longestSentence =
-                GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
+            val longestSentence = GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
             txt_sentence.text = longestSentence!!.toKhucuri()
-            txt_sentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
+            //txt_sentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
         }
 
         edt_transcription.addTextChangedListener(object : TextWatcher {
