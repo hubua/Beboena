@@ -51,6 +51,11 @@
 
 - Settings screen                               https://developer.android.com/guide/topics/ui/settings.html
 
+### Publish
+
+- Publish your app                              https://developer.android.com/studio/publish
+- Feature graphic                               https://myhotpot.io/templates/google_play_feature_graphic
+
 
 Kotlin
 ------------------------------
