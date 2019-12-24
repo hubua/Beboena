@@ -1,10 +1,10 @@
-package com.ghub.beboena.customview
+package com.hubua.beboena.customview
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ghub.beboena.R
-import com.ghub.beboena.bl.GeorgianAlphabet
+import com.hubua.beboena.R
+import com.hubua.beboena.bl.GeorgianAlphabet
 import kotlinx.android.synthetic.main.pager_item_letter.view.*
 
 /**

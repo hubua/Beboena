@@ -1,4 +1,4 @@
-package com.ghub.beboena.ui
+package com.hubua.beboena.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.ghub.beboena.R
-import com.ghub.beboena.bl.GeorgianAlphabet
+import com.hubua.beboena.R
+import com.hubua.beboena.bl.GeorgianAlphabet
 import kotlinx.android.synthetic.main.fragment_result.*
-import kotlinx.android.synthetic.main.fragment_transcript.*
 
 /**
  * A simple [Fragment] subclass.

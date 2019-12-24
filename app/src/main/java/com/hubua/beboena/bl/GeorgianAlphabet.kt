@@ -1,4 +1,4 @@
-package com.ghub.beboena.bl
+package com.hubua.beboena.bl
 
 import android.content.SharedPreferences
 import com.opencsv.CSVParserBuilder

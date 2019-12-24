@@ -1,7 +1,6 @@
-package com.ghub.beboena.ui
+package com.hubua.beboena.ui
 
 import android.content.Context
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,10 +10,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.viewpager.widget.ViewPager
-import com.ghub.beboena.R
-import com.ghub.beboena.bl.GeorgianAlphabet
-import com.ghub.beboena.ui.view.SlidingTabLayout
-import com.ghub.beboena.customview.LettersPagerAdapter
+import com.hubua.beboena.R
+import com.hubua.beboena.bl.GeorgianAlphabet
+import com.hubua.beboena.ui.view.SlidingTabLayout
+import com.hubua.beboena.customview.LettersPagerAdapter
 import kotlinx.android.synthetic.main.fragment_home_letters.*
 
 //region OnFragmentInteractionListener pattern

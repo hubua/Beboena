@@ -1,4 +1,4 @@
-package com.ghub.beboena.bl
+package com.hubua.beboena.bl
 
 data class GeorgianLetter(
     val order: Int,

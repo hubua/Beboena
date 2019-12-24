@@ -1,4 +1,4 @@
-package com.ghub.beboena.utils
+package com.hubua.beboena.utils
 
 import android.app.Activity
 import android.content.Context

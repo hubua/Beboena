@@ -81,10 +81,10 @@
             android:id="@+id/txt_transcripted_correct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="30dp"
             android:background="@color/colorCorrectBackground"
             android:padding="16dp"
             android:text="@string/txt_correct"
@@ -92,16 +92,16 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:visibility="visible"
-            tools:layout_marginBottom="100dp" />
+            tools:layout_marginBottom="70dp" />
 
         <TextView
             android:id="@+id/txt_transcripted_wrong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="30dp"
             android:background="@color/colorWrongBackground"
             android:padding="16dp"
             android:text="@string/txt_wrong"

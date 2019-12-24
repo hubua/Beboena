@@ -15,7 +15,7 @@
         android:padding="8dp"
         android:text="@string/txt_letters_hint" />
 
-    <com.ghub.beboena.ui.view.SlidingTabLayout
+    <com.hubua.beboena.ui.view.SlidingTabLayout
         android:id="@+id/sliding_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

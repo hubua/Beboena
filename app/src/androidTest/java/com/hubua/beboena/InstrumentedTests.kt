@@ -1,9 +1,9 @@
-package com.ghub.beboena
+package com.hubua.beboena
 
 import android.content.Context
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
-import com.ghub.beboena.bl.GeorgianAlphabet
+import com.hubua.beboena.bl.GeorgianAlphabet
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,8 +19,6 @@ import org.junit.BeforeClass
 @RunWith(AndroidJUnit4::class)
 class InstrumentedTests {
 
-
-
     companion object {
 
         private lateinit var appContext : Context
@@ -35,7 +33,7 @@ class InstrumentedTests {
     @Test
     fun useAppContext() {
         // Context of the app under test.
-        assertEquals("com.example.ghub.beboena", appContext.packageName)
+        assertEquals("com.hubua.beboena", appContext.packageName)
 
     }
 
@@ -50,7 +48,5 @@ class InstrumentedTests {
 
         assertEquals(33 + 5, letters.count())
     }
-
-
 
 }

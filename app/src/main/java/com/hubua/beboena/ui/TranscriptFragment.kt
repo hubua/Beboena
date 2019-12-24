@@ -1,30 +1,25 @@
-package com.ghub.beboena.ui
+package com.hubua.beboena.ui
 
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextWatcher
-import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
-import com.ghub.beboena.bl.GeorgianAlphabet
-import com.ghub.beboena.bl.toKhucuri
-import com.ghub.beboena.utils.KeyboardUtils
-import es.dmoral.toasty.Toasty
+import com.hubua.beboena.bl.GeorgianAlphabet
+import com.hubua.beboena.bl.toKhucuri
+import com.hubua.beboena.utils.KeyboardUtils
 import kotlinx.android.synthetic.main.fragment_transcript.*
 import androidx.transition.TransitionManager
-import com.ghub.beboena.R
-import com.ghub.beboena.utils.CircularRevealTransition
+import com.hubua.beboena.R
+import com.hubua.beboena.utils.CircularRevealTransition
 
 val DEBUG_LongestSentenceFirst: Boolean = false
 val DEBUG_TwoLettersAreCorrect: Boolean = false

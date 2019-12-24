@@ -6,11 +6,11 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.ghub.beboena"
+        applicationId "com.hubua.beboena"
+        versionCode 3
+        versionName "0.3-beta"
         minSdkVersion 22
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0-demo"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -39,5 +39,4 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
 
     implementation 'com.opencsv:opencsv:3.10'
-    implementation 'com.github.GrenderG:Toasty:1.4.2'
 }

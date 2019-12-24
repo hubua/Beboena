@@ -1,7 +1,7 @@
-package com.ghub.beboena
+package com.hubua.beboena
 
-import com.ghub.beboena.bl.GeorgianAlphabet
-import com.ghub.beboena.bl.toKhucuri
+import com.hubua.beboena.bl.GeorgianAlphabet
+import com.hubua.beboena.bl.toKhucuri
 import org.junit.Test
 
 import org.junit.Assert.*

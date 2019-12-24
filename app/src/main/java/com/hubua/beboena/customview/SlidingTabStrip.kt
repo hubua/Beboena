@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ghub.beboena.ui.view
+package com.hubua.beboena.ui.view
 
 import android.R
 import android.content.Context
@@ -23,7 +23,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.view.View
 import android.widget.LinearLayout
 
 internal class SlidingTabStrip @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :

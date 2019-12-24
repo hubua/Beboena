@@ -3,6 +3,8 @@
     <string name="app_name_geo">ბებოენა</string>
     <string name="app_name_khucuri">ႡႤႡႭႤႬႠ</string>
 
+    <string name="app_description_geo">ბებოენა გეხმარებათ ისწავლოთ ძველი ქართული ანბანი და წაიკითხოთ ხუცურად</string>
+
     <string name="txt_letter_sample">ⴀ</string>
     <string name="txt_sentence_sample_geo">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ</string>
     <string name="txt_sentence_sample_khucuri">ნახეს უცხო მოყმე ვინმე</string>

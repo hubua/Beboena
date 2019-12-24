@@ -1,16 +1,11 @@
-package com.ghub.beboena.ui
+package com.hubua.beboena.ui
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
-import com.ghub.beboena.*
-import com.ghub.beboena.bl.GeorgianAlphabet
+import com.hubua.beboena.*
+import com.hubua.beboena.bl.GeorgianAlphabet
 
 class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteractionListener {
 
@@ -35,6 +30,8 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
         super.onStart()
 
     }
+
+    //TODO Add App content target audience children and families
 
 }
 

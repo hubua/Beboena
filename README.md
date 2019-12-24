@@ -1,5 +1,10 @@
 # Beboena
 
+ბებოენა გეხმარებათ ისწავლოთ ძველი ქართული ანბანი და წაიკითხოთ ხუცურად
+
+"ბებო ენის" საშუალებით ძველი ქართულის შესწავლა ხდება მსგავსად იმისა, როგორც სწავლობენ ბავშვები (და უცხოელები) თანამედროვე ქართულ ასოებს "დედა ენით" — სწავლის თითოეულ ნაბიჯზე თქვენ გეძლევათ ახალი ასო-ბგერა, და უკვე შესწავლილი ასოებისგან ხდება სიტყვების და წინადადებების შედგენა.
+თქვენი ცოდნის შემოწმება ხდება ინტერაქტიულად — "ბებო ენა" გიწერთ სიტყვას ან წინადადებას ხუცურად, ხოლო თქვენ უნდა შეიყვანოთ მისი შესაბამისი თარგმანი თანამედროვე ქართულად. ყოველი ასოს შესწავლის შემდეგ "ბებო ენა" გაძლევთ შეფასებას, და რეკომნდაციას — გააგრძელოთ შემდეგ თუ ხელახლა გადაიმეოროთ მასალა.
+
 
 ## Project structure
 
@@ -37,6 +42,7 @@
 - Building a Responsive UI in Android           https://medium.com/androiddevelopers/building-a-responsive-ui-in-android-7dc7e4efcbb3
 
 #### UI notifications
+
 - https://developer.android.com/training/snackbar/showing
 - https://developer.android.com/guide/topics/ui/notifiers/toasts
 - https://github.com/GrenderG/Toasty
@@ -53,8 +59,15 @@
 
 ### Publish
 
+- Google Play Console                           https://play.google.com/apps/publish/
 - Publish your app                              https://developer.android.com/studio/publish
-- Feature graphic                               https://myhotpot.io/templates/google_play_feature_graphic
+- Feature graphic samples                       https://myhotpot.io/templates/google_play_feature_graphic
+
+#### Privacy Policies
+
+- https://medium.com/@AndreSand/add-privacy-policy-page-to-your-android-application-54a7ea8f0fc8
+- https://www.freeprivacypolicy.com/blog/privacy-policy-mobile-apps/
+- https://getterms.io/app-privacy-policy
 
 
 Kotlin

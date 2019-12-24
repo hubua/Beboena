@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.ghub.beboena.ui.view
+package com.hubua.beboena.ui.view
 
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
 import androidx.core.content.res.ResourcesCompat
-import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -29,7 +28,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.TextView
-import com.ghub.beboena.R
+import com.hubua.beboena.R
 
 /**
  * A custom title strip for ViewPager which looks much like Tabs present in Android v4.0 and
