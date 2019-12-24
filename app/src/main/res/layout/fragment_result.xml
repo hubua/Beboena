@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:text="@string/btn_try_again" />
 
     <Button
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="@string/btn_next_letter" />
 
 </LinearLayout>

@@ -62,8 +62,6 @@ class TranscriptFragment : Fragment() {
 
         pb_transcript_progress.max = currentSentences.count()
 
-        showSentenceToTranscript()
-
         if (DEBUG_LongestSentenceFirst) {
             val longestSentence = GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
             txt_sentence.text = longestSentence!!.toKhucuri()
@@ -81,20 +79,9 @@ class TranscriptFragment : Fragment() {
                 btn_check.isEnabled = !s.isBlank()
             }
         })
-        edt_transcription.text.clear()
-        edt_transcription.isFocusableInTouchMode = true
-        edt_transcription.isFocusable = true
-        edt_transcription.requestFocus()
 
-        txt_transcripted_correct.visibility = View.GONE
-        txt_transcripted_wrong.visibility = View.GONE
-
-        btn_check.isEnabled = false
-        btn_check.visibility = View.VISIBLE
         btn_check.setOnClickListener { onBtnCheckClick(it) } //TODO sort out the mess with it, this, view, btn
-
-        btn_continue.visibility = View.GONE
-        btn_continue.setOnClickListener { btn -> onBtnContinueClick(btn) } //TODO sort out the mess with it, this, view, btn
+        btn_continue.setOnClickListener { btn -> onBtnContinueClick(btn) }
 
         KeyboardUtils.addKeyboardVisibilityListener(
             this.view!!,
@@ -104,6 +91,10 @@ class TranscriptFragment : Fragment() {
                     frame_layout_progress?.visibility = if (isVisible) View.GONE else View.VISIBLE
                 }
             })
+
+        showSentenceToTranscript()
+
+        switchControlsState(true)
     }
 
     private fun onBtnCheckClick(view: View) {
@@ -120,22 +111,17 @@ class TranscriptFragment : Fragment() {
             isCorrect = (edt_transcription.text.length > 1)
         }
 
-        val txtTranscripted = if (isCorrect) txt_transcripted_correct else txt_transcripted_wrong
+        val txtBanner = if (isCorrect) txt_banner_correct else txt_banner_wrong
         if (isCorrect) transcriptedCorrectCount++ else transcriptedWrongCount++
-
-        edt_transcription.isFocusableInTouchMode = false
-        edt_transcription.isFocusable = false
 
         val transition = CircularRevealTransition() // Alternatives are Slide(Gravity.LEFT) Fade()
         transition.setDuration(1000)
-        transition.addTarget(txtTranscripted)
-        TransitionManager.beginDelayedTransition(txtTranscripted.parent!! as ViewGroup, transition)
+        transition.addTarget(txtBanner)
+        TransitionManager.beginDelayedTransition(txtBanner.parent!! as ViewGroup, transition)
 
-        txtTranscripted.visibility = View.VISIBLE
+        txtBanner.visibility = View.VISIBLE
 
-        btn_check.visibility = View.GONE
-        btn_continue.visibility = View.VISIBLE
-
+        switchControlsState(false)
     }
 
     private fun onBtnContinueClick(view: View) {
@@ -153,24 +139,32 @@ class TranscriptFragment : Fragment() {
 
         showSentenceToTranscript()
 
-        edt_transcription.text.clear() //TODO Code duplication
-        edt_transcription.isFocusableInTouchMode = true
-        edt_transcription.isFocusable = true
-
-        txt_transcripted_correct.visibility = View.GONE
-        txt_transcripted_wrong.visibility = View.GONE
-
-        btn_check.isEnabled = false
-        btn_check.visibility = View.VISIBLE
-
-        btn_continue.visibility = View.GONE
-
+        switchControlsState(true)
     }
 
     private fun showSentenceToTranscript() {
         pb_transcript_progress.progress = currentSentenceIndex + 1
         txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
         txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(withCapital = true)
+    }
+
+    private fun switchControlsState(newSentence: Boolean) {
+        // new sentence or check sentence
+
+        if (newSentence) {
+            edt_transcription.text.clear()
+            edt_transcription.requestFocus()
+        }
+        edt_transcription.isFocusableInTouchMode = if (newSentence) { true } else { false }
+        edt_transcription.isFocusable = if (newSentence) { true } else { false }
+
+        if (newSentence) {
+            txt_banner_correct.visibility = View.GONE
+            txt_banner_wrong.visibility = View.GONE
+            btn_check.isEnabled = false
+        }
+        btn_check.visibility = if (newSentence) View.VISIBLE else View.GONE
+        btn_continue.visibility = if (newSentence) View.GONE else View.VISIBLE
     }
 
 }

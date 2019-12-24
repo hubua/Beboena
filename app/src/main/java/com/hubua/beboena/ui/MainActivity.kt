@@ -33,5 +33,9 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
 
     //TODO Add App content target audience children and families
 
+    //TODO Add sounds
+
+    //TODO Improve tablet layout
+
 }
 
