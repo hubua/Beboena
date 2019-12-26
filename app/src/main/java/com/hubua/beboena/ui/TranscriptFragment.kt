@@ -1,12 +1,10 @@
 package com.hubua.beboena.ui
 
-import android.animation.AnimatorListenerAdapter
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.TextWatcher
 import android.text.style.StyleSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -76,8 +74,8 @@ class TranscriptFragment : Fragment() {
             }
         })
 
-        btn_check.setOnClickListener { onBtnCheckClick(it) } // Is equivalent to 'btn -> onBtnContinueClick(btn)'
-        btn_continue.setOnClickListener { onBtnContinueClick(it) }
+        btn_check.setOnClickListener { onBtnCheckClick() }
+        btn_continue.setOnClickListener { onBtnContinueClick(it) } // Is equivalent to 'btn -> onBtnContinueClick(btn)'
 
         KeyboardUtils.addKeyboardVisibilityListener(
             this.view!!,
@@ -93,7 +91,7 @@ class TranscriptFragment : Fragment() {
         switchControlsState(true)
     }
 
-    private fun onBtnCheckClick(view: View) {
+    private fun onBtnCheckClick() {
 
         /*if (edt_transcription.text.toString().isBlank()) {
             Toasty.info(context!!, R.string.txt_blank, Toast.LENGTH_SHORT, true).show()
@@ -107,15 +105,15 @@ class TranscriptFragment : Fragment() {
             isCorrect = (edt_transcription.text.length > 1)
         }
 
-        val txtBanner = if (isCorrect) txt_banner_correct else txt_banner_wrong
+        val txtBannerToShow = if (isCorrect) txt_banner_correct else txt_banner_wrong
         if (isCorrect) transcriptedCorrectCount++ else transcriptedWrongCount++
 
         val transition = CircularRevealTransition() // Alternatives are Slide(Gravity.LEFT) Fade()
         transition.setDuration(1000)
-        transition.addTarget(txtBanner)
-        TransitionManager.beginDelayedTransition(txtBanner.parent!! as ViewGroup, transition)
+        transition.addTarget(txtBannerToShow)
+        TransitionManager.beginDelayedTransition(txtBannerToShow.parent!! as ViewGroup, transition)
 
-        txtBanner.visibility = View.VISIBLE
+        txtBannerToShow.visibility = View.VISIBLE
 
         switchControlsState(false)
     }
@@ -145,7 +143,7 @@ class TranscriptFragment : Fragment() {
     }
 
     private fun switchControlsState(newSentence: Boolean) {
-        // new sentence or check sentence
+        // New sentence or Check sentence
 
         if (newSentence) {
             edt_transcription.text.clear()
