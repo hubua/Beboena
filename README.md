@@ -41,6 +41,8 @@
 - Support different screen sizes                https://developer.android.com/training/multiscreen/screensizes
 - Building a Responsive UI in Android           https://medium.com/androiddevelopers/building-a-responsive-ui-in-android-7dc7e4efcbb3
 
+- Material design icons                         https://material.io/resources/icons/
+
 #### UI notifications
 
 - https://developer.android.com/training/snackbar/showing

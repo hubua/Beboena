@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_a"
+        android:title="@string/btn_continue" />
+    <!-- menu group -->
+    <group android:id="@+id/group_delete">
+        <item
+            android:id="@+id/menu_b"
+            android:title="@string/btn_check" />
+        <item
+            android:id="@+id/menu_c"
+            android:title="@string/btn_next_letter" />
+    </group>
+</menu>

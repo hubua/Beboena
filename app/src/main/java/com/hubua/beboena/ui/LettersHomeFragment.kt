@@ -3,10 +3,11 @@ package com.hubua.beboena.ui
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+//import android.widget.PopupMenu
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.viewpager.widget.ViewPager
@@ -93,6 +94,8 @@ class LettersHomeFragment : Fragment() {
             val nextPosition = GeorgianAlphabet.Cursor.moveNext()
             lettersSlidingTabLayout.scrollToPage(nextPosition)
         }
+
+        btn_menu.setOnClickListener { showPopup(it) }
     }
 
     private fun showNextStartButtons() {
@@ -100,6 +103,30 @@ class LettersHomeFragment : Fragment() {
         btn_next_letter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
         btn_start_exercise.visibility = if (hasSentences) View.VISIBLE else View.GONE
     }
+
+    private fun showPopup(v: View) {
+        PopupMenu(this.context!!, v).apply {
+            setOnMenuItemClickListener { onMenuItemClick(it)}
+            inflate(R.menu.nav_menu)
+            show()
+        }
+    }
+
+    private fun onMenuItemClick(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_a -> {
+                Toast.makeText(context, "a", 1000).show()
+                true
+            }
+            R.id.menu_b -> {
+                Toast.makeText(context, "b", 1000).show()
+                true
+            }
+            else -> false
+        }
+    }
+
+
 
 
 //region OnFragmentInteractionListener pattern
