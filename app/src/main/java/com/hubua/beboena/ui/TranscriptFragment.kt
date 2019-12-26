@@ -1,5 +1,6 @@
 package com.hubua.beboena.ui
 
+import android.animation.AnimatorListenerAdapter
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_transcript.*
 import androidx.transition.TransitionManager
 import com.hubua.beboena.R
 import com.hubua.beboena.utils.CircularRevealTransition
+import com.hubua.beboena.utils.TextWatcherAdapter
 
 val DEBUG_LongestSentenceFirst: Boolean = false
 val DEBUG_TwoLettersAreCorrect: Boolean = false
@@ -68,20 +70,14 @@ class TranscriptFragment : Fragment() {
             //txt_sentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
         }
 
-        edt_transcription.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-            }
-
+        edt_transcription.addTextChangedListener( object : TextWatcherAdapter {
             override fun afterTextChanged(s: Editable) {
                 btn_check.isEnabled = !s.isBlank()
             }
         })
 
-        btn_check.setOnClickListener { onBtnCheckClick(it) } //TODO sort out the mess with it, this, view, btn
-        btn_continue.setOnClickListener { btn -> onBtnContinueClick(btn) }
+        btn_check.setOnClickListener { onBtnCheckClick(it) } // Is equivalent to 'btn -> onBtnContinueClick(btn)'
+        btn_continue.setOnClickListener { onBtnContinueClick(it) }
 
         KeyboardUtils.addKeyboardVisibilityListener(
             this.view!!,

@@ -76,6 +76,7 @@ Kotlin
 - http://kotlinlang.org/docs/reference/
 - https://kotlinlang.org/docs/reference/coding-conventions.html
 - https://developer.android.com/kotlin/style-guide
+- https://antonioleiva.com/listeners-several-functions-kotlin/
 
 
 Unit tests
