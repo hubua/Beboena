@@ -43,12 +43,20 @@
 
 - Material design icons                         https://material.io/resources/icons/
 
+- Menus                                         https://developer.android.com/guide/topics/ui/menus
+- Dialogs                                       https://developer.android.com/guide/topics/ui/dialogs
+
 #### UI notifications
 
 - https://developer.android.com/training/snackbar/showing
 - https://developer.android.com/guide/topics/ui/notifiers/toasts
 - https://github.com/GrenderG/Toasty
 - https://github.com/Muddz/StyleableToast
+
+#### Sounds
+
+- https://developer.android.com/guide/topics/media/mediaplayer
+- https://developers.google.com/assistant/tools/sound-library
 
 ### Data
 

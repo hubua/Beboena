@@ -1,5 +1,6 @@
 package com.hubua.beboena.ui
 
+import android.app.AlertDialog
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -105,6 +106,7 @@ class LettersHomeFragment : Fragment() {
     }
 
     private fun showPopup(v: View) {
+        //TODO add light border, rounded corners and anchor to top of button
         PopupMenu(this.context!!, v).apply {
             setOnMenuItemClickListener { onMenuItemClick(it)}
             inflate(R.menu.nav_menu)
@@ -114,12 +116,15 @@ class LettersHomeFragment : Fragment() {
 
     private fun onMenuItemClick(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.menu_a -> {
+            R.id.mnu_help -> {
                 Toast.makeText(context, "a", 1000).show()
                 true
             }
-            R.id.menu_b -> {
-                Toast.makeText(context, "b", 1000).show()
+            R.id.mnu_contact -> {
+
+                val dialog = ContactDialogFragment()
+                dialog.show(fragmentManager, "Contact")
+
                 true
             }
             else -> false
