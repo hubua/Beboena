@@ -2,14 +2,18 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/mnu_sounds"
+        android:checkable="true"
+        android:title="@string/mnu_sounds" />
+    <item
         android:id="@+id/mnu_all_caps"
         android:checkable="true"
         android:title="@string/mnu_all_caps" />
     <!-- menu group -->
     <group android:id="@+id/group_help">
         <item
-            android:id="@+id/mnu_help"
-            android:title="@string/mnu_help" />
+            android:id="@+id/mnu_references"
+            android:title="@string/mnu_references" />
         <item
             android:id="@+id/mnu_contact"
             android:title="@string/mnu_contact" />
