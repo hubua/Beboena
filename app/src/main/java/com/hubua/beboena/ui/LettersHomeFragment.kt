@@ -1,21 +1,25 @@
 package com.hubua.beboena.ui
 
+//import android.widget.PopupMenu
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-//import android.widget.PopupMenu
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.hubua.beboena.R
 import com.hubua.beboena.bl.GeorgianAlphabet
-import com.hubua.beboena.ui.view.SlidingTabLayout
 import com.hubua.beboena.customview.LettersPagerAdapter
+import com.hubua.beboena.ui.view.SlidingTabLayout
 import kotlinx.android.synthetic.main.fragment_home_letters.*
+
 
 //region OnFragmentInteractionListener pattern
 
@@ -117,28 +121,12 @@ class LettersHomeFragment : Fragment() {
         return when (item.itemId) {
             R.id.mnu_references -> {
                 val dialog = ReferencesDialogFragment()
-
-                dialog.show(fragmentManager, "References")
-
+                dialog.show(fragmentManager!!, "References")
                 true
-
-                /*val transaction = fragmentManager!!.beginTransaction()
-                // For a little polish, specify a transition animation
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                // To make it fullscreen, use the 'content' root view as the container
-                // for the fragment, which is always the root view for the activity
-                transaction
-                    .add(R.id.nav_host_fragment , dialog)
-                    .addToBackStack("Help")
-                    .commit()
-
-                true*/
             }
             R.id.mnu_contact -> {
-
                 val dialog = ContactDialogFragment()
-                dialog.show(fragmentManager, "Contact")
-
+                dialog.show(fragmentManager!!, "Contact")
                 true
             }
             else -> false

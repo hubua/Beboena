@@ -68,7 +68,7 @@ class TranscriptFragment : Fragment() {
             //txt_sentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
         }
 
-        edt_transcription.addTextChangedListener( object : TextWatcherAdapter {
+        edt_transcription.addTextChangedListener(object : TextWatcherAdapter {
             override fun afterTextChanged(s: Editable) {
                 btn_check.isEnabled = !s.isBlank()
             }
@@ -146,17 +146,22 @@ class TranscriptFragment : Fragment() {
         // New sentence or Check sentence
 
         if (newSentence) {
+            edt_transcription.isFocusableInTouchMode = true
+            edt_transcription.isFocusable = true
             edt_transcription.text.clear()
             edt_transcription.requestFocus()
+
+        } else {
+            edt_transcription.isFocusableInTouchMode = false
+            edt_transcription.isFocusable = false
         }
-        edt_transcription.isFocusableInTouchMode = if (newSentence) { true } else { false }
-        edt_transcription.isFocusable = if (newSentence) { true } else { false }
 
         if (newSentence) {
             txt_banner_correct.visibility = View.GONE
             txt_banner_wrong.visibility = View.GONE
             btn_check.isEnabled = false
         }
+
         btn_check.visibility = if (newSentence) View.VISIBLE else View.GONE
         btn_continue.visibility = if (newSentence) View.GONE else View.VISIBLE
     }

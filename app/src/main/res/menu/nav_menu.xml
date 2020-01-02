@@ -4,11 +4,13 @@
     <item
         android:id="@+id/mnu_sounds"
         android:checkable="true"
-        android:title="@string/mnu_sounds" />
+        android:title="@string/mnu_sounds"
+        android:visible="false" />
     <item
         android:id="@+id/mnu_all_caps"
         android:checkable="true"
-        android:title="@string/mnu_all_caps" />
+        android:title="@string/mnu_all_caps"
+        android:visible="false" />
     <!-- menu group -->
     <group android:id="@+id/group_help">
         <item

@@ -11,7 +11,6 @@
     <string name="txt_long_sentence_sample">ⴌⴀⴞⴄⴑ ⴓⴚⴞⴍ ⴋⴍⴗⴋⴄ ⴅⴈⴌⴋⴄ, ⴟⴃⴀ ⴋⴒⴈⴐⴀⴊⴈ ⴜⴗⴊⴈⴑⴀ ⴎⴈⴐⴑⴀ</string>
 
     <string name="txt_letters_hint">დაიმახსოვრეთ ასოს დამწერლობა და დაიწყეთ სავარჯიშო დავალება</string>
-    <!--<string name="txt_asomtavruli_label"><![CDATA[<b>ასომთავრული</b><br/>ბეჭდური და ხელნაწერი]]></string>-->
     <string name="txt_bechduri_label">ბეჭდური (ასომთავრული / ნუსხური)</string>
     <string name="txt_khelnatseri_label">ხელნაწერი (ასომთავრული / ნუსხური)</string>
     <string name="txt_number_label">რიცხვითი მნიშვნელობა</string>
@@ -24,7 +23,7 @@
     <string name="btn_continue">გავაგრძელოთ</string>
 
     <string name="txt_correct">სწორია!</string>
-    <string name="txt_wrong">ვაი, შეცდომა...</string>
+    <string name="txt_wrong">ვაი, შეცდომა…</string>
     <string name="txt_blank">დაწერეთ თარგმანი</string>
 
     <string name="txt_result_excellent">ბრწყინვალეა!</string>
@@ -40,7 +39,7 @@
     <string name="mnu_references">მცირე განმარტებანი</string>
     <string name="mnu_contact">კონტაქტი</string>
 
-    <string name="txt_contact">შენინშვებითვის ან რჩევებისთვის დაგვიკავშირდით მისამართზე:\n\nkhubua@gmail.com</string>
+    <string name="txt_contact">შენინშვებითვის ან რჩევებისთვის დაგვიკავშირდით მისამართზე:\n\nKHUBUA@GMAIL.COM</string>
     <string name="btn_cancel">უკან</string>
 
 </resources>
