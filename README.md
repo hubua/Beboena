@@ -103,15 +103,16 @@ Emulator
 `bcdedit /set hypervisorlaunchtype off`
 `bcdedit /set hypervisorlaunchtype auto`
 
-select deployment target / same selection
-
 
 Features todo
 ==============================
 
+- Sounds
+- Propose to rate
+- Tablet layout
 - დამატებითი სიტყვები და წინადადებები.
 - ფიქსირებული ზომის ქვე-სიმრავლის შემთხვევითად არჩევა ასოს წინადადებების სრული სიმრავლიდან.
 - წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
-
+- App content target audience children and families
 
 [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)   
