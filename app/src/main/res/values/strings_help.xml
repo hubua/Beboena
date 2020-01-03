@@ -1,6 +1,13 @@
 <resources>
 
-    <string name="txt_reference"><![CDATA[
+    <string name="txt_contact">
+        შენინშვებითვის ან რჩევებისთვის დაგვიკავშირდით მისამართზე:\n\n
+        KHUBUA@GMAIL.COM\n
+        http://beboena.me\n
+        https://github.com/hubua/Beboena
+    </string>
+
+    <string name="txt_references"><![CDATA[
 
 <b><a href="https://ka.wikipedia.org/wiki/ხუცური">ხუცური</a></b> — ასომთავრულისა და ნუსხურის საერთო სახელწოდებაა.
 <br/>

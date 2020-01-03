@@ -31,6 +31,5 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
 
     }
 
-
 }
 

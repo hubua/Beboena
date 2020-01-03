@@ -22,14 +22,14 @@ class ReferencesDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val html = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(getString(R.string.txt_reference), Html.FROM_HTML_MODE_COMPACT)
+            Html.fromHtml(getString(R.string.txt_references), Html.FROM_HTML_MODE_COMPACT)
         } else {
-            Html.fromHtml(getString(R.string.txt_reference))
+            Html.fromHtml(getString(R.string.txt_references))
         }
 
-        val txtReference = view.findViewById<TextView>(R.id.txt_reference)
-        txtReference.text = html
-        txtReference.movementMethod = ScrollingMovementMethod()
+        val txtReferences = view.findViewById<TextView>(R.id.txt_references)
+        txtReferences.text = html
+        txtReferences.movementMethod = ScrollingMovementMethod()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
