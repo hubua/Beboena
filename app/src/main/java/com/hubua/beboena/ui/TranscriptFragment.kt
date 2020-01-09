@@ -1,6 +1,7 @@
 package com.hubua.beboena.ui
 
 import android.graphics.Typeface
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.text.Editable
 import android.text.Spannable
@@ -18,6 +19,7 @@ import com.hubua.beboena.utils.KeyboardUtils
 import kotlinx.android.synthetic.main.fragment_transcript.*
 import androidx.transition.TransitionManager
 import com.hubua.beboena.R
+import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.utils.CircularRevealTransition
 import com.hubua.beboena.utils.TextWatcherAdapter
 
@@ -36,6 +38,9 @@ class TranscriptFragment : Fragment() {
 
     private var transcriptedCorrectCount: Int = 0
     private var transcriptedWrongCount: Int = 0
+
+    private var mediaPlayerCorrect: MediaPlayer? = null
+    private var mediaPlayerWrong: MediaPlayer? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -89,6 +94,17 @@ class TranscriptFragment : Fragment() {
         showSentenceToTranscript()
 
         switchControlsState(true)
+
+        mediaPlayerCorrect = MediaPlayer.create(context, R.raw.answer_correct)
+        mediaPlayerWrong = MediaPlayer.create(context, R.raw.answer_wrong)
+    }
+
+    override fun onDestroyView() {
+        mediaPlayerCorrect?.release()
+        mediaPlayerCorrect = null
+        mediaPlayerWrong?.release()
+        mediaPlayerWrong = null
+        super.onDestroyView()
     }
 
     private fun onBtnCheckClick() {
@@ -116,6 +132,14 @@ class TranscriptFragment : Fragment() {
         txtBannerToShow.visibility = View.VISIBLE
 
         switchControlsState(false)
+
+        if (AppSettings.isEnableSounds) {
+            if (isCorrect) {
+                mediaPlayerCorrect?.start()
+            } else {
+                mediaPlayerWrong?.start()
+            }
+        }
     }
 
     private fun onBtnContinueClick(view: View) {

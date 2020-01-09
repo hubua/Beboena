@@ -2,10 +2,9 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/mnu_sounds"
+        android:id="@+id/mnu_enable_sounds"
         android:checkable="true"
-        android:title="@string/mnu_sounds"
-        android:visible="false" />
+        android:title="@string/mnu_enable_sounds" />
     <item
         android:id="@+id/mnu_all_caps"
         android:checkable="true"

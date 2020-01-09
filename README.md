@@ -35,16 +35,17 @@
 
 - Material Design for Android                   https://developer.android.com/guide/topics/ui/look-and-feel/
 - Design app themes with Theme Editor           https://developer.android.com/studio/write/theme-editor
+- Material design icons                         https://material.io/resources/icons/
 
 - Build a Responsive UI with ConstraintLayout   https://developer.android.com/training/constraint-layout/
 
 - Support different screen sizes                https://developer.android.com/training/multiscreen/screensizes
 - Building a Responsive UI in Android           https://medium.com/androiddevelopers/building-a-responsive-ui-in-android-7dc7e4efcbb3
 
-- Material design icons                         https://material.io/resources/icons/
-
 - Menus                                         https://developer.android.com/guide/topics/ui/menus
 - Dialogs                                       https://developer.android.com/guide/topics/ui/dialogs
+
+- Settings                                      https://developer.android.com/guide/topics/ui/settings.html
 
 #### UI notifications
 
@@ -63,54 +64,50 @@
 - Data storage                                  https://developer.android.com/guide/topics/data/data-storage
 - Auto backup                                   https://developer.android.com/guide/topics/data/autobackup
 
-### Settings
+### Unit tests
 
-- Settings screen                               https://developer.android.com/guide/topics/ui/settings.html
-
-### Publish
-
-- Google Play Console                           https://play.google.com/apps/publish/
-- Publish your app                              https://developer.android.com/studio/publish
-- Feature graphic samples                       https://myhotpot.io/templates/google_play_feature_graphic
-
-#### Privacy Policies
-
-- https://medium.com/@AndreSand/add-privacy-policy-page-to-your-android-application-54a7ea8f0fc8
-- https://www.freeprivacypolicy.com/blog/privacy-policy-mobile-apps/
-- https://getterms.io/app-privacy-policy
-
-
-Kotlin
-------------------------------
-- https://try.kotlinlang.org/
-- http://kotlinlang.org/docs/reference/
-- https://kotlinlang.org/docs/reference/coding-conventions.html
-- https://developer.android.com/kotlin/style-guide
-- https://antonioleiva.com/listeners-several-functions-kotlin/
-
-
-Unit tests
-------------------------------
 - https://medium.com/@yair.kukielka/android-unit-tests-explained-219b04dc55b5
 - https://medium.com/@yair.kukielka/android-unit-tests-explained-part-2-a0f1e1413569
 
+### Emulator
 
-Emulator
-------------------------------
 - HAXM  https://github.com/intel/haxm/blob/master/docs/manual-windows.md
 - SDP   https://github.com/intuit/sdp
 
 `bcdedit /set hypervisorlaunchtype off`
 `bcdedit /set hypervisorlaunchtype auto`
 
+## Kotlin
+
+- https://try.kotlinlang.org/
+- http://kotlinlang.org/docs/reference/
+- https://kotlinlang.org/docs/reference/coding-conventions.html
+- https://developer.android.com/kotlin/style-guide
+- https://antonioleiva.com/listeners-several-functions-kotlin/
+
+Publish
+==============================
+
+- Google Play Console                           https://play.google.com/apps/publish/
+- Publish your app                              https://developer.android.com/studio/publish
+- Feature graphic samples                       https://myhotpot.io/templates/google_play_feature_graphic
+
+Privacy Policies
+------------------------------
+
+- https://medium.com/@AndreSand/add-privacy-policy-page-to-your-android-application-54a7ea8f0fc8
+- https://www.freeprivacypolicy.com/blog/privacy-policy-mobile-apps/
+- https://getterms.io/app-privacy-policy
+
 
 Features todo
 ==============================
 
-- Sounds
+- Sounds <a href=”https://www.zapsplat.com”>Sound effects obtained from zapsplat.com</a>
+- დამატებითი სიტყვები და წინადადებები.
+- რჩევები დაუკვირდით ასოს მოხაზულობას, ზოგი ასო მიამსგავსეთ
 - Propose to rate
 - Tablet layout
-- დამატებითი სიტყვები და წინადადებები.
 - ფიქსირებული ზომის ქვე-სიმრავლის შემთხვევითად არჩევა ასოს წინადადებების სრული სიმრავლიდან.
 - წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
 - App content target audience children and families

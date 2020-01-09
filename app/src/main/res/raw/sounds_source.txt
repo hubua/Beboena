@@ -1,0 +1,9 @@
+<a href=”https://www.zapsplat.com”>Sound effects obtained from zapsplat.com</a>
+
+answer_correct		https://www.zapsplat.com/music/bright-ping-or-pluck-notification-tone-generic-use-version-3/
+answer_wrong		https://www.zapsplat.com/music/app-game-or-system-interface-deleted-removed-or-unsuccessful-tone-1/
+result_excellent_1	https://www.zapsplat.com/music/cartoon-success-fanfare/
+result_excellent_2	https://www.zapsplat.com/music/cheesy-synthesized-brass-fanfare-good-for-game-success-tone-version-2/
+result_good		https://www.zapsplat.com/music/synth-brass-fanfare-game-tone-success-musical-sound-5/
+result_unsatisfactory	https://www.zapsplat.com/music/cartoon-fail-or-sad-trumpet-2/
+result_bad		https://www.zapsplat.com/music/cartoon-fail-descending-musical-tone-with-tuba-marimba-and-oboe/

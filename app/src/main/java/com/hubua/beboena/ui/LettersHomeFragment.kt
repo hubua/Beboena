@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.hubua.beboena.R
+import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.customview.LettersPagerAdapter
 import com.hubua.beboena.ui.view.SlidingTabLayout
@@ -113,12 +113,18 @@ class LettersHomeFragment : Fragment() {
         PopupMenu(this.context!!, v).apply {
             setOnMenuItemClickListener { onMenuItemClick(it)}
             inflate(R.menu.nav_menu)
+            menu.findItem(R.id.mnu_enable_sounds).isChecked = AppSettings.isEnableSounds
             show()
         }
     }
 
     private fun onMenuItemClick(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.mnu_enable_sounds -> {
+                item.isChecked = !item.isChecked
+                AppSettings.isEnableSounds = item.isChecked
+                true
+            }
             R.id.mnu_references -> {
                 val dialog = ReferencesDialogFragment()
                 dialog.show(fragmentManager!!, "References")

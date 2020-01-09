@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.hubua.beboena.*
+import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
 
 class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteractionListener {
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
 
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
         GeorgianAlphabet.Cursor.initialize(sharedPref)
+        AppSettings.initialize(sharedPref)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

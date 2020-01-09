@@ -1,10 +1,13 @@
 <resources>
 
     <string name="txt_contact">
-        შენინშვებითვის ან რჩევებისთვის დაგვიკავშირდით მისამართზე:\n\n
-        KHUBUA@GMAIL.COM\n
-        http://beboena.me\n
-        https://github.com/hubua/Beboena
+შენინშვებითვის ან რჩევებისთვის დაგვიკავშირდით მისამართზე:\n
+KHUBUA@GMAIL.COM\n
+http://beboena.me\n
+\n
+https://github.com/hubua/Beboena\n
+\n
+Sound effects obtained from zapsplat.com
     </string>
 
     <string name="txt_references"><![CDATA[
