@@ -103,7 +103,6 @@ Privacy Policies
 Features todo
 ==============================
 
-- Sounds <a href=”https://www.zapsplat.com”>Sound effects obtained from zapsplat.com</a>
 - დამატებითი სიტყვები და წინადადებები.
 - რჩევები დაუკვირდით ასოს მოხაზულობას, ზოგი ასო მიამსგავსეთ
 - Propose to rate
@@ -112,4 +111,4 @@ Features todo
 - წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
 - App content target audience children and families
 
-[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)   
+[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)

@@ -1,11 +1,13 @@
 <resources>
 
     <string name="txt_contact">
-შენინშვებითვის ან რჩევებისთვის დაგვიკავშირდით მისამართზე:\n
+შენინშვებითვის ან რჩევებისთვის მოგვწერეთ:\n
 KHUBUA@GMAIL.COM\n
+\n
+პროექტი\n
 http://beboena.me\n
 \n
-https://github.com/hubua/Beboena\n
+განმარტებების ტექსტი ნაწილობრივ აღებულია ვიკიპედიიდან\n
 \n
 Sound effects obtained from zapsplat.com
     </string>
