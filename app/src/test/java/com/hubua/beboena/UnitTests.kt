@@ -53,7 +53,10 @@ class UnitTests {
 
         println("Loaded sentences count:");
         for (letter in lettersList) {
-            println("${letter.letterKeySpelling} ${letter.sentences.count()}")
+            println("${letter.letterKeySpelling} \t (${letter.sentences.count()})")
+            for (sentence in letter.sentences) {
+                println("\t ${sentence}")
+            }
         }
 
     }
