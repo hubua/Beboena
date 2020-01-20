@@ -92,6 +92,9 @@ Publish
 - Publish your app                              https://developer.android.com/studio/publish
 - Feature graphic samples                       https://myhotpot.io/templates/google_play_feature_graphic
 
+- https://www.apptamin.com/blog/optimize-play-store-app/
+- https://support.google.com/googleplay/android-developer/answer/4448378?hl=en
+
 Privacy Policies
 ------------------------------
 
@@ -103,8 +106,11 @@ Privacy Policies
 Features todo
 ==============================
 
+- Update LOGA
+- Add search keywords
 - დამატებითი სიტყვები და წინადადებები.
 - რჩევები დაუკვირდით ასოს მოხაზულობას, ზოგი ასო მიამსგავსეთ
+- Switch instead of checkbox
 - Propose to rate
 - Tablet layout
 - ფიქსირებული ზომის ქვე-სიმრავლის შემთხვევითად არჩევა ასოს წინადადებების სრული სიმრავლიდან.
