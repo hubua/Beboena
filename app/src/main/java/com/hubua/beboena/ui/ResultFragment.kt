@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.hubua.beboena.R
 import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
+import com.kobakei.ratethisapp.RateThisApp
 import kotlinx.android.synthetic.main.fragment_result.*
 
 
@@ -71,6 +72,8 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         btn_next_letter.visibility = if (correctCount != 0) View.VISIBLE else View.GONE // Has correct answers
         btn_next_letter.setOnClickListener {
 
+            showRateDialog()
+
             GeorgianAlphabet.Cursor.moveNext()
 
             view.findNavController().navigate(
@@ -96,6 +99,20 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         mediaPlayer?.release()
         mediaPlayer = null
         super.onDestroy()
+    }
+
+    private fun showRateDialog()
+    {
+        val config = RateThisApp.Config(7, 10)
+        config.setTitle(R.string.rate_dialog_title)
+        config.setMessage(R.string.rate_dialog_message)
+        config.setYesButtonText(R.string.rate_dialog_ok)
+        config.setNoButtonText(R.string.rate_dialog_no)
+        config.setCancelButtonText(R.string.rate_dialog_cancel)
+        RateThisApp.init(config)
+
+        RateThisApp.onCreate(context)
+        RateThisApp.showRateDialogIfNeeded(context, R.style.DialogTheme)
     }
 
 }

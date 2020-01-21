@@ -1,0 +1,7 @@
+<resources>
+    <string name="rate_dialog_title">შეაფასეთ აპლიკაცია</string>
+    <string name="rate_dialog_message">გთხოვთ შეაფასოთ ბებოენა რამდენად მოგწონთ.\nგმადლობთ მხარდაჭერისათვის!</string>
+    <string name="rate_dialog_ok">შევაფასოთ</string>
+    <string name="rate_dialog_cancel">მოგვიანებით შემახსენე</string>
+    <string name="rate_dialog_no">არ მომწონს</string>
+</resources>

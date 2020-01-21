@@ -23,9 +23,6 @@ import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.utils.CircularRevealTransition
 import com.hubua.beboena.utils.TextWatcherAdapter
 
-val DEBUG_LongestSentenceFirst: Boolean = false
-val DEBUG_TwoLettersAreCorrect: Boolean = false
-
 /**
  * A simple [Fragment] subclass.
  */
@@ -67,11 +64,12 @@ class TranscriptFragment : Fragment() {
 
         pb_transcript_progress.max = currentSentences.count()
 
-        if (DEBUG_LongestSentenceFirst) {
-            val longestSentence = GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
-            txt_sentence.text = longestSentence!!.toKhucuri()
-            //txt_sentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
-        }
+        /*
+        // DEBUG Longest Sentence First
+        val longestSentence = GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
+        txt_sentence.text = longestSentence!!.toKhucuri()
+        txt_sentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
+         */
 
         edt_transcription.addTextChangedListener(object : TextWatcherAdapter {
             override fun afterTextChanged(s: Editable) {
@@ -109,17 +107,14 @@ class TranscriptFragment : Fragment() {
 
     private fun onBtnCheckClick() {
 
-        /*if (edt_transcription.text.toString().isBlank()) {
-            Toasty.info(context!!, R.string.txt_blank, Toast.LENGTH_SHORT, true).show()
-            return
-        }*/
-
         KeyboardUtils.hideKeyboard(this.activity!!)
 
         var isCorrect = (edt_transcription.text.toString() == currentSentences[currentSentenceIndex])
-        if (DEBUG_TwoLettersAreCorrect) {
-            isCorrect = (edt_transcription.text.length > 1)
-        }
+
+        /*
+        // DEBUG Two Letters Are Correct
+        isCorrect = (edt_transcription.text.length > 1)
+         */
 
         val txtBannerToShow = if (isCorrect) txt_banner_correct else txt_banner_wrong
         if (isCorrect) transcriptedCorrectCount++ else transcriptedWrongCount++

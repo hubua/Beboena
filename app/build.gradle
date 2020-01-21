@@ -48,4 +48,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 
     implementation 'com.opencsv:opencsv:5.0'
+    implementation 'io.github.kobakei:ratethisapp:1.2.0'
 }

@@ -41,11 +41,16 @@ class UnitTests {
     fun words_loaded() {
 
         val lettersMap = GeorgianAlphabet.lettersMap
-        val lettersList = GeorgianAlphabet.lettersLearnOrdered.sortedBy { it.sentences.count() }
 
         assertEquals(0, lettersMap['ა']!!.sentences.count())
 
         assertEquals("აი ია", lettersMap['ი']!!.sentences[0])
+    }
+
+    @Test
+    fun list_words() {
+
+        val lettersList = GeorgianAlphabet.lettersLearnOrdered.sortedBy { it.sentences.count() }
 
         println("Longest sentence:");
         val longestSentence = lettersList.flatMap { it.sentences }.maxBy { it.length }
