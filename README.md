@@ -121,10 +121,9 @@ Features todo
 ==============================
 
 - Update LOGA
-- Add search keywords
 - დამატებითი სიტყვები და წინადადებები.
+- Sync words with LOGA
 - რჩევები დაუკვირდით ასოს მოხაზულობას, ზოგი ასო მიამსგავსეთ
-- Switch instead of checkbox
 - Propose send feedback if dislike in Rate dialog
 - Tablet layout
 - ფიქსირებული ზომის ქვე-სიმრავლის შემთხვევითად არჩევა ასოს წინადადებების სრული სიმრავლიდან.

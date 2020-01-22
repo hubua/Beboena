@@ -29,7 +29,7 @@ import com.hubua.beboena.utils.TextWatcherAdapter
 class TranscriptFragment : Fragment() {
 
     private val currentLetter = GeorgianAlphabet.Cursor.currentLetter
-    private val currentSentences = GeorgianAlphabet.Cursor.currentSentencesShuffled
+    private val currentSentences = GeorgianAlphabet.Cursor.currentSentences
 
     private var currentSentenceIndex = 0
 

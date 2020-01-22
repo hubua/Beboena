@@ -77,10 +77,15 @@ object GeorgianAlphabet {
         private var _currentPosition = 0
 
         private val _random = Random()
+        private var _shuffle = false
 
         val currentLetter get() = lettersLearnOrdered[_currentPosition]
 
-        val currentSentencesShuffled get() = currentLetter.sentences.shuffled(_random) // Beware reshuffling on each call
+        private val currentSentencesOrdered get() = currentLetter.sentences.sortedBy { it.length }
+        private val currentSentencesShuffled get() = currentLetter.sentences.shuffled(_random) // Beware reshuffling on each call
+
+        private const val MAX_SENTENCES = 9
+        val currentSentences get() = (if (!_shuffle) currentSentencesOrdered else currentSentencesShuffled).take(MAX_SENTENCES)
 
         fun initialize(sharedPref: SharedPreferences) {
             _pref = sharedPref
@@ -103,16 +108,18 @@ object GeorgianAlphabet {
                 }
             }
 
+            _shuffle = false
             return _currentPosition
         }
 
-        fun moveNext(): Int {
+        fun positionMoveNext(): Int {
             setCurrentPosition(_currentPosition + 1)
+            _shuffle = false
             return _currentPosition
         }
 
-        fun movePrev(): Int {
-            setCurrentPosition(_currentPosition - 1)
+        fun positionTryAgain(): Int {
+            _shuffle = true
             return _currentPosition
         }
 

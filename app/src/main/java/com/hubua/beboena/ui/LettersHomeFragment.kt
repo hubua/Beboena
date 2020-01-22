@@ -95,7 +95,7 @@ class LettersHomeFragment : Fragment() {
         }
 
         btn_next_letter.setOnClickListener {
-            val nextPosition = GeorgianAlphabet.Cursor.moveNext()
+            val nextPosition = GeorgianAlphabet.Cursor.positionMoveNext()
             lettersSlidingTabLayout.scrollToPage(nextPosition)
         }
 

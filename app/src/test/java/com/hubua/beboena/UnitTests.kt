@@ -50,7 +50,7 @@ class UnitTests {
     @Test
     fun list_words() {
 
-        val lettersList = GeorgianAlphabet.lettersLearnOrdered.sortedBy { it.sentences.count() }
+        val lettersList = GeorgianAlphabet.lettersLearnOrdered//.sortedBy { it.sentences.count() }
 
         println("Longest sentence:");
         val longestSentence = lettersList.flatMap { it.sentences }.maxBy { it.length }
@@ -59,7 +59,7 @@ class UnitTests {
         println("Loaded sentences count:");
         for (letter in lettersList) {
             println("${letter.letterKeySpelling} \t (${letter.sentences.count()})")
-            for (sentence in letter.sentences) {
+            for (sentence in letter.sentences.sortedBy { it.length }) {
                 println("\t ${sentence}")
             }
         }

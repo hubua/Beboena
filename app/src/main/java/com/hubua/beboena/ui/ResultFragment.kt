@@ -35,6 +35,15 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val config = RateThisApp.Config(7, 10)
+        config.setTitle(R.string.rate_dialog_title)
+        config.setMessage(R.string.rate_dialog_message)
+        config.setYesButtonText(R.string.rate_dialog_ok)
+        config.setNoButtonText(R.string.rate_dialog_no)
+        config.setCancelButtonText(R.string.rate_dialog_cancel)
+        RateThisApp.init(config)
+        RateThisApp.onCreate(context) // Increments launch times
+
         var soundResId = -1;
         when {
             correctCount == 0 -> {
@@ -64,6 +73,8 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         btn_try_again.visibility = if (incorrectCount != 0) View.VISIBLE else View.GONE // Has incorrect answers
         btn_try_again.setOnClickListener {
 
+            GeorgianAlphabet.Cursor.positionTryAgain()
+
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
@@ -72,9 +83,9 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         btn_next_letter.visibility = if (correctCount != 0) View.VISIBLE else View.GONE // Has correct answers
         btn_next_letter.setOnClickListener {
 
-            showRateDialog()
+            RateThisApp.showRateDialogIfNeeded(context, R.style.DialogTheme)
 
-            GeorgianAlphabet.Cursor.moveNext()
+            GeorgianAlphabet.Cursor.positionMoveNext()
 
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
@@ -99,20 +110,6 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         mediaPlayer?.release()
         mediaPlayer = null
         super.onDestroy()
-    }
-
-    private fun showRateDialog()
-    {
-        val config = RateThisApp.Config(7, 10)
-        config.setTitle(R.string.rate_dialog_title)
-        config.setMessage(R.string.rate_dialog_message)
-        config.setYesButtonText(R.string.rate_dialog_ok)
-        config.setNoButtonText(R.string.rate_dialog_no)
-        config.setCancelButtonText(R.string.rate_dialog_cancel)
-        RateThisApp.init(config)
-
-        RateThisApp.onCreate(context)
-        RateThisApp.showRateDialogIfNeeded(context, R.style.DialogTheme)
     }
 
 }
