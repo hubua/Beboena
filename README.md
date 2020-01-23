@@ -101,10 +101,14 @@ Publish
 
 - Google Play Console                           https://play.google.com/apps/publish/
 - Publish your app                              https://developer.android.com/studio/publish
-- Feature graphic samples                       https://myhotpot.io/templates/google_play_feature_graphic
+
+- Feature graphic samples                       https://hotpot.ai/design/google_play_feature_graphic?id=WvhDptUJRNJi_1024_500
+
+ASO
+------------------------------
 
 - https://www.apptamin.com/blog/optimize-play-store-app/
-- https://support.google.com/googleplay/android-developer/answer/4448378?hl=en
+- https://support.google.com/googleplay/android-developer/answer/4448378
 
 - https://www.mobiloud.com/blog/app-store-optimization/
 - https://asostack.com/aso-keyword-optimization-in-practice-part-1-e43e8eb9a6f
