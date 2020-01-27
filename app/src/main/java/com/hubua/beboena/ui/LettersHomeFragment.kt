@@ -125,14 +125,19 @@ class LettersHomeFragment : Fragment() {
                 AppSettings.isEnableSounds = item.isChecked
                 true
             }
-            R.id.mnu_references -> {
-                val dialog = ReferencesDialogFragment()
-                dialog.show(fragmentManager!!, "References")
+            R.id.mnu_definitions -> {
+                val dialog = DefinitionsDialogFragment()
+                dialog.show(parentFragmentManager!!, "References")
+                true
+            }
+            R.id.mnu_tips -> {
+                val dialog = TipsDialogFragment()
+                dialog.show(parentFragmentManager!!, "References")
                 true
             }
             R.id.mnu_contact -> {
                 val dialog = ContactDialogFragment()
-                dialog.show(fragmentManager!!, "Contact")
+                dialog.show(parentFragmentManager!!, "Contact")
                 true
             }
             else -> false

@@ -13,8 +13,11 @@
     <!-- menu group -->
     <group android:id="@+id/group_help">
         <item
-            android:id="@+id/mnu_references"
-            android:title="@string/mnu_references" />
+            android:id="@+id/mnu_definitions"
+            android:title="@string/mnu_definitions" />
+        <item
+            android:id="@+id/mnu_tips"
+            android:title="@string/mnu_tips_tricks" />
         <item
             android:id="@+id/mnu_contact"
             android:title="@string/mnu_contact" />

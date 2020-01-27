@@ -124,13 +124,11 @@ Privacy Policies
 Features todo
 ==============================
 
-- Update LOGA
 - დამატებითი სიტყვები და წინადადებები.
-- Sync words with LOGA
+- Sync words with LOGA / Update LOGA
 - რჩევები დაუკვირდით ასოს მოხაზულობას, ზოგი ასო მიამსგავსეთ
 - Propose send feedback if dislike in Rate dialog
 - Tablet layout
-- ფიქსირებული ზომის ქვე-სიმრავლის შემთხვევითად არჩევა ასოს წინადადებების სრული სიმრავლიდან.
 - წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
 - App content target audience children and families
 

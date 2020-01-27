@@ -40,13 +40,15 @@ object GeorgianAlphabet {
         val mapLetterSentences: MutableMap<Char, MutableList<String>> = mutableMapOf()
         orderedLetters.forEach { mapLetterSentences[it.key] = mutableListOf() }
         for (sentence in sentencesData) {
-            var maxLetter = 0.toChar()
-            for (currentLetter in sentence) {
-                val currentLetterOrder = orderedLetters[currentLetter] ?: 0
-                val maxLetterOrder = orderedLetters[maxLetter]
-                maxLetter = if (currentLetterOrder > maxLetterOrder ?: 0) currentLetter else maxLetter
+            if (sentence.isNotBlank()) {
+                var maxLetter = 0.toChar()
+                for (currentLetter in sentence) {
+                    val currentLetterOrder = orderedLetters[currentLetter] ?: 0
+                    val maxLetterOrder = orderedLetters[maxLetter]
+                    maxLetter = if (currentLetterOrder > maxLetterOrder ?: 0) currentLetter else maxLetter
+                }
+                mapLetterSentences[maxLetter]!!.add(sentence)
             }
-            mapLetterSentences[maxLetter]!!.add(sentence)
         }
 
         _letters.clear()

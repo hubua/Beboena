@@ -36,7 +36,8 @@
 
     <string name="mnu_enable_sounds">ხმის ეფექტები</string>
     <string name="mnu_all_caps">მხოლოდ ასომთავრული</string>
-    <string name="mnu_references">მცირე განმარტებანი</string>
+    <string name="mnu_definitions">მცირე განმარტებანი</string>
+    <string name="mnu_tips_tricks">რჩვევა ხრიკები</string>
     <string name="mnu_contact">კონტაქტი</string>
 
     <string name="btn_cancel">უკან</string>
