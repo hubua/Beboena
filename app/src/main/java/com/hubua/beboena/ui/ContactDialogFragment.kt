@@ -14,11 +14,7 @@ class ContactDialogFragment : DialogFragment() {
         return activity?.let {
             val builder = AlertDialog.Builder(it, R.style.DialogTheme)
                 .setMessage(R.string.txt_contact)
-                .setNegativeButton(
-                    R.string.btn_cancel,
-                    DialogInterface.OnClickListener { dialog, id ->
-                        dialog.cancel()
-                    })
+                .setNegativeButton(R.string.btn_cancel) { dialog, _ -> dialog.cancel() }
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }

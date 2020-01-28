@@ -42,11 +42,11 @@
         android:background="@color/colorWindowBackground" />
 
     <Button
-        android:id="@+id/btn_next_letter"
+        android:id="@+id/btn_following_letter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/btn_next_letter" />
+        android:text="@string/btn_following_letter" />
 
     <Button
         android:id="@+id/btn_start_exercise"

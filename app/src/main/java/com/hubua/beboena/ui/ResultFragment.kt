@@ -44,33 +44,46 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         RateThisApp.init(config)
         RateThisApp.onCreate(context) // Increments launch times
 
-        var soundResId = -1;
+        var soundResId: Int
+        btn_try_again.visibility = View.GONE // Show when Satisfactory (Good) or Poor
+        btn_next_letter.visibility = View.GONE // Show when Excellent or Satisfactory
+        btn_prev_letter.visibility = View.GONE // Show when Poor or Fail
+
         when {
-            correctCount == 0 -> {
-                txt_result.text = resources.getString(R.string.txt_result_bad)
-                img_smiley.setImageResource(R.drawable.smile_bad)
-                soundResId = R.raw.result_bad
-            }
             incorrectCount == 0 -> {
                 txt_result.text = resources.getString(R.string.txt_result_excellent)
                 img_smiley.setImageResource(R.drawable.smile_excellent)
                 soundResId = R.raw.result_excellent_1
+
+                btn_next_letter.visibility = View.VISIBLE
             }
-            correctCount < incorrectCount -> {
-                txt_result.text = resources.getString(R.string.txt_result_unsatisfactory)
-                img_smiley.setImageResource(R.drawable.smile_unsatisfactory)
-                soundResId = R.raw.result_unsatisfactory
+            correctCount == 0 -> {
+                txt_result.text = resources.getString(R.string.txt_result_fail)
+                img_smiley.setImageResource(R.drawable.smile_fail)
+                soundResId = R.raw.result_fail
+
+                btn_prev_letter.visibility = View.VISIBLE
             }
-            else -> { // correctCount >= incorrectCount
+            correctCount > incorrectCount -> {
                 txt_result.text = resources.getString(R.string.txt_result_satisfactory)
                 img_smiley.setImageResource(R.drawable.smile_satisfactory)
-                soundResId = R.raw.result_good
+                soundResId = R.raw.result_satisfactory
+
+                btn_try_again.visibility = View.VISIBLE
+                btn_next_letter.visibility = View.VISIBLE
+            }
+            else -> { // correctCount <= incorrectCount
+                txt_result.text = resources.getString(R.string.txt_result_poor)
+                img_smiley.setImageResource(R.drawable.smile_poor)
+                soundResId = R.raw.result_poor
+
+                btn_try_again.visibility = View.VISIBLE
+                btn_prev_letter.visibility = View.VISIBLE
             }
         }
 
         txt_result_details.text = String.format(resources.getString(R.string.txt_correct_count), correctCount + incorrectCount, correctCount)
 
-        btn_try_again.visibility = if (incorrectCount != 0) View.VISIBLE else View.GONE // Has incorrect answers
         btn_try_again.setOnClickListener {
 
             GeorgianAlphabet.Cursor.positionTryAgain()
@@ -80,12 +93,20 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
             )
         }
 
-        btn_next_letter.visibility = if (correctCount != 0) View.VISIBLE else View.GONE // Has correct answers
         btn_next_letter.setOnClickListener {
 
             RateThisApp.showRateDialogIfNeeded(context, R.style.DialogTheme)
 
             GeorgianAlphabet.Cursor.positionMoveNext()
+
+            view.findNavController().navigate(
+                ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
+            )
+        }
+
+        btn_prev_letter.setOnClickListener {
+
+            GeorgianAlphabet.Cursor.positionMovePrev()
 
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()

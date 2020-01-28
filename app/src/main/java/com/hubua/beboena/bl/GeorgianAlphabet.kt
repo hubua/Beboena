@@ -72,7 +72,9 @@ object GeorgianAlphabet {
 
     object Cursor {
 
-        private const val SAVED_POSITION_KEY = "SAVED_POSITION_KEY"
+        private const val MAX_SENTENCES = 10
+
+        private const val SAVED_POSITION_KEY = "SAVED_POSITION_KEY" // If renaming mind the backward compatibility with progress done by active users
 
         private lateinit var _pref: SharedPreferences
 
@@ -86,7 +88,6 @@ object GeorgianAlphabet {
         private val currentSentencesOrdered get() = currentLetter.sentences.sortedBy { it.length }
         private val currentSentencesShuffled get() = currentLetter.sentences.shuffled(_random) // Beware reshuffling on each call
 
-        private const val MAX_SENTENCES = 9
         val currentSentences get() = (if (!_shuffle) currentSentencesOrdered else currentSentencesShuffled).take(MAX_SENTENCES)
 
         fun initialize(sharedPref: SharedPreferences) {
@@ -114,13 +115,19 @@ object GeorgianAlphabet {
             return _currentPosition
         }
 
+        fun positionTryAgain(): Int {
+            _shuffle = true
+            return _currentPosition
+        }
+
         fun positionMoveNext(): Int {
             setCurrentPosition(_currentPosition + 1)
             _shuffle = false
             return _currentPosition
         }
 
-        fun positionTryAgain(): Int {
+        fun positionMovePrev(): Int {
+            setCurrentPosition(_currentPosition - 1)
             _shuffle = true
             return _currentPosition
         }

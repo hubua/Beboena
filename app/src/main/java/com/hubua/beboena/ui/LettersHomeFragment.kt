@@ -94,7 +94,7 @@ class LettersHomeFragment : Fragment() {
             )
         }
 
-        btn_next_letter.setOnClickListener {
+        btn_following_letter.setOnClickListener {
             val nextPosition = GeorgianAlphabet.Cursor.positionMoveNext()
             lettersSlidingTabLayout.scrollToPage(nextPosition)
         }
@@ -104,7 +104,7 @@ class LettersHomeFragment : Fragment() {
 
     private fun showNextStartButtons() {
         val hasSentences = GeorgianAlphabet.Cursor.currentLetter.hasSentences
-        btn_next_letter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
+        btn_following_letter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
         btn_start_exercise.visibility = if (hasSentences) View.VISIBLE else View.GONE
     }
 
@@ -127,17 +127,17 @@ class LettersHomeFragment : Fragment() {
             }
             R.id.mnu_definitions -> {
                 val dialog = DefinitionsDialogFragment()
-                dialog.show(parentFragmentManager!!, "References")
+                dialog.show(parentFragmentManager, "References")
                 true
             }
             R.id.mnu_tips -> {
                 val dialog = TipsDialogFragment()
-                dialog.show(parentFragmentManager!!, "References")
+                dialog.show(parentFragmentManager, "References")
                 true
             }
             R.id.mnu_contact -> {
                 val dialog = ContactDialogFragment()
-                dialog.show(parentFragmentManager!!, "Contact")
+                dialog.show(parentFragmentManager, "Contact")
                 true
             }
             else -> false

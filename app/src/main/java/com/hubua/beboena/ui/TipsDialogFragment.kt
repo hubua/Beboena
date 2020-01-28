@@ -47,7 +47,7 @@ class TipsDialogFragment : DialogFragment() {
                 .setView(dialogView)
                 .setNegativeButton(
                     R.string.btn_cancel,
-                    DialogInterface.OnClickListener { dialog, id ->
+                    DialogInterface.OnClickListener { dialog, _ ->
                         dialog.cancel()
                     })
             builder.create()

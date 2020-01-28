@@ -14,7 +14,7 @@
     <string name="txt_bechduri_label">ბეჭდური (ასომთავრული / ნუსხური)</string>
     <string name="txt_khelnatseri_label">ხელნაწერი (ასომთავრული / ნუსხური)</string>
     <string name="txt_number_label">რიცხვითი მნიშვნელობა</string>
-    <string name="btn_next_letter">შემდეგი ასო</string>
+    <string name="btn_following_letter">მომდევნო ასო</string>
     <string name="btn_start_exercise">ვივარჯიშოთ</string>
 
     <string name="txt_learning_letter">სავარჯიშო \u2014 ასო &quot;"%s"&quot;</string>
@@ -28,16 +28,18 @@
 
     <string name="txt_result_excellent">ბრწყინვალეა!</string>
     <string name="txt_result_satisfactory">კარგია</string>
-    <string name="txt_result_unsatisfactory">არადამაკმაყოფილებელია</string>
-    <string name="txt_result_bad">ცუდია!</string>
+    <string name="txt_result_poor">არადამაკმაყოფილებელია</string>
+    <string name="txt_result_fail">ცუდია!</string>
     <string name="txt_correct_count">%s-დან %s სწორია</string>
 
     <string name="btn_try_again">ვცადოთ ხელახლა</string>
+    <string name="btn_next_letter">შემდეგი ასო</string>
+    <string name="btn_prev_letter">წინა ასო</string>
 
     <string name="mnu_enable_sounds">ხმის ეფექტები</string>
     <string name="mnu_all_caps">მხოლოდ ასომთავრული</string>
     <string name="mnu_definitions">მცირე განმარტებანი</string>
-    <string name="mnu_tips_tricks">რჩვევა ხრიკები</string>
+    <string name="mnu_tips_tricks">რჩვევა-ხრიკები</string>
     <string name="mnu_contact">კონტაქტი</string>
 
     <string name="btn_cancel">უკან</string>
