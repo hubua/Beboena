@@ -20,7 +20,7 @@ class UnitTests {
         val strOga = this.javaClass.classLoader.getResourceAsStream("assets/oga.tsv")
         val strSentences1 = this.javaClass.classLoader.getResourceAsStream("assets/sentences1.txt")
         val strSentences2 = this.javaClass.classLoader.getResourceAsStream("assets/sentences2.txt")
-        val strSentences3 = this.javaClass.classLoader.getResourceAsStream("assets/sentences3.txt")
+        val strSentences3 = this.javaClass.classLoader.getResourceAsStream("assets/sentences9.txt")
         GeorgianAlphabet.initialize(strOga, strSentences1, strSentences2, strSentences3)
     }
 

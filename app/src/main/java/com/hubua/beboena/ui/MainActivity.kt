@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
         val strOga = applicationContext.assets.open("oga.tsv")
         val strSentences1 = applicationContext.assets.open("sentences1.txt")
         val strSentences2 = applicationContext.assets.open("sentences2.txt")
-        val strSentences3 = applicationContext.assets.open("sentences3.txt")
+        val strSentences3 = applicationContext.assets.open("sentences9.txt")
         GeorgianAlphabet.initialize(strOga, strSentences1, strSentences2, strSentences3);
 
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
