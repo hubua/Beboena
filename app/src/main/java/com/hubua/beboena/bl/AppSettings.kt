@@ -12,7 +12,7 @@ object AppSettings {
         get() {
             if (!::_pref.isInitialized) throw IllegalStateException("SharedPreferences not initialized")
 
-            return _pref.getBoolean(ENABLE_SOUNDS_KEY, false)
+            return _pref.getBoolean(ENABLE_SOUNDS_KEY, true)
         }
         set(value) {
             if (!::_pref.isInitialized) throw IllegalStateException("SharedPreferences not initialized")
