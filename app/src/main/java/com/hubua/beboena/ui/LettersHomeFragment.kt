@@ -2,6 +2,7 @@ package com.hubua.beboena.ui
 
 //import android.widget.PopupMenu
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -133,6 +134,12 @@ class LettersHomeFragment : Fragment() {
             R.id.mnu_tips -> {
                 val dialog = TipsDialogFragment()
                 dialog.show(parentFragmentManager, "References")
+                true
+            }
+            R.id.mnu_useful_downloads -> {
+                val openURL = Intent(Intent.ACTION_VIEW)
+                openURL.data = Uri.parse("http://beboena.me/downloads/")
+                startActivity(openURL)
                 true
             }
             R.id.mnu_contact -> {

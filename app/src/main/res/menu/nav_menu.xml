@@ -19,6 +19,9 @@
             android:id="@+id/mnu_tips"
             android:title="@string/mnu_tips_tricks" />
         <item
+            android:id="@+id/mnu_useful_downloads"
+            android:title="@string/mnu_useful_downloads" />
+        <item
             android:id="@+id/mnu_contact"
             android:title="@string/mnu_contact" />
     </group>
