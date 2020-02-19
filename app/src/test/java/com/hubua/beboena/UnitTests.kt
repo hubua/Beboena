@@ -7,6 +7,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.io.ByteArrayInputStream
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -19,9 +20,34 @@ class UnitTests {
     fun setup() {
         val strOga = this.javaClass.classLoader.getResourceAsStream("assets/oga.tsv")
         val strSentences1 = this.javaClass.classLoader.getResourceAsStream("assets/sentences1.txt")
-        val strSentences2 = this.javaClass.classLoader.getResourceAsStream("assets/sentences2.txt")
-        val strSentences3 = this.javaClass.classLoader.getResourceAsStream("assets/sentences9.txt")
-        GeorgianAlphabet.initialize(strOga, strSentences1, strSentences2, strSentences3)
+        //val strSentences2 = this.javaClass.classLoader.getResourceAsStream("assets/sentences2.txt")
+        GeorgianAlphabet.initialize(strOga, strSentences1)
+    }
+
+    @Test
+    fun filter_isCorrect() {
+
+        val sentencesTest =
+            "ა\n" +
+            "(empty)\n" +
+            "\n" +
+            "გ\n" +
+            "(spaces)\n" +
+            "  დ\n" +
+            "(tabs)\n" +
+            "\t\tე\n" +
+            "(repeat)\n" +
+            "ა"
+        val strSentencesTest = ByteArrayInputStream(sentencesTest.toByteArray(Charsets.UTF_8))
+
+        val strOga = this.javaClass.classLoader.getResourceAsStream("assets/oga.tsv")
+
+        GeorgianAlphabet.initialize(strOga, strSentencesTest)
+
+        assertEquals(1, GeorgianAlphabet.lettersMap['ა']!!.sentences.count())
+        assertEquals(0, GeorgianAlphabet.lettersMap['ბ']!!.sentences.count())
+        assertEquals("დ", GeorgianAlphabet.lettersMap['დ']!!.sentences[0])
+        assertEquals("ე", GeorgianAlphabet.lettersMap['ე']!!.sentences[0])
     }
 
     @Test
@@ -53,8 +79,8 @@ class UnitTests {
     @Test
     fun sentences_shuffled() {
 
-        val id10 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst {it.sentences.count() in 8..10}
-        val id20 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst {it.sentences.count() in 15..20}
+        val id10 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 8..10 }
+        val id20 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 15..20 }
 
         GeorgianAlphabet.Cursor.setCurrentPosition(id10)
         val letter = GeorgianAlphabet.Cursor.currentLetter
@@ -69,7 +95,9 @@ class UnitTests {
         try1Sentences.forEachIndexed { index, item ->
             val s1 = item
             val s2 = try2Sentences[index]
-            if (s1 != s2) { diffCount++ }
+            if (s1 != s2) {
+                diffCount++
+            }
 
             println("$s1 - $s2")
         }
@@ -81,7 +109,7 @@ class UnitTests {
     @Test
     fun list_words() {
 
-        val lettersList = GeorgianAlphabet.lettersLearnOrdered//.sortedBy { it.sentences.count() }
+        val lettersList = GeorgianAlphabet.lettersLearnOrdered
 
         println("Longest sentence:")
         val longestSentence = lettersList.flatMap { it.sentences }.maxBy { it.length }
@@ -89,9 +117,9 @@ class UnitTests {
 
         println("Loaded sentences count:")
         for (letter in lettersList) {
-            println("${letter.letterKeySpelling} \t (${letter.sentences.count()})")
+            println("${letter.letterKeySpelling} (${letter.sentences.count()})")
             for (sentence in letter.sentences.sortedBy { it.length }) {
-                println("\t ${sentence}")
+                println("\t${sentence}")
             }
         }
 

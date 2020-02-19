@@ -26,7 +26,14 @@ object GeorgianAlphabet {
         val tsvReader = CSVReaderBuilder(isr).withCSVParser(tsvParser).build()
         val ogaData = tsvReader.readAll().drop(n = 1)
 
-        val sentencesData = strSentences.flatMap { it.bufferedReader().readLines() }.distinct().sorted()
+        val sentencesData = strSentences.flatMap { it.bufferedReader().readLines() }
+            .asSequence()
+            .map { it.trim() }
+            .filter { it.isNotBlank() }
+            .filterNot { it.contains('(') }
+            .distinct()
+            .sorted()
+            .toList()
 
         /**
          * OGA.csv format
@@ -40,15 +47,13 @@ object GeorgianAlphabet {
         val mapLetterSentences: MutableMap<Char, MutableList<String>> = mutableMapOf()
         orderedLetters.forEach { mapLetterSentences[it.key] = mutableListOf() }
         for (sentence in sentencesData) {
-            if (sentence.isNotBlank()) {
-                var maxLetter = 0.toChar()
-                for (currentLetter in sentence) {
-                    val currentLetterOrder = orderedLetters[currentLetter] ?: 0
-                    val maxLetterOrder = orderedLetters[maxLetter]
-                    maxLetter = if (currentLetterOrder > maxLetterOrder ?: 0) currentLetter else maxLetter
-                }
-                mapLetterSentences[maxLetter]!!.add(sentence)
+            var maxLetter = 0.toChar()
+            for (currentLetter in sentence) {
+                val currentLetterOrder = orderedLetters[currentLetter] ?: 0
+                val maxLetterOrder = orderedLetters[maxLetter]
+                maxLetter = if (currentLetterOrder > maxLetterOrder ?: 0) currentLetter else maxLetter
             }
+            mapLetterSentences[maxLetter]!!.add(sentence)
         }
 
         _letters.clear()
