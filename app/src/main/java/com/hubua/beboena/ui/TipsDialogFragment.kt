@@ -11,11 +11,15 @@ import android.util.AttributeSet
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
 import com.hubua.beboena.R
 
+
 class TipsDialogFragment : DialogFragment() {
+
+    var webviewScrollable: WebView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -32,6 +36,7 @@ class TipsDialogFragment : DialogFragment() {
         webviewTips.webViewClient = WebViewClient()
 
         webviewTips.loadUrl("file:///android_asset/html/tips.html");
+        webviewScrollable = webviewTips
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -45,15 +50,30 @@ class TipsDialogFragment : DialogFragment() {
 
             builder
                 .setView(dialogView)
+                .setPositiveButton(
+                    R.string.btn_scroll,
+                    DialogInterface.OnClickListener { _, _ ->
+                        // Do nothing here because we override this button later to change the close behaviour.
+                    })
                 .setNegativeButton(
                     R.string.btn_cancel,
                     DialogInterface.OnClickListener { dialog, _ ->
                         dialog.cancel()
                     })
+
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+
+    override fun onResume() {
+        super.onResume()
+
+        val scrollButton: Button = (dialog as AlertDialog)!!.getButton(AlertDialog.BUTTON_POSITIVE)
+        scrollButton.setOnClickListener {
+            webviewScrollable!!.pageDown(false)
+        }
+    }
 }
 
 class LollipopFixedWebView @JvmOverloads constructor(

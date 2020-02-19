@@ -128,12 +128,12 @@ class LettersHomeFragment : Fragment() {
             }
             R.id.mnu_definitions -> {
                 val dialog = DefinitionsDialogFragment()
-                dialog.show(parentFragmentManager, "References")
+                dialog.show(parentFragmentManager, "Definitions")
                 true
             }
             R.id.mnu_tips -> {
                 val dialog = TipsDialogFragment()
-                dialog.show(parentFragmentManager, "References")
+                dialog.show(parentFragmentManager, "Tips")
                 true
             }
             R.id.mnu_useful_downloads -> {

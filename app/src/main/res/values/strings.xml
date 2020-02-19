@@ -44,5 +44,6 @@
     <string name="mnu_contact">კონტაქტი</string>
 
     <string name="btn_cancel">უკან</string>
+    <string name="btn_scroll">შემდეგი</string>
 
 </resources>
