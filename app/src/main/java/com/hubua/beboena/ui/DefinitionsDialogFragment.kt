@@ -38,11 +38,7 @@ class DefinitionsDialogFragment : DialogFragment() {
 
             builder
                 .setView(dialogView)
-                .setNegativeButton(
-                    R.string.btn_cancel,
-                    DialogInterface.OnClickListener { dialog, id ->
-                        dialog.cancel()
-                    })
+                .setNegativeButton(R.string.btn_close) { dialog, _ -> dialog.cancel() }
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }

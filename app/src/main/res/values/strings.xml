@@ -43,7 +43,7 @@
     <string name="mnu_useful_downloads">სასარგებლო მასალა</string>
     <string name="mnu_contact">კონტაქტი</string>
 
-    <string name="btn_cancel">უკან</string>
+    <string name="btn_close">დახურვა</string>
     <string name="btn_scroll">შემდეგი</string>
 
 </resources>

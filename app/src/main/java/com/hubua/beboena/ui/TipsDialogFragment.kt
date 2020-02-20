@@ -56,7 +56,7 @@ class TipsDialogFragment : DialogFragment() {
                         // Do nothing here because we override this button later to change the close behaviour.
                     })
                 .setNegativeButton(
-                    R.string.btn_cancel,
+                    R.string.btn_close,
                     DialogInterface.OnClickListener { dialog, _ ->
                         dialog.cancel()
                     })
@@ -69,7 +69,7 @@ class TipsDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
 
-        val scrollButton: Button = (dialog as AlertDialog)!!.getButton(AlertDialog.BUTTON_POSITIVE)
+        val scrollButton: Button = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
         scrollButton.setOnClickListener {
             webviewScrollable!!.pageDown(false)
         }
