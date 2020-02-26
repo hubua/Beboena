@@ -1,6 +1,8 @@
+// Access views in the layout XML just as if they were properties
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+// Pass typed data between fragments
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
@@ -44,9 +46,9 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.2.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
 
     implementation 'com.opencsv:opencsv:5.1'
     implementation 'io.github.kobakei:ratethisapp:1.2.0'

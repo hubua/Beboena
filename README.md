@@ -72,8 +72,10 @@
 
 ### Data
 
-- Data storage                                  https://developer.android.com/guide/topics/data/data-storage
-- Auto backup                                   https://developer.android.com/guide/topics/data/autobackup
+- Data storage      https://developer.android.com/guide/topics/data/data-storage
+- Auto backup       https://developer.android.com/guide/topics/data/autobackup
+
+- CSV               http://zetcode.com/articles/opencsv/
 
 ### Unit tests
 
@@ -124,11 +126,7 @@ Privacy Policies
 Features todo
 ==============================
 
-- დამატებითი სიტყვები და წინადადებები.
 - Sync words with LOGA / Update LOGA
-- რჩევები დაუკვირდით ასოს მოხაზულობას, ზოგი ასო მიამსგავსეთ
-- Propose send feedback if dislike in Rate dialog
-- Tablet layout
 - წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
 - App content target audience children and families
 

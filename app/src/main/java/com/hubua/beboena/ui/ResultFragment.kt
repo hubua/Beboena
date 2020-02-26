@@ -42,14 +42,14 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         config.setNoButtonText(R.string.rate_dialog_no)
         config.setCancelButtonText(R.string.rate_dialog_cancel)
         RateThisApp.init(config)
-        RateThisApp.onCreate(context) // Increments launch times
+        RateThisApp.onCreate(context) // Increments launch times -------------------------
 
         var soundResId: Int
-        btn_try_again.visibility = View.GONE // Show when Satisfactory (Good) or Poor
+        btn_try_again.visibility = View.GONE // Show when Satisfactory (Good) or Poor ------------------------
         btn_next_letter.visibility = View.GONE // Show when Excellent or Satisfactory
         btn_prev_letter.visibility = View.GONE // Show when Poor or Fail
 
-        when {
+        when { //-------------------------------------------
             incorrectCount == 0 -> {
                 txt_result.text = resources.getString(R.string.txt_result_excellent)
                 img_smiley.setImageResource(R.drawable.smile_excellent)

@@ -18,15 +18,12 @@ object GeorgianAlphabet {
 
     fun initialize(strOga: InputStream, vararg strSentences: InputStream) {
 
-        /**
-         *  http://zetcode.com/articles/opencsv/
-         */
         val isr = InputStreamReader(strOga)
         val tsvParser = CSVParserBuilder().withSeparator('\t').build()
         val tsvReader = CSVReaderBuilder(isr).withCSVParser(tsvParser).build()
-        val ogaData = tsvReader.readAll().drop(n = 1)
+        val ogaList = tsvReader.readAll().drop(n = 1)
 
-        val sentencesData = strSentences.flatMap { it.bufferedReader().readLines() }
+        val sentencesList = strSentences.flatMap { it.bufferedReader().readLines() }
             .asSequence()
             .map { it.trim() }
             .filter { it.isNotBlank() }
@@ -41,12 +38,11 @@ object GeorgianAlphabet {
          * [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
          */
 
-        val orderedLetters = ogaData.associateBy({ it[1].toChar() }, { it[9].toInt() })
-        // val orderedLetters2 = ogaData.map {it[1].toChar() to it[9].toInt()}.sortedBy { it.second }.toMap()
+        val orderedLetters = ogaList.associateBy({ it[1].toChar() }, { it[9].toInt() })
 
         val mapLetterSentences: MutableMap<Char, MutableList<String>> = mutableMapOf()
         orderedLetters.forEach { mapLetterSentences[it.key] = mutableListOf() }
-        for (sentence in sentencesData) {
+        for (sentence in sentencesList) {
             var maxLetter = 0.toChar()
             for (currentLetter in sentence) {
                 val currentLetterOrder = orderedLetters[currentLetter] ?: 0
@@ -58,7 +54,7 @@ object GeorgianAlphabet {
 
         _letters.clear()
 
-        for (row in ogaData) {
+        for (row in ogaList) {
             val letter = GeorgianLetter(
                 order = row[0].toInt(),
                 mkhedruli = row[1].toChar(),
@@ -86,13 +82,8 @@ object GeorgianAlphabet {
         private var _currentPosition = 0
 
         private val _random = Random()
-        //private var _shuffle = false
 
         val currentLetter get() = lettersLearnOrdered[_currentPosition]
-
-        //private val currentSentencesOrdered get() = currentLetter.sentences.sortedBy { it.length }
-        //private val currentSentencesShuffled get() = currentLetter.sentences.shuffled(_random) // Beware reshuffling on each call
-        //val currentSentences get() = (if (!_shuffle) currentSentencesOrdered else currentSentencesShuffled).take(MAX_SENTENCES)
 
         val currentSentences get() = currentLetter.sentences.shuffled(_random).take(MAX_SENTENCES).sortedBy { it.length } // Beware reshuffling on each call
 
@@ -117,24 +108,20 @@ object GeorgianAlphabet {
                 }
             }
 
-            //_shuffle = false
             return _currentPosition
         }
 
         fun positionTryAgain(): Int {
-            //_shuffle = true
             return _currentPosition
         }
 
         fun positionMoveNext(): Int {
             setCurrentPosition(_currentPosition + 1)
-            //_shuffle = false
             return _currentPosition
         }
 
         fun positionMovePrev(): Int {
             setCurrentPosition(_currentPosition - 1)
-            //_shuffle = true
             return _currentPosition
         }
 
