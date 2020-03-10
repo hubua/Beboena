@@ -158,7 +158,7 @@ class TranscriptFragment : Fragment() {
     private fun showSentenceToTranscript() {
         pb_transcript_progress.progress = currentSentenceIndex + 1
         txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
-        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(withCapital = true)
+        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(isAllCaps = AppSettings.isAllCaps)
     }
 
     private fun switchControlsState(newSentence: Boolean) {

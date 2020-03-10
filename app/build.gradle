@@ -17,8 +17,8 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.hubua.beboena"
-        versionCode 8
-        versionName "1.5"
+        versionCode 9
+        versionName "1.6"
         minSdkVersion 22
         targetSdkVersion 28
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

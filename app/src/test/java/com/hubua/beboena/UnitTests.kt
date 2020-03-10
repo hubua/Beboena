@@ -61,9 +61,9 @@ class UnitTests {
     @Test
     fun translation_isCorrect() {
 
-        assertEquals("ⴑⴀⴊⴀⴋⴈ 123 n", "სალამი 123 n".toKhucuri())
+        assertEquals("Ⴀⴈ ⴈⴀ 123 n", "აი ია 123 n".toKhucuri())
 
-        assertEquals("Ⴑⴀⴊⴀⴋⴈ 123 n", "სალამი 123 n".toKhucuri(true))
+        assertEquals("ႠႨ ႨႠ 123 n", "აი ია 123 n".toKhucuri(true))
     }
 
     @Test

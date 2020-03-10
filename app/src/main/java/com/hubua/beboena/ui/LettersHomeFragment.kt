@@ -115,6 +115,7 @@ class LettersHomeFragment : Fragment() {
             setOnMenuItemClickListener { onMenuItemClick(it)}
             inflate(R.menu.nav_menu)
             menu.findItem(R.id.mnu_enable_sounds).isChecked = AppSettings.isEnableSounds
+            menu.findItem(R.id.mnu_all_caps).isChecked = AppSettings.isAllCaps
             show()
         }
     }
@@ -124,6 +125,11 @@ class LettersHomeFragment : Fragment() {
             R.id.mnu_enable_sounds -> {
                 item.isChecked = !item.isChecked
                 AppSettings.isEnableSounds = item.isChecked
+                true
+            }
+            R.id.mnu_all_caps -> {
+                item.isChecked = !item.isChecked
+                AppSettings.isAllCaps = item.isChecked
                 true
             }
             R.id.mnu_definitions -> {

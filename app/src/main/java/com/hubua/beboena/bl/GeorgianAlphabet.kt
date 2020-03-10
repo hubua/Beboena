@@ -129,14 +129,14 @@ object GeorgianAlphabet {
 
 }
 
-fun String.toKhucuri(withCapital: Boolean = false): String {
+fun String.toKhucuri(isAllCaps: Boolean = false): String {
 
     val mkhedruli = this
     var khucuri = ""
 
     for ((index, letter) in mkhedruli.withIndex()) {
         if (GeorgianAlphabet.lettersMap.contains(letter)) {
-            khucuri += if (withCapital && index == 0) GeorgianAlphabet.lettersMap[letter]?.asomtavruli else GeorgianAlphabet.lettersMap[letter]?.nuskhuri
+            khucuri += if (isAllCaps || index == 0) GeorgianAlphabet.lettersMap[letter]?.asomtavruli else GeorgianAlphabet.lettersMap[letter]?.nuskhuri
         } else {
             khucuri += letter
         }
