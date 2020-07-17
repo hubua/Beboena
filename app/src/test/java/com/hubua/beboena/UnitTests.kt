@@ -18,8 +18,8 @@ class UnitTests {
 
     @Before
     fun setup() {
-        val strOga = this.javaClass.classLoader.getResourceAsStream("assets/oga.tsv")
-        val strSentences1 = this.javaClass.classLoader.getResourceAsStream("assets/sentences1.txt")
+        val strOga = this.javaClass.classLoader!!.getResourceAsStream("assets/oga.tsv")
+        val strSentences1 = this.javaClass.classLoader!!.getResourceAsStream("assets/sentences1.txt")
         //val strSentences2 = this.javaClass.classLoader.getResourceAsStream("assets/sentences2.txt")
         GeorgianAlphabet.initialize(strOga, strSentences1)
     }
@@ -40,7 +40,7 @@ class UnitTests {
             "ა"
         val strSentencesTest = ByteArrayInputStream(sentencesTest.toByteArray(Charsets.UTF_8))
 
-        val strOga = this.javaClass.classLoader.getResourceAsStream("assets/oga.tsv")
+        val strOga = this.javaClass.classLoader!!.getResourceAsStream("assets/oga.tsv")
 
         GeorgianAlphabet.initialize(strOga, strSentencesTest)
 
