@@ -125,4 +125,31 @@ class UnitTests {
 
     }
 
+    @Test
+    fun letters_similarity_matrix() {
+
+        val lettersList = GeorgianAlphabet.lettersLearnOrdered
+
+        for (letterX in lettersList) {
+            print("${letterX.mkhedruli}\t")
+            for (letterY in lettersList) {
+                if (letterX != letterY) {
+                    print("${letterX.nuskhuri}${letterY.nuskhuri}\t")
+                }
+            }
+            println()
+        }
+
+        for (letterX in lettersList) {
+            print("${letterX.mkhedruli}\t")
+            for (letterY in lettersList) {
+                if (letterX != letterY) {
+                    print("${letterX.asomtavruli}${letterY.asomtavruli}\t")
+                }
+            }
+            println()
+        }
+
+    }
+
 }
