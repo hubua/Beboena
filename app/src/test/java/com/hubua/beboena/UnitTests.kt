@@ -2,7 +2,6 @@ package com.hubua.beboena
 
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.bl.toKhucuri
-import org.junit.Assert
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -19,9 +18,10 @@ class UnitTests {
     @Before
     fun setup() {
         val strOga = this.javaClass.classLoader!!.getResourceAsStream("assets/oga.tsv")
+        val strResembles = this.javaClass.classLoader!!.getResourceAsStream("assets/resembles.ssv")
         val strSentences1 = this.javaClass.classLoader!!.getResourceAsStream("assets/sentences1.txt")
-        //val strSentences2 = this.javaClass.classLoader.getResourceAsStream("assets/sentences2.txt")
-        GeorgianAlphabet.initialize(strOga, strSentences1)
+        val strSentences2 = this.javaClass.classLoader!!.getResourceAsStream("assets/sentences2.txt")
+        GeorgianAlphabet.initialize(strOga, strResembles, strSentences1, strSentences2)
     }
 
     @Test
@@ -41,8 +41,9 @@ class UnitTests {
         val strSentencesTest = ByteArrayInputStream(sentencesTest.toByteArray(Charsets.UTF_8))
 
         val strOga = this.javaClass.classLoader!!.getResourceAsStream("assets/oga.tsv")
+        val strResembles = this.javaClass.classLoader!!.getResourceAsStream("assets/resembles.ssv")
 
-        GeorgianAlphabet.initialize(strOga, strSentencesTest)
+        GeorgianAlphabet.initialize(strOga, strResembles, strSentencesTest)
 
         assertEquals(1, GeorgianAlphabet.lettersMap['ა']!!.sentences.count())
         assertEquals(0, GeorgianAlphabet.lettersMap['ბ']!!.sentences.count())
@@ -89,7 +90,7 @@ class UnitTests {
 
         assertEquals(try1Sentences.count(), try2Sentences.count())
 
-        println("${letter.letterKeySpelling} \t (${letter.sentences.count()})")
+        println("${letter.letterModernSpelling} \t (${letter.sentences.count()})")
 
         var diffCount = 0
         try1Sentences.forEachIndexed { index, item ->
@@ -117,7 +118,7 @@ class UnitTests {
 
         println("Loaded sentences count:")
         for (letter in lettersList) {
-            println("${letter.letterKeySpelling} (${letter.sentences.count()})")
+            println("${letter.letterModernSpelling} '${letter.letterReadsAs}' (${letter.sentences.count()})")
             for (sentence in letter.sentences.sortedBy { it.length }) {
                 println("\t${sentence}")
             }
@@ -125,6 +126,22 @@ class UnitTests {
 
     }
 
+    @Test
+    fun list_resembles() {
+
+        val lettersList = GeorgianAlphabet.lettersLearnOrdered
+
+        println("Loaded sentences count:")
+        for (letter in lettersList) {
+            println("${letter.letterModernSpelling} (${letter.resembles.count()})")
+            for (resemble in letter.resembles) {
+                println("\t${resemble}")
+            }
+        }
+
+    }
+
+    /*
     @Test
     fun letters_similarity_matrix() {
 
@@ -151,5 +168,6 @@ class UnitTests {
         }
 
     }
+    */
 
 }

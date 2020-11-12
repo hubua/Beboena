@@ -18,6 +18,18 @@
         app:autoSizeTextType="uniform"
         tools:text="ა - &quot;ან&quot;" />
 
+    <TextView
+        android:id="@+id/txtLetterReadsAs"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.1"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/colorWindowBackground"
+        android:gravity="center_horizontal|bottom"
+        app:autoSizeTextType="uniform"
+        tools:text="(იკითხება როგორც &quot;ა&quot;)" />
+
     <View
         android:id="@+id/viewSeparator"
         android:layout_width="match_parent"

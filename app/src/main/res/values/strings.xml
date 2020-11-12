@@ -13,12 +13,14 @@
     <string name="txt_letters_hint">დაიმახსოვრეთ ასოს დამწერლობა და დაიწყეთ სავარჯიშო დავალება</string>
     <string name="txt_bechduri_label">ბეჭდური (ასომთავრული / ნუსხური)</string>
     <string name="txt_khelnatseri_label">ხელნაწერი (ასომთავრული / ნუსხური)</string>
+    <string name="txt_reads_as">(იკითხება როგორც \u0022%s\u0022)</string>
     <string name="txt_number_label">რიცხვითი მნიშვნელობა</string>
     <string name="btn_following_letter">მომდევნო ასო</string>
     <string name="btn_start_exercise">ვივარჯიშოთ</string>
 
-    <string name="txt_learning_letter">სავარჯიშო \u2014 ასო &quot;"%s"&quot;</string>
+    <string name="txt_learning_letter">სავარჯიშო \u2014 ასო %s</string>
     <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
+    <string name="txt_translate_sentence_hint_as_reads">გადათარგმნეთ წინადადება\n(ისე როგორც იკითხება)</string>
     <string name="btn_check">შევამოწმოთ</string>
     <string name="btn_continue">გავაგრძელოთ</string>
 

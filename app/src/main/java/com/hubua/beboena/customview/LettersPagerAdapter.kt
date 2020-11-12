@@ -1,8 +1,15 @@
 package com.hubua.beboena.customview
 
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import com.google.android.material.resources.TextAppearance
 import com.hubua.beboena.R
 import com.hubua.beboena.bl.GeorgianAlphabet
 import kotlinx.android.synthetic.main.pager_item_letter.view.*
@@ -51,8 +58,17 @@ internal class LettersPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
         val view = LayoutInflater.from(container.context).inflate(R.layout.pager_item_letter, container, false)
         container.addView(view)
 
-        val read = if (letter.read.isEmpty()) "" else " \"${letter.read}\""
-        view.txtLetterMkhedruli.text = "${letter.name} - ${letter.mkhedruli}${read}"
+        view.txtLetterMkhedruli.text = "${letter.name} - ${letter.mkhedruli}"
+
+        view.txtLetterReadsAs.visibility = if (!letter.letterReadsAsSpells) View.VISIBLE else View.GONE
+        val spannable = SpannableString(String.format(container.resources.getString(R.string.txt_reads_as), letter.letterReadsAs))
+        spannable.setSpan(
+            StyleSpan(Typeface.BOLD),
+            spannable.length - letter.letterReadsAs.length - 2,
+            spannable.length - 2,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        view.txtLetterReadsAs.text = spannable
 
         view.txtBechduri.text = "${letter.asomtavruli} ${letter.nuskhuri}"
         view.txtKhelnatseri.text = "${letter.asomtavruli} ${letter.nuskhuri}"

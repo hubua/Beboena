@@ -19,6 +19,7 @@ class DefinitionsDialogFragment : DialogFragment() {
         val html = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Html.fromHtml(getString(R.string.txt_definitions), Html.FROM_HTML_MODE_COMPACT)
         } else {
+            @Suppress("DEPRECATION")
             Html.fromHtml(getString(R.string.txt_definitions))
         }
 

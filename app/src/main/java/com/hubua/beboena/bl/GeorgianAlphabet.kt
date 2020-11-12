@@ -14,14 +14,16 @@ object GeorgianAlphabet {
 
     val lettersLearnOrdered get() = _letters.sortedBy { it.learnOrder }
 
-    val lettersMap get() = _letters.associateBy({ it.letterKeySpelling }, { it })
+    val lettersMap get() = _letters.associateBy({ it.letterModernSpelling }, { it })
 
-    fun initialize(strOga: InputStream, vararg strSentences: InputStream) {
+    fun initialize(strOga: InputStream, strResembles: InputStream, vararg strSentences: InputStream) {
 
         val isr = InputStreamReader(strOga)
         val tsvParser = CSVParserBuilder().withSeparator('\t').build()
         val tsvReader = CSVReaderBuilder(isr).withCSVParser(tsvParser).build()
         val ogaList = tsvReader.readAll().drop(n = 1)
+
+        val resemblesList = strResembles.bufferedReader().use { it.readText() }.split(' ')
 
         val sentencesList = strSentences.flatMap { it.bufferedReader().readLines() }
             .asSequence()
@@ -62,8 +64,9 @@ object GeorgianAlphabet {
                 nuskhuri = row[3].toChar(),
                 number = row[6],
                 name = row[7],
-                read = row[8],
+                reads = row[8],
                 learnOrder = row[9].toInt(),
+                resembles = resemblesList.filter { it.contains(row[1].toChar()) },
                 sentences = mapLetterSentences[row[1].toChar()]!!.toList()
             )
             _letters.add(letter)
@@ -74,6 +77,7 @@ object GeorgianAlphabet {
     object Cursor {
 
         private const val MAX_SENTENCES = 10
+        private const val MAX_RESEMBLES = 3
 
         private const val SAVED_POSITION_KEY = "SAVED_POSITION_KEY" // If renaming mind the backward compatibility with progress made by active users
 
@@ -86,6 +90,8 @@ object GeorgianAlphabet {
         val currentLetter get() = lettersLearnOrdered[_currentPosition]
 
         val currentSentences get() = currentLetter.sentences.shuffled(_random).take(MAX_SENTENCES).sortedBy { it.length } // Beware reshuffling on each call
+
+        val currentResembles get () = currentLetter.resembles.shuffled(_random).take(MAX_RESEMBLES)
 
         fun initialize(sharedPref: SharedPreferences) {
             _pref = sharedPref
@@ -131,18 +137,34 @@ object GeorgianAlphabet {
 
 fun String.toKhucuri(isAllCaps: Boolean = false): String {
 
-    val mkhedruli = this
-    var khucuri = ""
+    val mkhedruliText = this
+    var khucuriText = ""
 
-    for ((index, letter) in mkhedruli.withIndex()) {
+    for ((index, letter) in mkhedruliText.withIndex()) {
         if (GeorgianAlphabet.lettersMap.contains(letter)) {
-            khucuri += if (isAllCaps || index == 0) GeorgianAlphabet.lettersMap[letter]?.asomtavruli else GeorgianAlphabet.lettersMap[letter]?.nuskhuri
+            khucuriText += if (isAllCaps || index == 0) GeorgianAlphabet.lettersMap[letter]?.asomtavruli else GeorgianAlphabet.lettersMap[letter]?.nuskhuri
         } else {
-            khucuri += letter
+            khucuriText += letter
         }
     }
 
-    return khucuri
+    return khucuriText
+}
+
+fun String.toReadsAs(): String {
+
+    val mkhedruliText = this
+    var readAsText = ""
+
+    for (letter in mkhedruliText) {
+        if (GeorgianAlphabet.lettersMap.contains(letter)) {
+            readAsText += GeorgianAlphabet.lettersMap[letter]?.letterReadsAs
+        } else {
+            readAsText += letter
+        }
+    }
+
+    return readAsText
 }
 
 fun String.toChar(): Char {

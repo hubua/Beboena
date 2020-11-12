@@ -115,7 +115,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
 
         if (AppSettings.isEnableSounds) {
             mediaPlayer = MediaPlayer()
-            val afd = context!!.resources.openRawResourceFd(soundResId)
+            val afd = requireContext().resources.openRawResourceFd(soundResId)
             mediaPlayer?.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
             afd.close()
             mediaPlayer?.setOnPreparedListener(this@ResultFragment)

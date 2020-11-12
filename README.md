@@ -134,5 +134,6 @@ Features todo
 - არადამაკმაყოფილებელი ზღვრის გადაწევა ზემოთ, 50-ის მაგივრად 75%
 - წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
 - App content target audience children and families
+- ტექსტები ნუსხურად როგორც პრაქტიკული საკითხავი
 
 [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)

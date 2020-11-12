@@ -20,8 +20,10 @@ import kotlinx.android.synthetic.main.fragment_transcript.*
 import androidx.transition.TransitionManager
 import com.hubua.beboena.R
 import com.hubua.beboena.bl.AppSettings
+import com.hubua.beboena.bl.toReadsAs
 import com.hubua.beboena.utils.CircularRevealTransition
 import com.hubua.beboena.utils.TextWatcherAdapter
+import kotlinx.android.synthetic.main.pager_item_letter.*
 
 /**
  * A simple [Fragment] subclass.
@@ -50,19 +52,21 @@ class TranscriptFragment : Fragment() {
         val spannable = SpannableString(
             String.format(
                 resources.getString(R.string.txt_learning_letter),
-                currentLetter.letterKeySpelling
+                currentLetter.mkhedruli
             )
         )
         spannable.setSpan(
             StyleSpan(Typeface.BOLD),
             //ForegroundColorSpan(ContextCompat.getColor(context!!, R.color.colorPrimary)),
-            16,
-            17,
+            spannable.length - 1,
+            spannable.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         txtCurrentLetter.text = spannable
 
         pb_transcript_progress.max = currentSentences.count()
+
+        edt_transcription.hint = if (currentLetter.letterReadsAsSpells) resources.getString(R.string.txt_translate_sentence_hint) else resources.getString(R.string.txt_translate_sentence_hint_as_reads)
 
         /*
         // DEBUG Longest Sentence First
@@ -81,7 +85,7 @@ class TranscriptFragment : Fragment() {
         btn_continue.setOnClickListener { onBtnContinueClick(it) } // Is equivalent to 'btn -> onBtnContinueClick(btn)'
 
         KeyboardUtils.addKeyboardVisibilityListener(
-            this.view!!,
+            this.requireView(),
             object : KeyboardUtils.OnKeyboardVisibilityListener {
                 override fun onVisibilityChange(isVisible: Boolean) {
                     txt_current_letter?.visibility = if (isVisible) View.GONE else View.VISIBLE
@@ -107,9 +111,9 @@ class TranscriptFragment : Fragment() {
 
     private fun onBtnCheckClick() {
 
-        KeyboardUtils.hideKeyboard(this.activity!!)
+        KeyboardUtils.hideKeyboard(this.requireActivity())
 
-        var isCorrect = (edt_transcription.text.toString() == currentSentences[currentSentenceIndex])
+        val isCorrect = (edt_transcription.text.toString() == currentSentences[currentSentenceIndex].toReadsAs())
 
         /*
         // DEBUG Two Letters Are Correct

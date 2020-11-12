@@ -74,7 +74,7 @@ class LettersHomeFragment : Fragment() {
         val lettersSlidingTabLayout = view.findViewById<View>(R.id.sliding_tab_layout) as SlidingTabLayout
         lettersSlidingTabLayout.setViewPager(letterViewPager)
 
-        lettersSlidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(context!!, R.color.colorPrimary))
+        lettersSlidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
 
         lettersSlidingTabLayout.scrollToPage(GeorgianAlphabet.Cursor.getCurrentPosition())
 
@@ -111,7 +111,7 @@ class LettersHomeFragment : Fragment() {
 
     private fun showPopup(v: View) {
         //TODO add light border, rounded corners and anchor to top of button
-        PopupMenu(this.context!!, v).apply {
+        PopupMenu(requireContext(), v).apply {
             setOnMenuItemClickListener { onMenuItemClick(it)}
             inflate(R.menu.nav_menu)
             menu.findItem(R.id.mnu_enable_sounds).isChecked = AppSettings.isEnableSounds
