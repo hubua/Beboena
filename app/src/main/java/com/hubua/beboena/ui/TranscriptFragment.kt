@@ -9,6 +9,7 @@ import android.text.SpannableString
 import android.text.style.StyleSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -99,6 +100,20 @@ class TranscriptFragment : Fragment() {
 
         mediaPlayerCorrect = MediaPlayer.create(context, R.raw.answer_correct)
         mediaPlayerWrong = MediaPlayer.create(context, R.raw.answer_wrong)
+
+        /*
+        // DEBUG Show transcription prompt
+        txt_sentence.setOnTouchListener { v, event ->
+            txt_sentence.text =
+                if (event?.actionMasked == MotionEvent.ACTION_DOWN) {
+                    currentSentences[currentSentenceIndex].toReadsAs()
+                }
+                else {
+                    currentSentences[currentSentenceIndex].toKhucuri(isAllCaps = AppSettings.isAllCaps)
+                }
+            true
+        }
+        */
     }
 
     override fun onDestroyView() {
