@@ -136,4 +136,11 @@ Features todo
 - App content target audience children and families
 - ტექსტები ნუსხურად როგორც პრაქტიკული საკითხავი
 
+Known issues
+------------------------------
+
+java.lang.UnsupportedOperationException: at android.view.RenderNodeAnimator.pause
+https://stackoverflow.com/questions/26749280/custom-circular-reveal-transition-results-in-java-lang-unsupportedoperationexce
+
+
 [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)

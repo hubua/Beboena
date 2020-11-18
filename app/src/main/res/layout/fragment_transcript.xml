@@ -26,7 +26,7 @@
             android:id="@+id/pb_transcript_progress"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20sp"
             android:max="10"
             android:padding="2dp"
             android:progress="3"
