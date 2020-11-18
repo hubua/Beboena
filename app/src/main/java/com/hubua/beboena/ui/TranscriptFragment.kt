@@ -50,12 +50,7 @@ class TranscriptFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val txtCurrentLetter: TextView = view.findViewById(R.id.txt_current_letter)
-        val spannable = SpannableString(
-            String.format(
-                resources.getString(R.string.txt_learning_letter),
-                currentLetter.mkhedruli
-            )
-        )
+        val spannable = SpannableString(String.format(resources.getString(R.string.txt_learning_letter), currentLetter.mkhedruli))
         spannable.setSpan(
             StyleSpan(Typeface.BOLD),
             //ForegroundColorSpan(ContextCompat.getColor(context!!, R.color.colorPrimary)),
