@@ -62,10 +62,10 @@ object GeorgianAlphabet {
                 mkhedruli = row[1].toChar(),
                 asomtavruli = row[2].toChar(),
                 nuskhuri = row[3].toChar(),
-                number = row[6],
-                name = row[7],
-                reads = row[8],
-                learnOrder = row[9].toInt(),
+                number = row[5].trim(),
+                name = row[6],
+                reads = row[7],
+                learnOrder = row[8].toInt(),
                 resembles = resemblesList.filter { it.contains(row[1].toChar()) },
                 sentences = mapLetterSentences[row[1].toChar()]!!.toList()
             )

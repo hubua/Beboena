@@ -54,9 +54,15 @@ class UnitTests {
     @Test
     fun initialize_isCorrect() {
 
-        val letters = GeorgianAlphabet.lettersLearnOrdered
+        val lettersMap = GeorgianAlphabet.lettersMap
 
-        assertEquals(33 + 5, letters.count())
+        assertEquals(33 + 5, lettersMap.count())
+
+        assertEquals(1, lettersMap['ა']!!.order)
+        assertEquals("1", lettersMap['ა']!!.number)
+
+        assertEquals(12, lettersMap['ლ']!!.order)
+        assertEquals("30", lettersMap['ლ']!!.number)
     }
 
     @Test
