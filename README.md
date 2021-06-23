@@ -84,6 +84,8 @@
 
 ### Emulator
 
+- Use Windows Hypervisor Platform https://devblogs.microsoft.com/visualstudio/hyper-v-android-emulator-support/
+
 - HAXM  https://github.com/intel/haxm/blob/master/docs/manual-windows.md
 - SDP   https://github.com/intuit/sdp
 

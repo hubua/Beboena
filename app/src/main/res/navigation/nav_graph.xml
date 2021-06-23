@@ -49,4 +49,10 @@
             app:popUpToInclusive="false" />
     </fragment>
 
+    <fragment
+        android:id="@+id/frg_resembles"
+        android:name="com.hubua.beboena.ui.ResemblesFragment"
+        android:label="Resembles Fragment"
+        tools:layout="@layout/fragment_resembles"/>
+
 </navigation>

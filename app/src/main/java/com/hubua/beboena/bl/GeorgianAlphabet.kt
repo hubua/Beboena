@@ -39,8 +39,10 @@ object GeorgianAlphabet {
          * [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent
          * [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
          */
+        val MODERN_SPELLING_COL_ID = 1
+        val LEARN_ORDER_COL_ID = 8
 
-        val orderedLetters = ogaList.associateBy({ it[1].toChar() }, { it[9].toInt() })
+        val orderedLetters = ogaList.associateBy({ it[MODERN_SPELLING_COL_ID].toChar() }, { it[LEARN_ORDER_COL_ID].toInt() })
 
         val mapLetterSentences: MutableMap<Char, MutableList<String>> = mutableMapOf()
         orderedLetters.forEach { mapLetterSentences[it.key] = mutableListOf() }
@@ -59,15 +61,15 @@ object GeorgianAlphabet {
         for (row in ogaList) {
             val letter = GeorgianLetter(
                 order = row[0].toInt(),
-                mkhedruli = row[1].toChar(),
+                mkhedruli = row[MODERN_SPELLING_COL_ID].toChar(),
                 asomtavruli = row[2].toChar(),
                 nuskhuri = row[3].toChar(),
                 number = row[5].trim(),
                 name = row[6],
                 reads = row[7],
-                learnOrder = row[8].toInt(),
+                learnOrder = row[LEARN_ORDER_COL_ID].toInt(),
                 resembles = resemblesList.filter { it.contains(row[1].toChar()) },
-                sentences = mapLetterSentences[row[1].toChar()]!!.toList()
+                sentences = mapLetterSentences[row[MODERN_SPELLING_COL_ID].toChar()]!!.toList()
             )
             _letters.add(letter)
         }

@@ -17,14 +17,14 @@ import androidx.navigation.findNavController
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.bl.toKhucuri
 import com.hubua.beboena.utils.KeyboardUtils
-import kotlinx.android.synthetic.main.fragment_transcript.*
 import androidx.transition.TransitionManager
 import com.hubua.beboena.R
 import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.toReadsAs
+import com.hubua.beboena.databinding.FragmentResultBinding
+import com.hubua.beboena.databinding.FragmentTranscriptBinding
 import com.hubua.beboena.utils.CircularRevealTransition
 import com.hubua.beboena.utils.TextWatcherAdapter
-import kotlinx.android.synthetic.main.pager_item_letter.*
 
 /**
  * A simple [Fragment] subclass.
@@ -42,14 +42,26 @@ class TranscriptFragment : Fragment() {
     private var mediaPlayerCorrect: MediaPlayer? = null
     private var mediaPlayerWrong: MediaPlayer? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transcript, container, false)
+    private var _binding: FragmentTranscriptBinding? = null
+    private val binding get() = _binding!! // This property is only valid between onCreateView and onDestroyView.
+    private val bindingExists get() = _binding != null
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentTranscriptBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+
+        mediaPlayerCorrect?.release()
+        mediaPlayerCorrect = null
+        mediaPlayerWrong?.release()
+        mediaPlayerWrong = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        val txtCurrentLetter: TextView = view.findViewById(R.id.txt_current_letter)
         val spannable = SpannableString(String.format(resources.getString(R.string.txt_learning_letter), currentLetter.mkhedruli))
         spannable.setSpan(
             StyleSpan(Typeface.BOLD),
@@ -58,11 +70,11 @@ class TranscriptFragment : Fragment() {
             spannable.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        txtCurrentLetter.text = spannable
+        binding.txtCurrentLetter.text = spannable
 
-        pb_transcript_progress.max = currentSentences.count()
+        binding.pbTranscriptProgress.max = currentSentences.count()
 
-        edt_transcription.hint = if (currentLetter.letterReadsAsSpells) resources.getString(R.string.txt_translate_sentence_hint) else resources.getString(R.string.txt_translate_sentence_hint_as_reads)
+        binding.edtTranscription.hint = if (currentLetter.letterReadsAsSpells) resources.getString(R.string.txt_translate_sentence_hint) else resources.getString(R.string.txt_translate_sentence_hint_as_reads)
 
         /*
         // DEBUG Longest Sentence First
@@ -71,21 +83,23 @@ class TranscriptFragment : Fragment() {
         txt_sentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
          */
 
-        edt_transcription.addTextChangedListener(object : TextWatcherAdapter {
+        binding.edtTranscription.addTextChangedListener(object : TextWatcherAdapter {
             override fun afterTextChanged(s: Editable) {
-                btn_check.isEnabled = !s.isBlank()
+                binding.btnCheck.isEnabled = !s.isBlank()
             }
         })
 
-        btn_check.setOnClickListener { onBtnCheckClick() }
-        btn_continue.setOnClickListener { onBtnContinueClick(it) } // Is equivalent to 'btn -> onBtnContinueClick(btn)'
+        binding.btnCheck.setOnClickListener { onBtnCheckClick() }
+        binding.btnContinue.setOnClickListener { onBtnContinueClick(it) } // Is equivalent to 'btn -> onBtnContinueClick(btn)'
 
         KeyboardUtils.addKeyboardVisibilityListener(
             this.requireView(),
             object : KeyboardUtils.OnKeyboardVisibilityListener {
                 override fun onVisibilityChange(isVisible: Boolean) {
-                    txt_current_letter?.visibility = if (isVisible) View.GONE else View.VISIBLE
-                    frame_layout_progress?.visibility = if (isVisible) View.GONE else View.VISIBLE
+                    if (!bindingExists) // binding is only valid between onCreateView and onDestroyView.
+                        return
+                    binding.txtCurrentLetter.visibility = if (isVisible) View.GONE else View.VISIBLE
+                    binding.frameLayoutProgress.visibility = if (isVisible) View.GONE else View.VISIBLE
                 }
             })
 
@@ -111,26 +125,18 @@ class TranscriptFragment : Fragment() {
         */
     }
 
-    override fun onDestroyView() {
-        mediaPlayerCorrect?.release()
-        mediaPlayerCorrect = null
-        mediaPlayerWrong?.release()
-        mediaPlayerWrong = null
-        super.onDestroyView()
-    }
-
     private fun onBtnCheckClick() {
 
         KeyboardUtils.hideKeyboard(this.requireActivity())
 
-        val isCorrect = (edt_transcription.text.toString() == currentSentences[currentSentenceIndex].toReadsAs())
+        val isCorrect = (binding.edtTranscription.text.toString() == currentSentences[currentSentenceIndex].toReadsAs())
 
         /*
         // DEBUG Two Letters Are Correct
-        isCorrect = (edt_transcription.text.length > 1)
+        isCorrect = (binding.edtTranscription.text.length > 1)
          */
 
-        val txtBannerToShow = if (isCorrect) txt_banner_correct else txt_banner_wrong
+        val txtBannerToShow = if (isCorrect) binding.txtBannerCorrect else binding.txtBannerWrong
         if (isCorrect) transcriptedCorrectCount++ else transcriptedWrongCount++
 
         val transition = CircularRevealTransition() // Alternatives are Slide(Gravity.LEFT) Fade()
@@ -170,33 +176,33 @@ class TranscriptFragment : Fragment() {
     }
 
     private fun showSentenceToTranscript() {
-        pb_transcript_progress.progress = currentSentenceIndex + 1
-        txt_transcript_progress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
-        txt_sentence.text = currentSentences[currentSentenceIndex].toKhucuri(isAllCaps = AppSettings.isAllCaps)
+        binding.pbTranscriptProgress.progress = currentSentenceIndex + 1
+        binding.txtTranscriptProgress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
+        binding.txtSentence.text = currentSentences[currentSentenceIndex].toKhucuri(isAllCaps = AppSettings.isAllCaps)
     }
 
     private fun switchControlsState(newSentence: Boolean) {
         // New sentence or Check sentence
 
         if (newSentence) {
-            edt_transcription.isFocusableInTouchMode = true
-            edt_transcription.isFocusable = true
-            edt_transcription.text.clear()
-            edt_transcription.requestFocus()
+            binding.edtTranscription.isFocusableInTouchMode = true
+            binding.edtTranscription.isFocusable = true
+            binding.edtTranscription.text.clear()
+            binding.edtTranscription.requestFocus()
 
         } else {
-            edt_transcription.isFocusableInTouchMode = false
-            edt_transcription.isFocusable = false
+            binding.edtTranscription.isFocusableInTouchMode = false
+            binding.edtTranscription.isFocusable = false
         }
 
         if (newSentence) {
-            txt_banner_correct.visibility = View.GONE
-            txt_banner_wrong.visibility = View.GONE
-            btn_check.isEnabled = false
+            binding.txtBannerCorrect.visibility = View.GONE
+            binding.txtBannerWrong.visibility = View.GONE
+            binding.btnCheck.isEnabled = false
         }
 
-        btn_check.visibility = if (newSentence) View.VISIBLE else View.GONE
-        btn_continue.visibility = if (newSentence) View.GONE else View.VISIBLE
+        binding.btnCheck.visibility = if (newSentence) View.VISIBLE else View.GONE
+        binding.btnContinue.visibility = if (newSentence) View.GONE else View.VISIBLE
     }
 
 }

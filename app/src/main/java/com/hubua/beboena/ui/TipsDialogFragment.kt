@@ -16,19 +16,18 @@ import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
 import com.hubua.beboena.R
 
-
 class TipsDialogFragment : DialogFragment() {
 
-    var webviewScrollable: WebView? = null
+    private var webviewScrollable: WebView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val layoutRoot = view.findViewById<LinearLayout>(R.id.layout_root)
 
         val webviewTips = if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            LollipopFixedWebView(context)
+            LollipopFixedWebView(requireContext())
         } else {
-            WebView(context)
+            WebView(requireContext())
         }
         webviewTips.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
         layoutRoot.addView(webviewTips) //TODO show scrollbar
@@ -65,7 +64,6 @@ class TipsDialogFragment : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
-
     override fun onResume() {
         super.onResume()
 
@@ -77,8 +75,8 @@ class TipsDialogFragment : DialogFragment() {
 }
 
 class LollipopFixedWebView @JvmOverloads constructor(
-    context: Context?,
+    context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
     defStyleRes: Int = 0
-) : WebView(context?.createConfigurationContext(Configuration()), attrs, defStyleAttr, defStyleRes)
+) : WebView(context.createConfigurationContext(Configuration()), attrs, defStyleAttr, defStyleRes)

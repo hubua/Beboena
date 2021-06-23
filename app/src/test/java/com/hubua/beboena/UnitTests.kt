@@ -119,7 +119,7 @@ class UnitTests {
         val lettersList = GeorgianAlphabet.lettersLearnOrdered
 
         println("Longest sentence:")
-        val longestSentence = lettersList.flatMap { it.sentences }.maxBy { it.length }
+        val longestSentence = lettersList.flatMap { it.sentences }.maxByOrNull { it.length }
         println(longestSentence)
 
         println("Loaded sentences count:")

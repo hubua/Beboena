@@ -18,8 +18,9 @@ import com.hubua.beboena.R
 import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.customview.LettersPagerAdapter
+import com.hubua.beboena.databinding.FragmentHomeLettersBinding
+import com.hubua.beboena.databinding.FragmentResultBinding
 import com.hubua.beboena.ui.view.SlidingTabLayout
-import kotlinx.android.synthetic.main.fragment_home_letters.*
 
 
 //region OnFragmentInteractionListener pattern
@@ -59,9 +60,17 @@ class LettersHomeFragment : Fragment() {
         println("Fragment init") // Only happens when navigating to fragment, but not after back is pressed!
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return view ?: inflater.inflate(R.layout.fragment_home_letters, container, false)
+    private var _binding: FragmentHomeLettersBinding? = null
+    private val binding get() = _binding!! // This property is only valid between onCreateView and onDestroyView.
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentHomeLettersBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,24 +98,24 @@ class LettersHomeFragment : Fragment() {
             }
         })
 
-        btn_start_exercise.setOnClickListener {
+        binding.btnStartExercise.setOnClickListener {
             view.findNavController().navigate(
                 LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript()
             )
         }
 
-        btn_following_letter.setOnClickListener {
+        binding.btnFollowingLetter.setOnClickListener {
             val nextPosition = GeorgianAlphabet.Cursor.positionMoveNext()
             lettersSlidingTabLayout.scrollToPage(nextPosition)
         }
 
-        btn_menu.setOnClickListener { showPopup(it) }
+        binding.btnMenu.setOnClickListener { showPopup(it) }
     }
 
     private fun showNextStartButtons() {
         val hasSentences = GeorgianAlphabet.Cursor.currentLetter.hasSentences
-        btn_following_letter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
-        btn_start_exercise.visibility = if (hasSentences) View.VISIBLE else View.GONE
+        binding.btnFollowingLetter.visibility = if (!hasSentences) View.VISIBLE else View.GONE
+        binding.btnStartExercise.visibility = if (hasSentences) View.VISIBLE else View.GONE
     }
 
     private fun showPopup(v: View) {

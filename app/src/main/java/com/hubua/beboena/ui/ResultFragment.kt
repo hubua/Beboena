@@ -11,8 +11,8 @@ import androidx.navigation.fragment.navArgs
 import com.hubua.beboena.R
 import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
+import com.hubua.beboena.databinding.FragmentResultBinding
 import com.kobakei.ratethisapp.RateThisApp
-import kotlinx.android.synthetic.main.fragment_result.*
 
 
 /**
@@ -28,9 +28,20 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
 
     private var mediaPlayer: MediaPlayer? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_result, container, false)
+    private var _binding: FragmentResultBinding? = null
+    private val binding get() = _binding!! // This property is only valid between onCreateView and onDestroyView.
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentResultBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,46 +56,46 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         RateThisApp.onCreate(context) // Increments launch times -------------------------
 
         var soundResId: Int
-        btn_try_again.visibility = View.GONE // Show when Satisfactory (Good) or Poor ------------------------
-        btn_next_letter.visibility = View.GONE // Show when Excellent or Satisfactory
-        btn_prev_letter.visibility = View.GONE // Show when Poor or Fail
+        binding.btnTryAgain.visibility = View.GONE // Show when Satisfactory (Good) or Poor ------------------------
+        binding.btnNextLetter.visibility = View.GONE // Show when Excellent or Satisfactory
+        binding.btnPrevLetter.visibility = View.GONE // Show when Poor or Fail
 
         when { //-------------------------------------------
             incorrectCount == 0 -> {
-                txt_result.text = resources.getString(R.string.txt_result_excellent)
-                img_smiley.setImageResource(R.drawable.smile_excellent)
+                binding.txtResult.text = resources.getString(R.string.txt_result_excellent)
+                binding.imgSmiley.setImageResource(R.drawable.smile_excellent)
                 soundResId = R.raw.result_excellent_1
 
-                btn_next_letter.visibility = View.VISIBLE
+                binding.btnNextLetter.visibility = View.VISIBLE
             }
             correctCount == 0 -> {
-                txt_result.text = resources.getString(R.string.txt_result_fail)
-                img_smiley.setImageResource(R.drawable.smile_fail)
+                binding.txtResult.text = resources.getString(R.string.txt_result_fail)
+                binding.imgSmiley.setImageResource(R.drawable.smile_fail)
                 soundResId = R.raw.result_fail
 
-                btn_prev_letter.visibility = View.VISIBLE
+                binding.btnPrevLetter.visibility = View.VISIBLE
             }
             correctCount > incorrectCount -> {
-                txt_result.text = resources.getString(R.string.txt_result_satisfactory)
-                img_smiley.setImageResource(R.drawable.smile_satisfactory)
+                binding.txtResult.text = resources.getString(R.string.txt_result_satisfactory)
+                binding.imgSmiley.setImageResource(R.drawable.smile_satisfactory)
                 soundResId = R.raw.result_satisfactory
 
-                btn_try_again.visibility = View.VISIBLE
-                btn_next_letter.visibility = View.VISIBLE
+                binding.btnTryAgain.visibility = View.VISIBLE
+                binding.btnNextLetter.visibility = View.VISIBLE
             }
             else -> { // correctCount <= incorrectCount
-                txt_result.text = resources.getString(R.string.txt_result_poor)
-                img_smiley.setImageResource(R.drawable.smile_poor)
+                binding.txtResult.text = resources.getString(R.string.txt_result_poor)
+                binding.imgSmiley.setImageResource(R.drawable.smile_poor)
                 soundResId = R.raw.result_poor
 
-                btn_try_again.visibility = View.VISIBLE
-                btn_prev_letter.visibility = View.VISIBLE
+                binding.btnTryAgain.visibility = View.VISIBLE
+                binding.btnPrevLetter.visibility = View.VISIBLE
             }
         }
 
-        txt_result_details.text = String.format(resources.getString(R.string.txt_correct_count), correctCount + incorrectCount, correctCount)
+        binding.txtResultDetails.text = String.format(resources.getString(R.string.txt_correct_count), correctCount + incorrectCount, correctCount)
 
-        btn_try_again.setOnClickListener {
+        binding.btnTryAgain.setOnClickListener {
 
             GeorgianAlphabet.Cursor.positionTryAgain()
 
@@ -93,7 +104,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
             )
         }
 
-        btn_next_letter.setOnClickListener {
+        binding.btnNextLetter.setOnClickListener {
 
             RateThisApp.showRateDialogIfNeeded(context, R.style.DialogTheme)
 
@@ -104,7 +115,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
             )
         }
 
-        btn_prev_letter.setOnClickListener {
+        binding.btnPrevLetter.setOnClickListener {
 
             GeorgianAlphabet.Cursor.positionMovePrev()
 
@@ -127,10 +138,5 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         mediaPlayer?.start()
     }
 
-    override fun onDestroy() {
-        mediaPlayer?.release()
-        mediaPlayer = null
-        super.onDestroy()
-    }
 
 }
