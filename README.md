@@ -100,6 +100,10 @@
 - https://developer.android.com/kotlin/style-guide
 - https://antonioleiva.com/listeners-several-functions-kotlin/
 
+## Tools
+
+- Fonts edited with FontForge-2019-08-01-Windows.exe
+
 Publish
 ==============================
 
