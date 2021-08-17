@@ -71,6 +71,11 @@ class TipsDialogFragment : DialogFragment() {
         scrollButton.setOnClickListener {
             webviewScrollable!!.pageDown(false)
         }
+
+        //TODO Hide scroll button when scrolled to end
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        //    webviewScrollable?.setOnScrollChangeListener { view: View, i: Int, i1: Int, i2: Int, i3: Int -> }
+        //}
     }
 }
 

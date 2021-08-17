@@ -7,6 +7,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 import java.io.ByteArrayInputStream
+import java.util.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -89,9 +90,10 @@ class UnitTests {
         val id10 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 8..10 }
         val id20 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 15..20 }
 
-        GeorgianAlphabet.Cursor.setCurrentPosition(id10)
+        GeorgianAlphabet.Cursor.letterJumpTo(id10)
         val letter = GeorgianAlphabet.Cursor.currentLetter
         val try1Sentences = GeorgianAlphabet.Cursor.currentSentences
+        GeorgianAlphabet.Cursor.letterTryAgain()
         val try2Sentences = GeorgianAlphabet.Cursor.currentSentences
 
         assertEquals(try1Sentences.count(), try2Sentences.count())
@@ -114,7 +116,7 @@ class UnitTests {
     }
 
     @Test
-    fun list_words() {
+    fun debug_list_words() {
 
         val lettersList = GeorgianAlphabet.lettersLearnOrdered
 
@@ -133,7 +135,7 @@ class UnitTests {
     }
 
     @Test
-    fun list_resembles() {
+    fun debug_list_resembles() {
 
         val lettersList = GeorgianAlphabet.lettersLearnOrdered
 
@@ -145,6 +147,18 @@ class UnitTests {
             }
         }
 
+    }
+
+    @Test
+    fun debug_random() {
+
+        var n: Int = 0
+        for (i in 0..1000) {
+            val showAllCaps = (kotlin.random.Random.nextInt(5) == 0) // Probability of 20%
+            if (showAllCaps) { n++ }
+
+        }
+        println("${n / 1000.0 * 100} %")
     }
 
     /*

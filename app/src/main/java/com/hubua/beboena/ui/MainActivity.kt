@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
         val strSentences2 = applicationContext.assets.open("sentences2.txt")
         GeorgianAlphabet.initialize(strOga, strResembles, strSentences1, strSentences2);
 
-        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
-        GeorgianAlphabet.Cursor.initialize(sharedPref)
-        AppSettings.initialize(sharedPref)
+        val pref = this.getPreferences(Context.MODE_PRIVATE)
+        GeorgianAlphabet.Cursor.initialize(pref)
+        AppSettings.initialize(pref)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

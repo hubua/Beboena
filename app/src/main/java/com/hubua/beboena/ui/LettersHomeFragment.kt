@@ -19,7 +19,6 @@ import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.customview.LettersPagerAdapter
 import com.hubua.beboena.databinding.FragmentHomeLettersBinding
-import com.hubua.beboena.databinding.FragmentResultBinding
 import com.hubua.beboena.ui.view.SlidingTabLayout
 
 
@@ -85,14 +84,14 @@ class LettersHomeFragment : Fragment() {
 
         lettersSlidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
 
-        lettersSlidingTabLayout.scrollToPage(GeorgianAlphabet.Cursor.getCurrentPosition())
+        lettersSlidingTabLayout.scrollToPage(GeorgianAlphabet.Cursor.getCurrentLetterPosition())
 
         showNextStartButtons()
 
         lettersSlidingTabLayout.setOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
 
-                GeorgianAlphabet.Cursor.setCurrentPosition(position)
+                GeorgianAlphabet.Cursor.letterJumpTo(position)
 
                 showNextStartButtons()
             }
@@ -105,7 +104,7 @@ class LettersHomeFragment : Fragment() {
         }
 
         binding.btnFollowingLetter.setOnClickListener {
-            val nextPosition = GeorgianAlphabet.Cursor.positionMoveNext()
+            val nextPosition = GeorgianAlphabet.Cursor.letterMoveNext()
             lettersSlidingTabLayout.scrollToPage(nextPosition)
         }
 

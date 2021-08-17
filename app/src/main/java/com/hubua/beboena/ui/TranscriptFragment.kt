@@ -7,34 +7,30 @@ import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.hubua.beboena.bl.GeorgianAlphabet
-import com.hubua.beboena.bl.toKhucuri
-import com.hubua.beboena.utils.KeyboardUtils
 import androidx.transition.TransitionManager
 import com.hubua.beboena.R
 import com.hubua.beboena.bl.AppSettings
+import com.hubua.beboena.bl.GeorgianAlphabet
+import com.hubua.beboena.bl.toKhucuri
 import com.hubua.beboena.bl.toReadsAs
-import com.hubua.beboena.databinding.FragmentResultBinding
 import com.hubua.beboena.databinding.FragmentTranscriptBinding
 import com.hubua.beboena.utils.CircularRevealTransition
+import com.hubua.beboena.utils.KeyboardUtils
 import com.hubua.beboena.utils.TextWatcherAdapter
+import kotlin.random.*
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class TranscriptFragment : Fragment() {
 
-    private val currentLetter = GeorgianAlphabet.Cursor.currentLetter
-    private val currentSentences = GeorgianAlphabet.Cursor.currentSentences
-
-    private var currentSentenceIndex = 0
+    private val cursor = GeorgianAlphabet.Cursor
 
     private var transcriptedCorrectCount: Int = 0
     private var transcriptedWrongCount: Int = 0
@@ -62,7 +58,8 @@ class TranscriptFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val spannable = SpannableString(String.format(resources.getString(R.string.txt_learning_letter), currentLetter.mkhedruli))
+
+        val spannable = SpannableString(String.format(resources.getString(R.string.txt_learning_letter), cursor.currentLetter.mkhedruli))
         spannable.setSpan(
             StyleSpan(Typeface.BOLD),
             //ForegroundColorSpan(ContextCompat.getColor(context!!, R.color.colorPrimary)),
@@ -72,9 +69,9 @@ class TranscriptFragment : Fragment() {
         )
         binding.txtCurrentLetter.text = spannable
 
-        binding.pbTranscriptProgress.max = currentSentences.count()
+        binding.pbTranscriptProgress.max = cursor.currentSentences.count()
 
-        binding.edtTranscription.hint = if (currentLetter.letterReadsAsSpells) resources.getString(R.string.txt_translate_sentence_hint) else resources.getString(R.string.txt_translate_sentence_hint_as_reads)
+        binding.edtTranscription.hint = if (cursor.currentLetter.letterReadsAsSpells) resources.getString(R.string.txt_translate_sentence_hint) else resources.getString(R.string.txt_translate_sentence_hint_as_reads)
 
         /*
         // DEBUG Longest Sentence First
@@ -85,7 +82,7 @@ class TranscriptFragment : Fragment() {
 
         binding.edtTranscription.addTextChangedListener(object : TextWatcherAdapter {
             override fun afterTextChanged(s: Editable) {
-                binding.btnCheck.isEnabled = !s.isBlank()
+                binding.btnCheck.isEnabled = s.isNotBlank()
             }
         })
 
@@ -129,7 +126,7 @@ class TranscriptFragment : Fragment() {
 
         KeyboardUtils.hideKeyboard(this.requireActivity())
 
-        val isCorrect = (binding.edtTranscription.text.toString() == currentSentences[currentSentenceIndex].toReadsAs())
+        val isCorrect = (binding.edtTranscription.text.toString() == cursor.currentSentence.toReadsAs())
 
         /*
         // DEBUG Two Letters Are Correct
@@ -159,8 +156,9 @@ class TranscriptFragment : Fragment() {
 
     private fun onBtnContinueClick(view: View) {
 
-        if (currentSentenceIndex + 1 < currentSentences.count()) {
-            currentSentenceIndex++
+        if (cursor.sentenceMoveNext()) {
+            showSentenceToTranscript()
+            switchControlsState(true)
         } else {
             // Navigation is done to action instead of fragment (R.id.frg_result) to allow back-stack directly to the home
             val action = TranscriptFragmentDirections.actionFrgTranscriptToFrgResult(
@@ -169,40 +167,40 @@ class TranscriptFragment : Fragment() {
             )
             view.findNavController().navigate(action)
         }
-
-        showSentenceToTranscript()
-
-        switchControlsState(true)
     }
 
     private fun showSentenceToTranscript() {
-        binding.pbTranscriptProgress.progress = currentSentenceIndex + 1
-        binding.txtTranscriptProgress.text = "${currentSentenceIndex + 1} / ${currentSentences.count()}"
-        binding.txtSentence.text = currentSentences[currentSentenceIndex].toKhucuri(isAllCaps = AppSettings.isAllCaps)
+
+        binding.pbTranscriptProgress.progress = cursor.currentSentencesProgress
+        binding.txtTranscriptProgress.text = "${cursor.currentSentencesProgress} / ${cursor.currentSentencesCount}"
+
+        val doAllCaps = (kotlin.random.Random.nextInt(5) == 0) // Probability of 20%
+        binding.txtSentence.text = cursor.currentSentence.toKhucuri(isAllCaps = AppSettings.isAllCaps || doAllCaps)
     }
 
     private fun switchControlsState(newSentence: Boolean) {
-        // New sentence or Check sentence
+        with (binding) {
+            // New sentence or Check sentence
+            if (newSentence) {
+                edtTranscription.isFocusableInTouchMode = true
+                edtTranscription.isFocusable = true
+                edtTranscription.text.clear()
+                edtTranscription.requestFocus()
 
-        if (newSentence) {
-            binding.edtTranscription.isFocusableInTouchMode = true
-            binding.edtTranscription.isFocusable = true
-            binding.edtTranscription.text.clear()
-            binding.edtTranscription.requestFocus()
+            } else {
+                edtTranscription.isFocusableInTouchMode = false
+                edtTranscription.isFocusable = false
+            }
 
-        } else {
-            binding.edtTranscription.isFocusableInTouchMode = false
-            binding.edtTranscription.isFocusable = false
+            if (newSentence) {
+                txtBannerCorrect.visibility = View.GONE
+                txtBannerWrong.visibility = View.GONE
+                btnCheck.isEnabled = false
+            }
+
+            btnCheck.visibility = if (newSentence) View.VISIBLE else View.GONE
+            btnContinue.visibility = if (newSentence) View.GONE else View.VISIBLE
         }
-
-        if (newSentence) {
-            binding.txtBannerCorrect.visibility = View.GONE
-            binding.txtBannerWrong.visibility = View.GONE
-            binding.btnCheck.isEnabled = false
-        }
-
-        binding.btnCheck.visibility = if (newSentence) View.VISIBLE else View.GONE
-        binding.btnContinue.visibility = if (newSentence) View.GONE else View.VISIBLE
     }
 
 }

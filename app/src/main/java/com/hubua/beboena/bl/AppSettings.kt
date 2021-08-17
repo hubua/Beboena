@@ -41,8 +41,8 @@ object AppSettings {
             setSetting(ALL_CAPS_KEY, value)
         }
 
-    fun initialize(sharedPref: SharedPreferences) {
-        _pref = sharedPref
+    fun initialize(pref: SharedPreferences) {
+        _pref = pref
     }
 
 }

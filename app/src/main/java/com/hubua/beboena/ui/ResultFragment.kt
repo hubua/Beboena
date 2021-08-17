@@ -97,7 +97,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
 
         binding.btnTryAgain.setOnClickListener {
 
-            GeorgianAlphabet.Cursor.positionTryAgain()
+            GeorgianAlphabet.Cursor.letterTryAgain()
 
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
@@ -108,7 +108,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
 
             RateThisApp.showRateDialogIfNeeded(context, R.style.DialogTheme)
 
-            GeorgianAlphabet.Cursor.positionMoveNext()
+            GeorgianAlphabet.Cursor.letterMoveNext()
 
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
@@ -117,7 +117,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
 
         binding.btnPrevLetter.setOnClickListener {
 
-            GeorgianAlphabet.Cursor.positionMovePrev()
+            GeorgianAlphabet.Cursor.letterMovePrev()
 
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()

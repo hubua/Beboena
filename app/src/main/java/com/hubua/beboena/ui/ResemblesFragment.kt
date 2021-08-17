@@ -1,28 +1,13 @@
 package com.hubua.beboena.ui
 
-import android.graphics.Typeface
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.text.Editable
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.StyleSpan
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.navigation.findNavController
-import com.hubua.beboena.bl.GeorgianAlphabet
-import com.hubua.beboena.bl.toKhucuri
-import com.hubua.beboena.utils.KeyboardUtils
-import androidx.transition.TransitionManager
+import androidx.fragment.app.Fragment
 import com.hubua.beboena.R
-import com.hubua.beboena.bl.AppSettings
-import com.hubua.beboena.bl.toReadsAs
-import com.hubua.beboena.utils.CircularRevealTransition
-import com.hubua.beboena.utils.TextWatcherAdapter
+import com.hubua.beboena.bl.GeorgianAlphabet
 
 /**
  * A simple [Fragment] subclass.
@@ -30,7 +15,6 @@ import com.hubua.beboena.utils.TextWatcherAdapter
 class ResemblesFragment : Fragment() {
 
     private val currentLetter = GeorgianAlphabet.Cursor.currentLetter
-
 
     private var mediaPlayerCorrect: MediaPlayer? = null
     private var mediaPlayerWrong: MediaPlayer? = null

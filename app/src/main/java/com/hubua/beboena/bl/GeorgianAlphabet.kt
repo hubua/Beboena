@@ -5,6 +5,7 @@ import com.opencsv.CSVParserBuilder
 import com.opencsv.CSVReaderBuilder
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.nio.charset.StandardCharsets
 import java.util.*
 
 
@@ -18,12 +19,13 @@ object GeorgianAlphabet {
 
     fun initialize(strOga: InputStream, strResembles: InputStream, vararg strSentences: InputStream) {
 
-        val isr = InputStreamReader(strOga)
+        val isr = InputStreamReader(strOga, StandardCharsets.UTF_8)
         val tsvParser = CSVParserBuilder().withSeparator('\t').build()
         val tsvReader = CSVReaderBuilder(isr).withCSVParser(tsvParser).build()
-        val ogaList = tsvReader.readAll().drop(n = 1)
+        val ogaList = tsvReader.readAll().drop(1)
 
-        val resemblesList = strResembles.bufferedReader().use { it.readText() }.split(' ')
+        val resemblesList = strResembles.bufferedReader().use { it.readText() }
+            .split(' ')
 
         val sentencesList = strSentences.flatMap { it.bufferedReader().readLines() }
             .asSequence()
@@ -36,9 +38,11 @@ object GeorgianAlphabet {
 
         /**
          * OGA.csv format
-         * [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent
-         * [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
+         * [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]LatinEquivalent [5]NumberEquivalent
+         * [6]LetterName [7]ReadAs [8]LearnOrder [9]LearnOrder2
          */
+
+        val ORDER_COL_ID = 0
         val MODERN_SPELLING_COL_ID = 1
         val LEARN_ORDER_COL_ID = 8
 
@@ -60,7 +64,7 @@ object GeorgianAlphabet {
 
         for (row in ogaList) {
             val letter = GeorgianLetter(
-                order = row[0].toInt(),
+                order = row[ORDER_COL_ID].toInt(),
                 mkhedruli = row[MODERN_SPELLING_COL_ID].toChar(),
                 asomtavruli = row[2].toChar(),
                 nuskhuri = row[3].toChar(),
@@ -68,7 +72,7 @@ object GeorgianAlphabet {
                 name = row[6],
                 reads = row[7],
                 learnOrder = row[LEARN_ORDER_COL_ID].toInt(),
-                resembles = resemblesList.filter { it.contains(row[1].toChar()) },
+                resembles = resemblesList.filter { it.contains(row[MODERN_SPELLING_COL_ID].toChar()) },
                 sentences = mapLetterSentences[row[MODERN_SPELLING_COL_ID].toChar()]!!.toList()
             )
             _letters.add(letter)
@@ -85,52 +89,80 @@ object GeorgianAlphabet {
 
         private lateinit var _pref: SharedPreferences
 
-        private var _currentPosition = 0
-
         private val _random = Random()
 
-        val currentLetter get() = lettersLearnOrdered[_currentPosition]
+        private var _currentLetterPosition = 0
 
-        val currentSentences get() = currentLetter.sentences.shuffled(_random).take(MAX_SENTENCES).sortedBy { it.length } // Beware reshuffling on each call
+        private var _currentSentencePosition = 0
+
+        private var _currentSentences : List<String> = emptyList()
+
+        val currentLetter get() = lettersLearnOrdered[_currentLetterPosition]
+
+        val currentSentence get() = _currentSentences[_currentSentencePosition]
+
+        val currentSentences get() =_currentSentences
+
+        val currentSentencesProgress get() = _currentSentencePosition + 1
+        val currentSentencesCount get() =_currentSentences.count()
 
         val currentResembles get () = currentLetter.resembles.shuffled(_random).take(MAX_RESEMBLES)
 
-        fun initialize(sharedPref: SharedPreferences) {
-            _pref = sharedPref
+        fun initialize(pref: SharedPreferences) {
+            _pref = pref
             val savedPosition = _pref.getInt(SAVED_POSITION_KEY, 0)
-            _currentPosition = savedPosition
+
+            setCurrentLetterPosition(savedPosition, false)
         }
 
-        fun getCurrentPosition(): Int {
-            return _currentPosition
+        fun getCurrentLetterPosition(): Int {
+            return _currentLetterPosition
         }
 
-        fun setCurrentPosition(position: Int): Int {
+        private fun setCurrentLetterPosition(position: Int, updatePref: Boolean = true) {
 
-            _currentPosition = if (position > 0 && position < lettersLearnOrdered.count()) position else 0
+            _currentLetterPosition = if (position > 0 && position < lettersLearnOrdered.count()) position else 0
 
-            if (::_pref.isInitialized) {
-                with(_pref.edit()) {
-                    putInt(SAVED_POSITION_KEY, _currentPosition)
-                    apply()
+            _currentSentences = currentLetter.sentences.shuffled(_random).take(MAX_SENTENCES).sortedBy { it.length }
+            _currentSentencePosition = 0
+
+            if (updatePref) {
+                if (::_pref.isInitialized) {
+                    with(_pref.edit()) {
+                        putInt(SAVED_POSITION_KEY, _currentLetterPosition)
+                        apply()
+                    }
                 }
             }
-
-            return _currentPosition
         }
 
-        fun positionTryAgain(): Int {
-            return _currentPosition
+        fun letterJumpTo(position: Int): Int {
+            setCurrentLetterPosition(position)
+            return _currentLetterPosition
         }
 
-        fun positionMoveNext(): Int {
-            setCurrentPosition(_currentPosition + 1)
-            return _currentPosition
+        fun letterTryAgain(): Int {
+            setCurrentLetterPosition(_currentLetterPosition)
+            return _currentLetterPosition
         }
 
-        fun positionMovePrev(): Int {
-            setCurrentPosition(_currentPosition - 1)
-            return _currentPosition
+        fun letterMoveNext(): Int {
+            setCurrentLetterPosition(_currentLetterPosition + 1)
+            return _currentLetterPosition
+        }
+
+        fun letterMovePrev(): Int {
+            setCurrentLetterPosition(_currentLetterPosition - 1)
+            return _currentLetterPosition
+        }
+
+        fun sentenceMoveNext(): Boolean {
+            if (_currentSentencePosition + 1 < _currentSentences.count()) {
+                _currentSentencePosition++
+                return true
+            } else {
+                return false
+            }
         }
 
     }
