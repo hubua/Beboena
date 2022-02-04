@@ -22,8 +22,6 @@ import com.hubua.beboena.databinding.FragmentTranscriptBinding
 import com.hubua.beboena.utils.CircularRevealTransition
 import com.hubua.beboena.utils.KeyboardUtils
 import com.hubua.beboena.utils.TextWatcherAdapter
-import kotlin.random.*
-import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -174,8 +172,9 @@ class TranscriptFragment : Fragment() {
         binding.pbTranscriptProgress.progress = cursor.currentSentencesProgress
         binding.txtTranscriptProgress.text = "${cursor.currentSentencesProgress} / ${cursor.currentSentencesCount}"
 
-        val doAllCaps = (kotlin.random.Random.nextInt(5) == 0) // Probability of 20%
-        binding.txtSentence.text = cursor.currentSentence.toKhucuri(isAllCaps = AppSettings.isAllCaps || doAllCaps)
+        val alwaysAllCaps = AppSettings.isAllCaps
+        val nowAllCaps = (kotlin.random.Random.nextInt(5) == 0) // Probability of 20%
+        binding.txtSentence.text = cursor.currentSentence.toKhucuri(alwaysAllCaps || nowAllCaps)
     }
 
     private fun switchControlsState(newSentence: Boolean) {

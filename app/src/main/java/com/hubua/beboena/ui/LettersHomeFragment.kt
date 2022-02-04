@@ -97,15 +97,15 @@ class LettersHomeFragment : Fragment() {
             }
         })
 
+        binding.btnFollowingLetter.setOnClickListener {
+            val nextPosition = GeorgianAlphabet.Cursor.letterMoveNext()
+            lettersSlidingTabLayout.scrollToPage(nextPosition)
+        }
+
         binding.btnStartExercise.setOnClickListener {
             view.findNavController().navigate(
                 LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript()
             )
-        }
-
-        binding.btnFollowingLetter.setOnClickListener {
-            val nextPosition = GeorgianAlphabet.Cursor.letterMoveNext()
-            lettersSlidingTabLayout.scrollToPage(nextPosition)
         }
 
         binding.btnMenu.setOnClickListener { showPopup(it) }
@@ -164,8 +164,6 @@ class LettersHomeFragment : Fragment() {
             else -> false
         }
     }
-
-
 
 
 //region OnFragmentInteractionListener pattern

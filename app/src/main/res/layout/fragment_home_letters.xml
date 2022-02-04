@@ -20,7 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:backgroundTint="@color/colorAccent"
-            android:src="@drawable/ic_more_vert_24px" />
+            android:src="@drawable/ic_more_vert_24px"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/txt_letters_hint"
@@ -41,7 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:background="@color/colorWindowBackground" />
+        android:background="@color/colorWindowBackground"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btn_following_letter"
