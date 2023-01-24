@@ -116,7 +116,7 @@ class UnitTests {
     }
 
     @Test
-    fun debug_list_words() {
+    fun debug_list_sentences() {
 
         val lettersList = GeorgianAlphabet.lettersLearnOrdered
 

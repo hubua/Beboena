@@ -22,6 +22,8 @@ class ResemblesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_resembles, container, false)
+
+        // ჯერ მსგავსი ასოები, მერე ის რომლებშიც იყო შეცდომა დავალებისას, მერე სხვა დანარჩენი
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
