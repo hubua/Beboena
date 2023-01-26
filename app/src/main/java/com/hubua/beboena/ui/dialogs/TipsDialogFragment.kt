@@ -1,4 +1,4 @@
-package com.hubua.beboena.ui
+package com.hubua.beboena.ui.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -34,7 +34,7 @@ class TipsDialogFragment : DialogFragment() {
 
         webviewTips.webViewClient = WebViewClient()
 
-        webviewTips.loadUrl("file:///android_asset/html/tips.html");
+        webviewTips.loadUrl("file:///android_asset/html/tips.html")
         webviewScrollable = webviewTips
     }
 

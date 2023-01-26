@@ -55,7 +55,7 @@ object GeorgianAlphabet {
             for (currentLetter in sentence) {
                 val currentLetterOrder = orderedLetters[currentLetter] ?: 0
                 val maxLetterOrder = orderedLetters[maxLetter]
-                maxLetter = if (currentLetterOrder > maxLetterOrder ?: 0) currentLetter else maxLetter
+                maxLetter = if (currentLetterOrder > (maxLetterOrder ?: 0)) currentLetter else maxLetter
             }
             mapLetterSentences[maxLetter]!!.add(sentence)
         }
@@ -199,6 +199,17 @@ fun String.toReadsAs(): String {
     }
 
     return readAsText
+}
+
+fun String.toSpaceNormalized(): String {
+
+    val originalText = this
+
+    val normalizedText = originalText
+        .trim()
+        .replace("\\s+".toRegex(), " ")
+
+    return normalizedText
 }
 
 fun String.toChar(): Char {

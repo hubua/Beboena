@@ -1,8 +1,7 @@
-package com.hubua.beboena.ui
+package com.hubua.beboena.ui.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
 import android.text.Html

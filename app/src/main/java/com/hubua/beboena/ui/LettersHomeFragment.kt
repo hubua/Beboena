@@ -19,6 +19,9 @@ import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.customview.LettersPagerAdapter
 import com.hubua.beboena.databinding.FragmentHomeLettersBinding
+import com.hubua.beboena.ui.dialogs.ContactDialogFragment
+import com.hubua.beboena.ui.dialogs.DefinitionsDialogFragment
+import com.hubua.beboena.ui.dialogs.TipsDialogFragment
 import com.hubua.beboena.ui.view.SlidingTabLayout
 
 

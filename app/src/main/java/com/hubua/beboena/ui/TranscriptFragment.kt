@@ -14,10 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.transition.TransitionManager
 import com.hubua.beboena.R
-import com.hubua.beboena.bl.AppSettings
-import com.hubua.beboena.bl.GeorgianAlphabet
-import com.hubua.beboena.bl.toKhucuri
-import com.hubua.beboena.bl.toReadsAs
+import com.hubua.beboena.bl.*
 import com.hubua.beboena.databinding.FragmentTranscriptBinding
 import com.hubua.beboena.utils.CircularRevealTransition
 import com.hubua.beboena.utils.KeyboardUtils
@@ -124,7 +121,7 @@ class TranscriptFragment : Fragment() {
 
         KeyboardUtils.hideKeyboard(this.requireActivity())
 
-        val isCorrect = (binding.edtTranscription.text.toString() == cursor.currentSentence.toReadsAs())
+        val isCorrect = (binding.edtTranscription.text.toString().toSpaceNormalized() == cursor.currentSentence.toReadsAs())
 
         /*
         // DEBUG Two Letters Are Correct

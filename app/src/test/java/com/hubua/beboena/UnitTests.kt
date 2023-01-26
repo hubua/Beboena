@@ -2,12 +2,12 @@ package com.hubua.beboena
 
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.bl.toKhucuri
+import com.hubua.beboena.bl.toReadsAs
+import com.hubua.beboena.bl.toSpaceNormalized
 import org.junit.Test
-
 import org.junit.Assert.*
 import org.junit.Before
 import java.io.ByteArrayInputStream
-import java.util.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -67,11 +67,15 @@ class UnitTests {
     }
 
     @Test
-    fun translation_isCorrect() {
+    fun conversion_isCorrect() {
 
         assertEquals("Ⴀⴈ ⴈⴀ 123 n", "აი ია 123 n".toKhucuri())
 
         assertEquals("ႠႨ ႨႠ 123 n", "აი ია 123 n".toKhucuri(true))
+
+        assertEquals("ჰოი ეი ა 123 n", "ჵ ჱ ა 123 n".toReadsAs())
+
+        assertEquals("ა ბ გ დ", " ა ბ  გ   დ     ".toSpaceNormalized())
     }
 
     @Test
@@ -88,7 +92,7 @@ class UnitTests {
     fun sentences_shuffled() {
 
         val id10 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 8..10 }
-        val id20 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 15..20 }
+        //val id20 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 15..20 }
 
         GeorgianAlphabet.Cursor.letterJumpTo(id10)
         val letter = GeorgianAlphabet.Cursor.currentLetter
@@ -152,7 +156,7 @@ class UnitTests {
     @Test
     fun debug_random() {
 
-        var n: Int = 0
+        var n = 0
         for (i in 0..1000) {
             val showAllCaps = (kotlin.random.Random.nextInt(5) == 0) // Probability of 20%
             if (showAllCaps) { n++ }
