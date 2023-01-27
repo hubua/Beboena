@@ -107,7 +107,8 @@ class LettersHomeFragment : Fragment() {
 
         binding.btnStartExercise.setOnClickListener {
             view.findNavController().navigate(
-                LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript()
+                //LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript()
+            LettersHomeFragmentDirections.actionFrgHomeLettersToFrgResembles()
             )
         }
 

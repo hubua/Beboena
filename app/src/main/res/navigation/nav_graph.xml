@@ -15,6 +15,23 @@
             app:destination="@id/frg_transcript"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_frg_home_letters_to_frg_resembles"
+            app:destination="@id/frg_resembles"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/frg_resembles"
+        android:name="com.hubua.beboena.ui.ResemblesFragment"
+        android:label="Resembles Fragment"
+        tools:layout="@layout/fragment_resembles">
+        <action
+            android:id="@+id/action_frg_resembles_to_frg_transcript"
+            app:destination="@id/frg_transcript"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
@@ -49,10 +66,6 @@
             app:popUpToInclusive="false" />
     </fragment>
 
-    <fragment
-        android:id="@+id/frg_resembles"
-        android:name="com.hubua.beboena.ui.ResemblesFragment"
-        android:label="Resembles Fragment"
-        tools:layout="@layout/fragment_resembles"/>
+
 
 </navigation>
