@@ -29,8 +29,14 @@
     </style>
 
     <style name="RoundedButton" parent="@android:style/Widget.Button">
-        <item name="android:background">@drawable/btn_background_rounded</item>
-        <item name="android:textColor">@drawable/btn_text_color</item>
+        <item name="android:background">@drawable/btn_rounded_background</item>
+        <item name="android:textColor">@drawable/btn_rounded_text_color</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ResemblesButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/btn_resembles_background</item>
         <item name="android:padding">16dp</item>
         <item name="android:textSize">20sp</item>
     </style>

@@ -30,7 +30,7 @@
             android:max="10"
             android:padding="2dp"
             android:progress="3"
-            android:progressDrawable="@drawable/progressbar_background_rounded"
+            android:progressDrawable="@drawable/progressbar_rounded_background"
             android:visibility="visible" />
 
         <TextView
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
-            android:background="@drawable/edt_background_rounded"
+            android:background="@drawable/edt_rounded_background"
             android:gravity="top"
             android:hint="@string/txt_translate_sentence_hint"
             android:inputType="textVisiblePassword|textMultiLine"
