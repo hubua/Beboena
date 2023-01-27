@@ -16,10 +16,10 @@ object KeyboardUtils {
         }
     }
 
-    fun showKeyboard(activity: Activity) {
+    /*fun showKeyboard(activity: Activity) {
         val inputMethodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-    }
+    }*/
 
     fun addKeyboardVisibilityListener(rootLayout: View, onKeyboardVisibilityListener: OnKeyboardVisibilityListener) {
         rootLayout.viewTreeObserver.addOnGlobalLayoutListener {
