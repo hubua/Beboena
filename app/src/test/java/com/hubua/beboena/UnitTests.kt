@@ -19,7 +19,7 @@ class UnitTests {
     @Before
     fun setup() {
         val strOga = this.javaClass.classLoader!!.getResourceAsStream("assets/oga.tsv")
-        val strResembles = this.javaClass.classLoader!!.getResourceAsStream("assets/resembles.ssv")
+        val strResembles = this.javaClass.classLoader!!.getResourceAsStream("assets/resembles.txt")
         val strSentences1 = this.javaClass.classLoader!!.getResourceAsStream("assets/sentences1.txt")
         val strSentences2 = this.javaClass.classLoader!!.getResourceAsStream("assets/sentences2.txt")
         GeorgianAlphabet.initialize(strOga, strResembles, strSentences1, strSentences2)
@@ -42,7 +42,7 @@ class UnitTests {
         val strSentencesTest = ByteArrayInputStream(sentencesTest.toByteArray(Charsets.UTF_8))
 
         val strOga = this.javaClass.classLoader!!.getResourceAsStream("assets/oga.tsv")
-        val strResembles = this.javaClass.classLoader!!.getResourceAsStream("assets/resembles.ssv")
+        val strResembles = this.javaClass.classLoader!!.getResourceAsStream("assets/resembles.txt")
 
         GeorgianAlphabet.initialize(strOga, strResembles, strSentencesTest)
 
@@ -142,12 +142,18 @@ class UnitTests {
     fun debug_list_resembles() {
 
         val lettersList = GeorgianAlphabet.lettersLearnOrdered
+        val lettersMap = GeorgianAlphabet.lettersMap
 
-        println("Loaded sentences count:")
         for (letter in lettersList) {
-            println("${letter.letterModernSpelling} (${letter.resembles.count()})")
-            for (resemble in letter.resembles) {
-                println("\t${resemble}")
+            if (letter.resembles.count() > 0) {
+
+                println("${letter.letterModernSpelling} (${letter.resembles.count()})")
+
+                for (resemble in letter.resembles) {
+                    print("  ${letter.mkhedruli} ${resemble} ")
+                    print(" - ")
+                    println("${letter.nuskhuri} ${lettersMap[resemble]!!.nuskhuri} ")
+                }
             }
         }
 

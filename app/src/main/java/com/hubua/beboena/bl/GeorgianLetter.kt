@@ -9,7 +9,7 @@ data class GeorgianLetter(
     val name: String,
     val reads: String,
     val learnOrder: Int,
-    val resembles: List<String>,
+    val resembles: List<Char>,
     val sentences: List<String>) {
 
     val letterModernSpelling get() = mkhedruli

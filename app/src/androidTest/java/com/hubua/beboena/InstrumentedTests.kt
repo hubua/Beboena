@@ -41,7 +41,7 @@ class InstrumentedTests {
     fun file_read() {
 
         val strOga = appContext.assets.open("oga.tsv")
-        val strResembles = appContext.assets.open("resembles.ssv")
+        val strResembles = appContext.assets.open("resembles.txt")
         val strSentences = appContext.assets.open("sentences.txt")
         GeorgianAlphabet.initialize(strOga, strResembles, strSentences);
 

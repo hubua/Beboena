@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity(), LettersHomeFragment.OnFragmentInteract
     override fun onCreate(savedInstanceState: Bundle?) {
         // GeorgianAlphabet initialization must happen first
         val strOga = applicationContext.assets.open("oga.tsv")
-        val strResembles = applicationContext.assets.open("resembles.ssv")
+        val strResembles = applicationContext.assets.open("resembles.txt")
         val strSentences1 = applicationContext.assets.open("sentences1.txt")
         val strSentences2 = applicationContext.assets.open("sentences2.txt")
-        GeorgianAlphabet.initialize(strOga, strResembles, strSentences1, strSentences2);
+        GeorgianAlphabet.initialize(strOga, strResembles, strSentences1, strSentences2)
 
         val pref = this.getPreferences(Context.MODE_PRIVATE)
         GeorgianAlphabet.Cursor.initialize(pref)

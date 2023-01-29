@@ -24,8 +24,7 @@ object GeorgianAlphabet {
         val tsvReader = CSVReaderBuilder(isr).withCSVParser(tsvParser).build()
         val ogaList = tsvReader.readAll().drop(1)
 
-        val resemblesList = strResembles.bufferedReader().use { it.readText() }
-            .split(' ')
+        val resemblesList = strResembles.bufferedReader().use { it.readLines() }
 
         val sentencesList = strSentences.flatMap { it.bufferedReader().readLines() }
             .asSequence()
@@ -43,10 +42,10 @@ object GeorgianAlphabet {
          */
 
         val ORDER_COL_ID = 0
-        val MODERN_SPELLING_COL_ID = 1
+        val MODERN_SPELLING_COL_ID_KEY = 1
         val LEARN_ORDER_COL_ID = 8
 
-        val orderedLetters = ogaList.associateBy({ it[MODERN_SPELLING_COL_ID].toChar() }, { it[LEARN_ORDER_COL_ID].toInt() })
+        val orderedLetters = ogaList.associateBy({ it[MODERN_SPELLING_COL_ID_KEY].toChar() }, { it[LEARN_ORDER_COL_ID].toInt() })
 
         val mapLetterSentences: MutableMap<Char, MutableList<String>> = mutableMapOf()
         orderedLetters.forEach { mapLetterSentences[it.key] = mutableListOf() }
@@ -63,17 +62,22 @@ object GeorgianAlphabet {
         _letters.clear()
 
         for (row in ogaList) {
+            val mkhedruliKeyChar = row[MODERN_SPELLING_COL_ID_KEY].toChar()
             val letter = GeorgianLetter(
                 order = row[ORDER_COL_ID].toInt(),
-                mkhedruli = row[MODERN_SPELLING_COL_ID].toChar(),
+                mkhedruli = mkhedruliKeyChar,
                 asomtavruli = row[2].toChar(),
                 nuskhuri = row[3].toChar(),
                 number = row[5].trim(),
                 name = row[6],
                 reads = row[7],
                 learnOrder = row[LEARN_ORDER_COL_ID].toInt(),
-                resembles = resemblesList.filter { it.contains(row[MODERN_SPELLING_COL_ID].toChar()) },
-                sentences = mapLetterSentences[row[MODERN_SPELLING_COL_ID].toChar()]!!.toList()
+                resembles = resemblesList
+                    .filter { it.contains(mkhedruliKeyChar) }
+                    .map { it.replace(mkhedruliKeyChar.toString(), "").single() }
+                    .distinct()
+                    .sorted(),
+                sentences = mapLetterSentences[mkhedruliKeyChar]!!.toList()
             )
             _letters.add(letter)
         }
@@ -97,6 +101,8 @@ object GeorgianAlphabet {
 
         private var _currentSentences : List<String> = emptyList()
 
+        private var _currentResembles : List<String> = emptyList()
+
         val currentLetter get() = lettersLearnOrdered[_currentLetterPosition]
 
         val currentSentence get() = _currentSentences[_currentSentencePosition]
@@ -106,7 +112,7 @@ object GeorgianAlphabet {
         val currentSentencesProgress get() = _currentSentencePosition + 1
         val currentSentencesCount get() =_currentSentences.count()
 
-        val currentResembles get () = currentLetter.resembles.shuffled(_random).take(MAX_RESEMBLES)
+        val currentResembles get () = _currentResembles
 
         fun initialize(pref: SharedPreferences) {
             _pref = pref
@@ -125,6 +131,8 @@ object GeorgianAlphabet {
 
             _currentSentences = currentLetter.sentences.shuffled(_random).take(MAX_SENTENCES).sortedBy { it.length }
             _currentSentencePosition = 0
+
+            //TODO _currentResembles = //TODO ჯერ მსგავსი ასოები, მერე ის რომლებშიც იყო შეცდომა დავალებისას, მერე სხვა დანარჩენი
 
             if (updatePref) {
                 if (::_pref.isInitialized) {

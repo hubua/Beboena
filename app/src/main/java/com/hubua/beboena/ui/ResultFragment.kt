@@ -37,7 +37,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
+        super.onDestroyView() //TODO Move to last line
         _binding = null
 
         mediaPlayer?.release()
@@ -55,7 +55,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         RateThisApp.init(config)
         RateThisApp.onCreate(context) // Increments launch times -------------------------
 
-        var soundResId: Int
+        val soundResId: Int
         binding.btnTryAgain.visibility = View.GONE // Show when Satisfactory (Good) or Poor ------------------------
         binding.btnNextLetter.visibility = View.GONE // Show when Excellent or Satisfactory
         binding.btnPrevLetter.visibility = View.GONE // Show when Poor or Fail

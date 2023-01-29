@@ -141,6 +141,7 @@ Features todo
 - წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
 - App content target audience children and families
 - ტექსტები ნუსხურად როგორც პრაქტიკული საკითხავი
+- App Quality Insights Firebase https://console.firebase.google.com/project/beboena-85f4d/overview?utm_source=studio
 
 Known issues
 ------------------------------
