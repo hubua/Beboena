@@ -8,6 +8,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 import java.io.ByteArrayInputStream
+import java.io.InputStream
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -26,7 +27,7 @@ class UnitTests {
     }
 
     @Test
-    fun filter_isCorrect() {
+    fun `sentences assigned to letters`() {
 
         val sentencesTest =
             "ა\n" +
@@ -39,10 +40,10 @@ class UnitTests {
             "\t\tე\n" +
             "(repeat)\n" +
             "ა"
-        val strSentencesTest = ByteArrayInputStream(sentencesTest.toByteArray(Charsets.UTF_8))
 
+        val strSentencesTest = ByteArrayInputStream(sentencesTest.toByteArray(Charsets.UTF_8))
         val strOga = this.javaClass.classLoader!!.getResourceAsStream("assets/oga.tsv")
-        val strResembles = this.javaClass.classLoader!!.getResourceAsStream("assets/resembles.txt")
+        val strResembles = InputStream.nullInputStream()
 
         GeorgianAlphabet.initialize(strOga, strResembles, strSentencesTest)
 
@@ -53,7 +54,7 @@ class UnitTests {
     }
 
     @Test
-    fun initialize_isCorrect() {
+    fun `letters map loaded`() {
 
         val lettersMap = GeorgianAlphabet.lettersMap
 
@@ -67,19 +68,7 @@ class UnitTests {
     }
 
     @Test
-    fun conversion_isCorrect() {
-
-        assertEquals("Ⴀⴈ ⴈⴀ 123 n", "აი ია 123 n".toKhucuri())
-
-        assertEquals("ႠႨ ႨႠ 123 n", "აი ია 123 n".toKhucuri(true))
-
-        assertEquals("ჰოი ეი ა 123 n", "ჵ ჱ ა 123 n".toReadsAs())
-
-        assertEquals("ა ბ გ დ", " ა ბ  გ   დ     ".toSpaceNormalized())
-    }
-
-    @Test
-    fun words_loaded() {
+    fun `sentences loaded`() {
 
         val lettersMap = GeorgianAlphabet.lettersMap
 
@@ -89,12 +78,12 @@ class UnitTests {
     }
 
     @Test
-    fun sentences_shuffled() {
+    fun `sentences shuffled`() {
 
-        val id10 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 8..10 }
+        val posOf10 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 8..10 }
         //val id20 = GeorgianAlphabet.lettersLearnOrdered.indexOfFirst { it.sentences.count() in 15..20 }
 
-        GeorgianAlphabet.Cursor.letterJumpTo(id10)
+        GeorgianAlphabet.Cursor.letterJumpTo(posOf10)
         val letter = GeorgianAlphabet.Cursor.currentLetter
         val try1Sentences = GeorgianAlphabet.Cursor.currentSentences
         GeorgianAlphabet.Cursor.letterTryAgain()
@@ -117,6 +106,48 @@ class UnitTests {
         println("Different sentences: $diffCount")
         assertTrue(diffCount > 0)
 
+    }
+
+    @Test
+    fun `pairs assigned to letters`() {
+
+        val MAX_PAIRS = 5
+
+        for ((index, value) in GeorgianAlphabet.lettersLearnOrdered.withIndex())
+        {
+            GeorgianAlphabet.Cursor.letterJumpTo(index)
+
+            val letter = GeorgianAlphabet.Cursor.currentLetter
+            val pairs = GeorgianAlphabet.Cursor.currentPairs
+
+            val learnedResembles = letter.resembles.filter { GeorgianAlphabet.lettersMap[it]!!.learnOrder <= letter.learnOrder }
+
+            if (letter.learnOrder > MAX_PAIRS) {
+                assertEquals(MAX_PAIRS, pairs.count())
+                assertTrue(pairs.containsAll(learnedResembles))
+            }
+            else {
+                assertEquals(0, pairs.count())
+            }
+
+            println("${value.letterModernSpelling} " +
+                    "- ${String(pairs.sortedBy { GeorgianAlphabet.lettersMap[it]!!.learnOrder }.toCharArray())} " +
+                    "- ${String(value.resembles.toCharArray())} " +
+                    "- ${String(learnedResembles.toCharArray())}")
+
+        }
+    }
+
+    @Test
+    fun `conversion is correct`() {
+
+        assertEquals("Ⴀⴈ ⴈⴀ 123 n", "აი ია 123 n".toKhucuri())
+
+        assertEquals("ႠႨ ႨႠ 123 n", "აი ია 123 n".toKhucuri(true))
+
+        assertEquals("ჰოი ეი ა 123 n", "ჵ ჱ ა 123 n".toReadsAs())
+
+        assertEquals("ა ბ გ დ", " ა ბ  გ   დ     ".toSpaceNormalized())
     }
 
     @Test

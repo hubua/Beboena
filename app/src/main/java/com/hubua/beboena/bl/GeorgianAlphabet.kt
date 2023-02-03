@@ -87,7 +87,7 @@ object GeorgianAlphabet {
     object Cursor {
 
         private const val MAX_SENTENCES = 10
-        private const val MAX_RESEMBLES = 3
+        private const val MAX_PAIRS = 5
 
         private const val SAVED_POSITION_KEY = "SAVED_POSITION_KEY" // If renaming mind the backward compatibility with progress made by active users
 
@@ -95,24 +95,24 @@ object GeorgianAlphabet {
 
         private val _random = Random()
 
-        private var _currentLetterPosition = 0
+        private var _currentLetterPositionIndex = 0 // First letter at 0, unlike the Letter Order which starts with 1
 
-        private var _currentSentencePosition = 0
+        private var _currentSentencePositionIndex = 0 // First sentence at 0
 
         private var _currentSentences : List<String> = emptyList()
 
-        private var _currentResembles : List<String> = emptyList()
+        private var _currentPairs : List<Char> = emptyList()
 
-        val currentLetter get() = lettersLearnOrdered[_currentLetterPosition]
+        val currentLetter get() = lettersLearnOrdered[_currentLetterPositionIndex]
 
-        val currentSentence get() = _currentSentences[_currentSentencePosition]
+        val currentSentence get() = _currentSentences[_currentSentencePositionIndex]
 
         val currentSentences get() =_currentSentences
 
-        val currentSentencesProgress get() = _currentSentencePosition + 1
+        val currentSentencesProgress get() = _currentSentencePositionIndex + 1
         val currentSentencesCount get() =_currentSentences.count()
 
-        val currentResembles get () = _currentResembles
+        val currentPairs get () = _currentPairs
 
         fun initialize(pref: SharedPreferences) {
             _pref = pref
@@ -122,22 +122,39 @@ object GeorgianAlphabet {
         }
 
         fun getCurrentLetterPosition(): Int {
-            return _currentLetterPosition
+            return _currentLetterPositionIndex
         }
 
-        private fun setCurrentLetterPosition(position: Int, updatePref: Boolean = true) {
+        private fun setCurrentLetterPosition(positionIndex: Int, updatePref: Boolean = true) {
 
-            _currentLetterPosition = if (position > 0 && position < lettersLearnOrdered.count()) position else 0
+            _currentLetterPositionIndex = if (positionIndex > 0 && positionIndex < lettersLearnOrdered.count()) positionIndex else 0
 
             _currentSentences = currentLetter.sentences.shuffled(_random).take(MAX_SENTENCES).sortedBy { it.length }
-            _currentSentencePosition = 0
+            _currentSentencePositionIndex = 0
 
-            //TODO _currentResembles = //TODO ჯერ მსგავსი ასოები, მერე ის რომლებშიც იყო შეცდომა დავალებისას, მერე სხვა დანარჩენი
+            _currentPairs = if (currentLetter.learnOrder > MAX_PAIRS)
+            {
+                val learnedResembles = currentLetter.resembles
+                    .filter { lettersMap[it]!!.learnOrder <= currentLetter.learnOrder }
+                val learnedLetters = lettersLearnOrdered
+                    .filter { it.learnOrder <= currentLetter.learnOrder}
+                    .filter { !learnedResembles.contains(it.letterModernSpelling)  }
+                    .shuffled(_random)
+                    .take(MAX_PAIRS - learnedResembles.count())
+                    .map { it.letterModernSpelling }
+                //TODO include letters that were badly learned first
+
+                (learnedResembles + learnedLetters).shuffled(_random) // return result
+            }
+            else
+            {
+                emptyList() // return result
+            }
 
             if (updatePref) {
                 if (::_pref.isInitialized) {
                     with(_pref.edit()) {
-                        putInt(SAVED_POSITION_KEY, _currentLetterPosition)
+                        putInt(SAVED_POSITION_KEY, _currentLetterPositionIndex)
                         apply()
                     }
                 }
@@ -146,27 +163,27 @@ object GeorgianAlphabet {
 
         fun letterJumpTo(position: Int): Int {
             setCurrentLetterPosition(position)
-            return _currentLetterPosition
+            return _currentLetterPositionIndex
         }
 
         fun letterTryAgain(): Int {
-            setCurrentLetterPosition(_currentLetterPosition)
-            return _currentLetterPosition
+            setCurrentLetterPosition(_currentLetterPositionIndex)
+            return _currentLetterPositionIndex
         }
 
         fun letterMoveNext(): Int {
-            setCurrentLetterPosition(_currentLetterPosition + 1)
-            return _currentLetterPosition
+            setCurrentLetterPosition(_currentLetterPositionIndex + 1)
+            return _currentLetterPositionIndex
         }
 
         fun letterMovePrev(): Int {
-            setCurrentLetterPosition(_currentLetterPosition - 1)
-            return _currentLetterPosition
+            setCurrentLetterPosition(_currentLetterPositionIndex - 1)
+            return _currentLetterPositionIndex
         }
 
         fun sentenceMoveNext(): Boolean {
-            if (_currentSentencePosition + 1 < _currentSentences.count()) {
-                _currentSentencePosition++
+            if (_currentSentencePositionIndex + 1 < _currentSentences.count()) {
+                _currentSentencePositionIndex++
                 return true
             } else {
                 return false
