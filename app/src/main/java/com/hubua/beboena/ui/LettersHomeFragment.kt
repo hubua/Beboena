@@ -107,8 +107,11 @@ class LettersHomeFragment : Fragment() {
 
         binding.btnStartExercise.setOnClickListener {
             view.findNavController().navigate(
-                //LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript()
-            LettersHomeFragmentDirections.actionFrgHomeLettersToFrgResembles()
+                if (GeorgianAlphabet.Cursor.hasPairs) {
+                    LettersHomeFragmentDirections.actionFrgHomeLettersToFrgResembles() // return result
+                } else {
+                    LettersHomeFragmentDirections.actionFrgHomeLettersToFrgTranscript() // return result
+                }
             )
         }
 

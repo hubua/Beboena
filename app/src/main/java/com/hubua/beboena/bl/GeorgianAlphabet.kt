@@ -114,6 +114,8 @@ object GeorgianAlphabet {
 
         val currentPairs get () = _currentPairs
 
+        val hasPairs get() = _currentPairs.isNotEmpty()
+
         fun initialize(pref: SharedPreferences) {
             _pref = pref
             val savedPosition = _pref.getInt(SAVED_POSITION_KEY, 0)
