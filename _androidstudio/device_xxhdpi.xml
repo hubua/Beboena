@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<d:devices xmlns:d="http://schemas.android.com/sdk/devices/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<d:devices xmlns:d="http://schemas.android.com/sdk/devices/6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <d:device>
-    <d:name>S9</d:name>
+    <d:name>xxhdpi API33 T13</d:name>
     <d:manufacturer>User</d:manufacturer>
     <d:meta/>
     <d:hardware>
       <d:screen>
         <d:screen-size>large</d:screen-size>
-        <d:diagonal-length>5.80</d:diagonal-length>
-        <d:pixel-density>xxxhdpi</d:pixel-density>
+        <d:diagonal-length>5.00</d:diagonal-length>
+        <d:pixel-density>xxhdpi</d:pixel-density>
         <d:screen-ratio>long</d:screen-ratio>
         <d:dimensions>
-          <d:x-dimension>1440</d:x-dimension>
-          <d:y-dimension>2960</d:y-dimension>
+          <d:x-dimension>1080</d:x-dimension>
+          <d:y-dimension>1920</d:y-dimension>
         </d:dimensions>
-        <d:xdpi>567.53</d:xdpi>
-        <d:ydpi>567.53</d:ydpi>
+        <d:xdpi>480</d:xdpi>
+        <d:ydpi>480</d:ydpi>
         <d:touch>
           <d:multitouch>jazz-hands</d:multitouch>
           <d:mechanism>finger</d:mechanism>

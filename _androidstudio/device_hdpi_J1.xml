@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <d:devices xmlns:d="http://schemas.android.com/sdk/devices/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <d:device>
-    <d:name>Moto G4</d:name>
+    <d:name>hdpi API29 Q10 (J1)</d:name>
     <d:manufacturer>User</d:manufacturer>
     <d:meta/>
     <d:hardware>
       <d:screen>
-        <d:screen-size>large</d:screen-size>
-        <d:diagonal-length>5.50</d:diagonal-length>
-        <d:pixel-density>xxhdpi</d:pixel-density>
+        <d:screen-size>normal</d:screen-size>
+        <d:diagonal-length>4.30</d:diagonal-length>
+        <d:pixel-density>hdpi</d:pixel-density>
         <d:screen-ratio>long</d:screen-ratio>
         <d:dimensions>
-          <d:x-dimension>1080</d:x-dimension>
-          <d:y-dimension>1920</d:y-dimension>
+          <d:x-dimension>480</d:x-dimension>
+          <d:y-dimension>800</d:y-dimension>
         </d:dimensions>
-        <d:xdpi>400.53</d:xdpi>
-        <d:ydpi>400.53</d:ydpi>
+        <d:xdpi>217</d:xdpi>
+        <d:ydpi>217</d:ydpi>
         <d:touch>
           <d:multitouch>jazz-hands</d:multitouch>
           <d:mechanism>finger</d:mechanism>
