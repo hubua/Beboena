@@ -24,7 +24,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/txt_exercise_hint"
+            android:id="@+id/txt_letters_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"

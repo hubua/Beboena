@@ -68,12 +68,7 @@ class TranscriptFragment : Fragment() {
 
         binding.edtTranscription.hint = if (cursor.currentLetter.letterReadsAsSpells) resources.getString(R.string.txt_translate_sentence_hint) else resources.getString(R.string.txt_translate_sentence_hint_as_reads)
 
-        /*
-        // DEBUG Longest Sentence First
-        val longestSentence = GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
-        txt_sentence.text = longestSentence!!.toKhucuri()
-        txt_sentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
-         */
+
 
         binding.edtTranscription.addTextChangedListener(object : TextWatcherAdapter {
             override fun afterTextChanged(s: Editable) {
@@ -96,6 +91,13 @@ class TranscriptFragment : Fragment() {
             })
 
         showSentenceToTranscript()
+
+        /*
+        // DEBUG Longest sentence first for layout check
+        val longestSentence = GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
+        binding.txtSentence.text = longestSentence!!.toKhucuri()
+        //binding.txtSentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
+        */
 
         switchControlsState(true)
 

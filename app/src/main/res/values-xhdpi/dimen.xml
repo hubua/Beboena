@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="transcript_txt_sentence_text_size">30sp</dimen>
+    <dimen name="transcript_txt_sentence_padding">4dp</dimen>
+</resources>

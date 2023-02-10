@@ -50,11 +50,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:padding="8dp"
+        android:layout_marginTop="2dp"
+        android:padding="@dimen/transcript_txt_sentence_padding"
         android:textAppearance="@style/TextGeoBechduri"
-        android:textSize="40sp"
+        android:textSize="@dimen/transcript_txt_sentence_text_size"
         tools:text="@string/txt_sentence_sample_geo" />
 
     <FrameLayout
