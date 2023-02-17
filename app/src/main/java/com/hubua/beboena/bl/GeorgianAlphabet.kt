@@ -217,11 +217,11 @@ fun String.toReadsAs(): String {
     val mkhedruliText = this
     var readAsText = ""
 
-    for (letter in mkhedruliText) {
-        if (GeorgianAlphabet.lettersMap.contains(letter)) {
-            readAsText += GeorgianAlphabet.lettersMap[letter]?.letterReadsAs
+    for (mkhedruliChar in mkhedruliText) {
+        if (GeorgianAlphabet.lettersMap.contains(mkhedruliChar)) {
+            readAsText += GeorgianAlphabet.lettersMap[mkhedruliChar]?.letterReadsAs
         } else {
-            readAsText += letter
+            readAsText += mkhedruliChar
         }
     }
 

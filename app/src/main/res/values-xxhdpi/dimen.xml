@@ -2,4 +2,6 @@
 <resources>
     <dimen name="transcript_txt_sentence_text_size">40sp</dimen>
     <dimen name="transcript_txt_sentence_padding">8dp</dimen>
+
+    <dimen name="resembles_btn_paris_margin">4dp</dimen>
 </resources>

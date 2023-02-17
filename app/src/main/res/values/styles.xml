@@ -35,9 +35,14 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="ResemblesButton" parent="@android:style/Widget.Button">
+    <style name="ResemblesButtonL" parent="@android:style/Widget.Button">
         <item name="android:background">@drawable/btn_resembles_background</item>
-        <item name="android:padding">16dp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAppearance">@style/TextGeoBechduri</item>
+    </style>
+
+    <style name="ResemblesButtonR" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/btn_resembles_background</item>
         <item name="android:textSize">20sp</item>
     </style>
 

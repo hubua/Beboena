@@ -18,6 +18,8 @@
     <string name="btn_following_letter">მომდევნო ასო</string>
     <string name="btn_start_exercise">ვივარჯიშოთ</string>
 
+    <string name="txt_pairs_hint">მონიშნეთ შესატყვისი წყვილები</string>
+
     <string name="txt_learning_letter">სავარჯიშო \u2014 ასო %s</string>
     <string name="txt_translate_sentence_hint">გადათარგმნეთ წინადადება</string>
     <string name="txt_translate_sentence_hint_as_reads">გადათარგმნეთ წინადადება\n(ისე როგორც იკითხება)</string>

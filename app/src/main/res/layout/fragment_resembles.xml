@@ -16,41 +16,48 @@
         tools:text="სავარჯიშო \u2014 ასო ა" />
 
     <TextView
-        android:id="@+id/txt_exercise_hint"
+        android:id="@+id/txt_pairs_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="1dp"
-        tools:text="მონიშნეთ შესატყვისი წყვილები" />
+        android:text="@string/txt_pairs_hint" />
 
     <TableLayout
         android:id="@+id/table_pairs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0px"
+        android:layout_weight="1">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:background="#AAAAFF">
 
             <Button
-                style="@style/ResemblesButton"
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                style="@style/ResemblesButtonL"
+                android:id="@+id/btnL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:layout_weight=".5"
+
                 android:focusableInTouchMode="true"
-                android:text="Button" />
+                android:text="ⴀ" />
 
             <Button
-                style="@style/ResemblesButton"
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/ResemblesButtonR"
+                android:id="@+id/btnR"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:layout_weight=".5"
-                android:layout_margin="16dp"
-                android:text="Button" />
+
+                android:text="ა" />
         </TableRow>
+
+
 
 
     </TableLayout>
