@@ -99,9 +99,9 @@ object GeorgianAlphabet {
 
         private var _currentSentencePositionIndex = 0 // First sentence at 0
 
-        private var _currentSentences : List<String> = emptyList()
+        private var _currentSentences: List<String> = emptyList()
 
-        private var _currentPairs : List<Char> = emptyList()
+        private var _currentPairs: List<Char> = emptyList()
 
         val currentLetter get() = lettersLearnOrdered[_currentLetterPositionIndex]
 

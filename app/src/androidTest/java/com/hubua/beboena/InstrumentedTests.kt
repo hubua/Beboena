@@ -21,7 +21,7 @@ class InstrumentedTests {
 
     companion object {
 
-        private lateinit var appContext : Context
+        private lateinit var appContext: Context
 
         @JvmStatic
         @BeforeClass
