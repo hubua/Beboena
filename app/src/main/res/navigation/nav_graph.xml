@@ -31,7 +31,16 @@
             android:id="@+id/action_frg_resembles_to_frg_transcript"
             app:destination="@id/frg_transcript"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@+id/frg_home_letters"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_frg_resembles_to_frg_resembles"
+            app:destination="@id/frg_resembles"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/frg_home_letters"
+            app:popUpToInclusive="false"/>
     </fragment>
 
     <fragment

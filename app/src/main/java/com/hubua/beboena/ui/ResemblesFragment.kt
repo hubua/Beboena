@@ -18,6 +18,7 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.hubua.beboena.R
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.databinding.FragmentResemblesBinding
@@ -38,11 +39,12 @@ class ResemblesFragment : Fragment() {
     private val binding get() = _binding!! // This property is only valid between onCreateView and onDestroyView.
     private val bindingExists get() = _binding != null //TODO need this?
 
-    private var _btnsL : MutableList<Button> = mutableListOf()
-    private var _btnsR : MutableList<Button> = mutableListOf()
+    private val _btnsL: MutableList<Button> = mutableListOf()
+    private val _btnsR: MutableList<Button> = mutableListOf()
 
-    private var transcriptedCorrectCount: Int = 0
-    private var transcriptedWrongCount: Int = 0
+    private var matchedCorrectCount: Int = 0
+    private var matchedWrongCount: Int = 0
+    private val matchPass get() = matchedCorrectCount == cursor.currentPairs.count() && matchedWrongCount < 3
 
     private var _isBtnClickSuspended = AtomicBoolean(false) // Allows reference wrapper over value
 
@@ -75,10 +77,7 @@ class ResemblesFragment : Fragment() {
 
         binding.tablePairs.removeAllViews()
 
-        val pairsCharL = cursor.currentPairs.withIndex()
-        val pairsCharR = cursor.currentPairs.shuffled()
-
-        for ((index, charL) in pairsCharL) {
+        for (item in cursor.currentPairs) {
 
             val layoutParamsRow = TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 0, 1.0F)
             val layoutParamsBtn = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 0.5F)
@@ -92,14 +91,8 @@ class ResemblesFragment : Fragment() {
             val btnL = Button(activity, null, 0, R.style.ResemblesButtonL)
             val btnR = Button(activity, null, 0, R.style.ResemblesButtonR)
 
-            btnL.text = GeorgianAlphabet.lettersMap[charL]!!.nuskhuri.toString()
-            btnL.tag = GeorgianAlphabet.lettersMap[charL]!!.letterModernSpelling
-
-            btnR.text = GeorgianAlphabet.lettersMap[pairsCharR[index]]!!.mkhedruli.toString()
-            btnR.tag = GeorgianAlphabet.lettersMap[pairsCharR[index]]!!.letterModernSpelling
-
             (listOf(btnL, btnR)).forEach {
-                it.setOnClickListener(btnPairClickListener)
+                it.setOnClickListener(btnMatchPairClick)
                 it.layoutParams = layoutParamsBtn
                 row.addView(it)
             }
@@ -109,12 +102,16 @@ class ResemblesFragment : Fragment() {
 
         }
 
+        binding.btnContinue.setOnClickListener { onBtnContinueClick(it) } // Is equivalent to 'btn -> onBtnContinueClick(btn)'
+
+        showPairsToMatch()
+
         mediaPlayerCorrect = MediaPlayer.create(context, R.raw.answer_correct)
         mediaPlayerWrong = MediaPlayer.create(context, R.raw.answer_wrong)
 
     }
 
-    private val btnPairClickListener = View.OnClickListener { button ->
+    private val btnMatchPairClick = View.OnClickListener { button ->
 
         if (_isBtnClickSuspended.get())
             return@OnClickListener
@@ -126,15 +123,13 @@ class ResemblesFragment : Fragment() {
             button.isSelected = !button.isSelected
         } else {
             val clickedBtnL = _btnsL.singleOrNull() { it === button }
-            val clickedBtnR = _btnsR.singleOrNull() { it === button}
+            val clickedBtnR = _btnsR.singleOrNull() { it === button }
 
-            if (clickedBtnL != null && selectedBtnL != null)
-            {
+            if (clickedBtnL != null && selectedBtnL != null) {
                 // Selecting another button in L
                 selectedBtnL.isSelected = false
                 clickedBtnL.isSelected = true
-            } else if (clickedBtnR != null && selectedBtnR != null)
-            {
+            } else if (clickedBtnR != null && selectedBtnR != null) {
                 // Selecting another button in R
                 selectedBtnR.isSelected = false
                 clickedBtnR.isSelected = true
@@ -146,6 +141,8 @@ class ResemblesFragment : Fragment() {
                 if (selectedBtn!!.tag == clickedBtn!!.tag) {
                     // Correct answer
 
+                    matchedCorrectCount++
+
                     selectedBtn.isSelected = false
                     clickedBtn.isSelected = false
                     selectedBtn.isEnabled = false
@@ -153,19 +150,16 @@ class ResemblesFragment : Fragment() {
 
                     selectedBtn.setBackgroundResource(R.drawable.btn_resembles_background_correct)
                     clickedBtn.setBackgroundResource(R.drawable.btn_resembles_background_correct)
-                }
-                else {
+                } else {
                     // Wrong answer
+
+                    matchedWrongCount++
 
                     val anim = AlphaAnimation(0.2F, 1.0F)
                     anim.duration = 700
                     anim.repeatCount = 2
                     //anim.repeatMode = Animation.REVERSE
                     //anim.startOffset = 1000
-
-                    //selectedBtn.isEnabled = false
-                    //clickedBtn.isEnabled = false
-                    //_isBtnClickSuspended.set(true)
 
                     anim.setAnimationListener(ButtonAnimationListener(clickedBtn, selectedBtn, _isBtnClickSuspended))
                     clickedBtn.startAnimation(anim)
@@ -176,7 +170,36 @@ class ResemblesFragment : Fragment() {
         }
     }
 
-    class ButtonAnimationListener(selectedBtn: Button, clickedBtn: Button, flag: AtomicBoolean ) : AnimationListener {
+    private fun onBtnContinueClick(view: View) {
+
+        view.findNavController().navigate(
+            if (matchPass) {
+                ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript() // return result
+            } else {
+                cursor.letterTryAgain()
+                ResemblesFragmentDirections.actionFrgResemblesToFrgResembles()  // return result
+            }
+        )
+    }
+
+    private fun showPairsToMatch() {
+
+        val pairsCharL = cursor.currentPairs.withIndex()
+        val pairsCharR = cursor.currentPairs.shuffled()
+
+        for ((index, charL) in pairsCharL) {
+            val btnL = _btnsL[index]
+            val btnR = _btnsR[index]
+
+            btnL.text = GeorgianAlphabet.lettersMap[charL]!!.nuskhuri.toString()
+            btnL.tag = GeorgianAlphabet.lettersMap[charL]!!.letterModernSpelling
+
+            btnR.text = GeorgianAlphabet.lettersMap[pairsCharR[index]]!!.mkhedruli.toString()
+            btnR.tag = GeorgianAlphabet.lettersMap[pairsCharR[index]]!!.letterModernSpelling
+        }
+    }
+
+    class ButtonAnimationListener(selectedBtn: Button, clickedBtn: Button, flag: AtomicBoolean) : AnimationListener {
         private val _selectedBtn = selectedBtn
         private val _clickedBtn = clickedBtn
         private val _flag = flag

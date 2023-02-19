@@ -177,6 +177,7 @@ class TranscriptFragment : Fragment() {
     }
 
     private fun switchControlsState(newSentence: Boolean) {
+
         with (binding) {
             // New sentence or Check sentence
             if (newSentence) {
