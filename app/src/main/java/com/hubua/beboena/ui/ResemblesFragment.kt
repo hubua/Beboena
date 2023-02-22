@@ -9,6 +9,7 @@ import android.text.style.StyleSpan
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -20,10 +21,10 @@ import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.hubua.beboena.R
+import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.databinding.FragmentResemblesBinding
 import java.util.concurrent.atomic.AtomicBoolean
-
 
 /**
  * A simple [Fragment] subclass.
@@ -37,14 +38,15 @@ class ResemblesFragment : Fragment() {
 
     private var _binding: FragmentResemblesBinding? = null
     private val binding get() = _binding!! // This property is only valid between onCreateView and onDestroyView.
-    private val bindingExists get() = _binding != null //TODO need this?
+    //private val bindingExists get() = _binding != null
 
     private val _btnsL: MutableList<Button> = mutableListOf()
     private val _btnsR: MutableList<Button> = mutableListOf()
 
     private var matchedCorrectCount: Int = 0
-    private var matchedWrongCount: Int = 0
-    private val matchPass get() = matchedCorrectCount == cursor.currentPairs.count() && matchedWrongCount < 3
+    //private var matchedWrongCount: Int = 0
+    private val matchDone get() = matchedCorrectCount == cursor.currentPairs.count()
+    //private val matchPass get() = matchedCorrectCount == cursor.currentPairs.count() && matchedWrongCount < 3
 
     private var _isBtnClickSuspended = AtomicBoolean(false) // Allows reference wrapper over value
 
@@ -102,6 +104,8 @@ class ResemblesFragment : Fragment() {
 
         }
 
+        binding.txtBannerCorrect.visibility = View.INVISIBLE // The createCircularReveal will not work if visibility = GONE
+        binding.btnContinue.isEnabled = false
         binding.btnContinue.setOnClickListener { onBtnContinueClick(it) } // Is equivalent to 'btn -> onBtnContinueClick(btn)'
 
         showPairsToMatch()
@@ -119,18 +123,16 @@ class ResemblesFragment : Fragment() {
         val selectedBtnL = _btnsL.singleOrNull() { it.isSelected && it !== button }
         val selectedBtnR = _btnsR.singleOrNull() { it.isSelected && it !== button }
 
-        if (selectedBtnL == null && selectedBtnR == null) {
+        if (selectedBtnL == null && selectedBtnR == null) { // No Blue button selected previously
             button.isSelected = !button.isSelected
         } else {
             val clickedBtnL = _btnsL.singleOrNull() { it === button }
             val clickedBtnR = _btnsR.singleOrNull() { it === button }
 
-            if (clickedBtnL != null && selectedBtnL != null) {
-                // Selecting another button in L
+            if (clickedBtnL != null && selectedBtnL != null) { // Selecting another Blue button in L
                 selectedBtnL.isSelected = false
                 clickedBtnL.isSelected = true
-            } else if (clickedBtnR != null && selectedBtnR != null) {
-                // Selecting another button in R
+            } else if (clickedBtnR != null && selectedBtnR != null) { // Selecting another Blue button in R
                 selectedBtnR.isSelected = false
                 clickedBtnR.isSelected = true
             } else {
@@ -143,17 +145,35 @@ class ResemblesFragment : Fragment() {
 
                     matchedCorrectCount++
 
-                    selectedBtn.isSelected = false
-                    clickedBtn.isSelected = false
-                    selectedBtn.isEnabled = false
-                    clickedBtn.isEnabled = false
-
                     selectedBtn.setBackgroundResource(R.drawable.btn_resembles_background_correct)
                     clickedBtn.setBackgroundResource(R.drawable.btn_resembles_background_correct)
+
+                    selectedBtn.isEnabled = false // Color buttons Green
+                    clickedBtn.isEnabled = false // Color buttons Green
+
+                    selectedBtn.isSelected = false // Reset selection for next pair
+                    clickedBtn.isSelected = false
+
+                    if (matchDone)
+                    {
+                        binding.btnContinue.isEnabled = true
+
+                        val v = binding.txtBannerCorrect
+                        val anim = ViewAnimationUtils.createCircularReveal(v, v.width / 2, v.height / 2, 0F, v.width.toFloat())
+                        anim.duration = 300
+                        v.visibility = View.VISIBLE
+                        anim.start()
+
+                        if (AppSettings.isEnableSounds) {
+                            mediaPlayerCorrect?.start()
+                        }
+                    }
+
                 } else {
                     // Wrong answer
 
-                    matchedWrongCount++
+                    selectedBtn.isEnabled = false // Color buttons Red
+                    clickedBtn.isEnabled = false // Color buttons Red
 
                     val anim = AlphaAnimation(0.2F, 1.0F)
                     anim.duration = 700
@@ -161,28 +181,49 @@ class ResemblesFragment : Fragment() {
                     //anim.repeatMode = Animation.REVERSE
                     //anim.startOffset = 1000
 
-                    anim.setAnimationListener(ButtonAnimationListener(clickedBtn, selectedBtn, _isBtnClickSuspended))
+                    anim.setAnimationListener(ButtonAnimationListener(_isBtnClickSuspended, ::showPairsToMatch))
                     clickedBtn.startAnimation(anim)
 
+                    if (AppSettings.isEnableSounds) {
+                        mediaPlayerWrong?.start()
+                    }
                 }
 
             }
         }
+
     }
 
     private fun onBtnContinueClick(view: View) {
 
-        view.findNavController().navigate(
-            if (matchPass) {
-                ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript() // return result
-            } else {
-                cursor.letterTryAgain()
-                ResemblesFragmentDirections.actionFrgResemblesToFrgResembles()  // return result
-            }
-        )
+        view.findNavController().navigate(ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript())
+//            if (matchPass) {
+//                ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript() // return result
+//            } else {
+//                cursor.letterTryAgain()
+//                ResemblesFragmentDirections.actionFrgResemblesToFrgResembles()  // return result
+//            }
+//        )
     }
 
-    private fun showPairsToMatch() {
+    private fun showPairsToMatch(reset: Boolean = false) {
+
+        if (reset) {
+
+            cursor.letterTryAgain()
+
+            matchedCorrectCount = 0
+
+            (_btnsL + _btnsR).forEach {
+                it.isEnabled = true
+                it.isSelected = false
+                it.setBackgroundResource(R.drawable.btn_resembles_background)
+            }
+
+            val anim = AlphaAnimation(0.3F, 1.0F)
+            anim.duration = 1000
+            binding.tablePairs.startAnimation(anim)
+        }
 
         val pairsCharL = cursor.currentPairs.withIndex()
         val pairsCharR = cursor.currentPairs.shuffled()
@@ -199,21 +240,18 @@ class ResemblesFragment : Fragment() {
         }
     }
 
-    class ButtonAnimationListener(selectedBtn: Button, clickedBtn: Button, flag: AtomicBoolean) : AnimationListener {
-        private val _selectedBtn = selectedBtn
-        private val _clickedBtn = clickedBtn
-        private val _flag = flag
+    class ButtonAnimationListener(flagBtnClickSuspended: AtomicBoolean, onAnimEnd: (Boolean) -> Unit) : AnimationListener {
+
+        private val _flagBtnClickSuspended = flagBtnClickSuspended
+        private val _onAnimEnd = onAnimEnd
 
         override fun onAnimationStart(animation: Animation) {
-            _selectedBtn.isEnabled = false
-            _clickedBtn.isEnabled = false
-            _flag.set(true)
+            _flagBtnClickSuspended.set(true)
         }
 
         override fun onAnimationEnd(animation: Animation) {
-            _selectedBtn.isEnabled = true
-            _clickedBtn.isEnabled = true
-            _flag.set(false)
+            _onAnimEnd(true)
+            _flagBtnClickSuspended.set(false)
         }
 
         override fun onAnimationRepeat(animation: Animation) {}

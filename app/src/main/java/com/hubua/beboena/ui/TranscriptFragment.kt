@@ -157,7 +157,7 @@ class TranscriptFragment : Fragment() {
             showSentenceToTranscript()
             switchControlsState(true)
         } else {
-            // Navigation is done to action instead of fragment (R.id.frg_result) to allow back-stack directly to the home
+            // Navigation is done to action instead of fragment (R.id.frg_result) to make possible back-stack popUpTo to the home
             val action = TranscriptFragmentDirections.actionFrgTranscriptToFrgResult(
                 transcriptedCorrectCount,
                 transcriptedWrongCount

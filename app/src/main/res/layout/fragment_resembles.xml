@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,44 +22,64 @@
         android:padding="1dp"
         android:text="@string/txt_pairs_hint" />
 
-    <TableLayout
-        android:id="@+id/table_pairs"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1">
 
-        <TableRow
+        <TableLayout
+            android:id="@+id/table_pairs"
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
-            android:background="#AAAAFF">
+            android:layout_height="match_parent">
 
-            <Button
-                style="@style/ResemblesButtonL"
-                android:id="@+id/btnL"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight=".5"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:background="#AAAAFF">
 
-                android:focusableInTouchMode="true"
-                android:text="ⴀ" />
+                <Button
+                    style="@style/ResemblesButtonL"
+                    android:id="@+id/btnL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight=".5"
 
-            <Button
-                style="@style/ResemblesButtonR"
-                android:id="@+id/btnR"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight=".5"
+                    android:focusableInTouchMode="true"
+                    android:text="ⴀ" />
 
-                android:text="ა" />
-        </TableRow>
+                <Button
+                    style="@style/ResemblesButtonR"
+                    android:id="@+id/btnR"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight=".5"
 
+                    android:text="ა" />
+            </TableRow>
 
+        </TableLayout>
 
+        <TextView
+            android:id="@+id/txt_banner_correct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="-48dp"
+            android:background="@color/colorCorrectBackground"
+            android:padding="16dp"
+            android:text="@string/txt_nice"
+            android:textColor="@color/colorCorrectText"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:layout_marginBottom="10dp" />
 
-    </TableLayout>
+    </FrameLayout>
 
     <Button
         android:id="@+id/btn_continue"
