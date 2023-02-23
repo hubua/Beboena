@@ -83,7 +83,7 @@ class ResemblesFragment : Fragment() {
 
             val layoutParamsRow = TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 0, 1.0F)
             val layoutParamsBtn = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 0.5F)
-            val px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, resources.getDimension(R.dimen.resembles_btn_paris_margin), resources.displayMetrics).toInt() // Convert DP to PX
+            val px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, resources.getDimension(R.dimen.resembles_btn_pairs_margin), resources.displayMetrics).toInt() // Convert DP to PX
             layoutParamsBtn.setMargins(px)
 
             val row = TableRow(activity)
@@ -107,6 +107,8 @@ class ResemblesFragment : Fragment() {
         binding.txtBannerCorrect.visibility = View.INVISIBLE // The createCircularReveal will not work if visibility = GONE
         binding.btnContinue.isEnabled = false
         binding.btnContinue.setOnClickListener { onBtnContinueClick(it) } // Is equivalent to 'btn -> onBtnContinueClick(btn)'
+        binding.btnAgain.visibility = View.GONE
+        binding.btnAgain.setOnClickListener { onBtnAgainClick() }
 
         showPairsToMatch()
 
@@ -172,16 +174,18 @@ class ResemblesFragment : Fragment() {
                 } else {
                     // Wrong answer
 
+                    _isBtnClickSuspended.set(true)
+
                     selectedBtn.isEnabled = false // Color buttons Red
                     clickedBtn.isEnabled = false // Color buttons Red
 
-                    val anim = AlphaAnimation(0.2F, 1.0F)
-                    anim.duration = 700
-                    anim.repeatCount = 2
-                    //anim.repeatMode = Animation.REVERSE
-                    //anim.startOffset = 1000
+                    val anim = AlphaAnimation(1.0F, 0.2F)
+                    anim.duration = 400
+                    anim.repeatCount = 1
+                    anim.repeatMode = Animation.REVERSE
+                    //anim.startOffset = 1400
 
-                    anim.setAnimationListener(ButtonAnimationListener(_isBtnClickSuspended, ::showPairsToMatch))
+                    anim.setAnimationListener(ButtonAnimationListener(::switchControlsState))
                     clickedBtn.startAnimation(anim)
 
                     if (AppSettings.isEnableSounds) {
@@ -197,13 +201,15 @@ class ResemblesFragment : Fragment() {
     private fun onBtnContinueClick(view: View) {
 
         view.findNavController().navigate(ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript())
-//            if (matchPass) {
-//                ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript() // return result
-//            } else {
-//                cursor.letterTryAgain()
-//                ResemblesFragmentDirections.actionFrgResemblesToFrgResembles()  // return result
-//            }
-//        )
+    }
+
+    private fun onBtnAgainClick() {
+
+        showPairsToMatch(true)
+
+        switchControlsState(true)
+
+        _isBtnClickSuspended.set(false)
     }
 
     private fun showPairsToMatch(reset: Boolean = false) {
@@ -240,20 +246,18 @@ class ResemblesFragment : Fragment() {
         }
     }
 
-    class ButtonAnimationListener(flagBtnClickSuspended: AtomicBoolean, onAnimEnd: (Boolean) -> Unit) : AnimationListener {
+    private fun switchControlsState(reset: Boolean) {
+        binding.btnAgain.visibility = if (reset) View.GONE else View.VISIBLE
+        binding.btnContinue.visibility = if (reset) View.VISIBLE else View.GONE
+    }
 
-        private val _flagBtnClickSuspended = flagBtnClickSuspended
-        private val _onAnimEnd = onAnimEnd
-
-        override fun onAnimationStart(animation: Animation) {
-            _flagBtnClickSuspended.set(true)
-        }
+    class ButtonAnimationListener(private val delegateFunc: (Boolean) -> Unit) : AnimationListener {
 
         override fun onAnimationEnd(animation: Animation) {
-            _onAnimEnd(true)
-            _flagBtnClickSuspended.set(false)
+            delegateFunc(false)
         }
 
+        override fun onAnimationStart(animation: Animation) {}
         override fun onAnimationRepeat(animation: Animation) {}
     }
 

@@ -92,6 +92,11 @@
 `bcdedit /set hypervisorlaunchtype off`
 `bcdedit /set hypervisorlaunchtype auto`
 
+Enable wireless debugging in developer options
+%LOCALAPPDATA%\Android\sdk\platform-tools
+adb pair <PHONE_IP>:<PHONE_PORT>
+adb connect <PHONE_IP>:<PHONE_PORT_PROVIDED_ABOVE_PAIR_WITH_QR_BUTTON>
+
 ## Kotlin
 
 - https://try.kotlinlang.org/

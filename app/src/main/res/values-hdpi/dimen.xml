@@ -3,5 +3,5 @@
     <dimen name="transcript_txt_sentence_text_size">20sp</dimen>
     <dimen name="transcript_txt_sentence_padding">2dp</dimen>
 
-    <dimen name="resembles_btn_paris_margin">4dp</dimen>
+    <dimen name="resembles_btn_pairs_margin">4dp</dimen>
 </resources>

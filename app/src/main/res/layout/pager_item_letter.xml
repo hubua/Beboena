@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="1"
     tools:context=".customview.LettersPagerAdapter">
 
     <TextView
@@ -55,9 +56,9 @@
         android:id="@+id/txtBechduri"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="0.5"
+        android:layout_weight="0.4"
         android:gravity="center_horizontal|top"
-        android:textAppearance="@style/TextGeoBechduri"
+        android:textAppearance="@style/FontGeoBechduri"
         android:background="@color/colorWindowBackground"
         app:autoSizeTextType="uniform"
         tools:text="Ⴀ  ⴀ" />
@@ -79,7 +80,7 @@
         android:layout_height="0px"
         android:layout_weight="0.3"
         android:gravity="center_horizontal|top"
-        android:textAppearance="@style/TextGeoKhelnatseri"
+        android:textAppearance="@style/FontGeoKhelnatseri"
         android:background="@color/colorWindowBackground"
         app:autoSizeTextType="uniform"
         tools:text="Ⴀ / ⴀ" />

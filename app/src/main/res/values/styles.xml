@@ -20,11 +20,11 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="TextGeoBechduri" parent="TextAppearance.AppCompat">
+    <style name="FontGeoBechduri" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/sylfaen_bechduri_khutsuri</item>
     </style>
 
-    <style name="TextGeoKhelnatseri" parent="TextAppearance.AppCompat">
+    <style name="FontGeoKhelnatseri" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/sylfaen</item>
     </style>
 
@@ -37,13 +37,13 @@
 
     <style name="ResemblesButtonL" parent="@android:style/Widget.Button">
         <item name="android:background">@drawable/btn_resembles_background</item>
-        <item name="android:textSize">30sp</item>
-        <item name="android:textAppearance">@style/TextGeoBechduri</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textAppearance">@style/FontGeoBechduri</item>
     </style>
 
     <style name="ResemblesButtonR" parent="@android:style/Widget.Button">
         <item name="android:background">@drawable/btn_resembles_background</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">30sp</item>
     </style>
 
 </resources>
