@@ -137,7 +137,7 @@ object GeorgianAlphabet {
             _currentPairs = if (currentLetter.learnOrder > MAX_PAIRS)
             {
                 val learnedResembles = currentLetter.resembles
-                    .filter { lettersMap[it]!!.learnOrder <= currentLetter.learnOrder }
+                    .filter { lettersMap[it]!!.learnOrder <= currentLetter.learnOrder } + currentLetter.letterModernSpelling
                 val learnedLetters = lettersLearnOrdered
                     .filter { it.learnOrder <= currentLetter.learnOrder}
                     .filter { !learnedResembles.contains(it.letterModernSpelling)  }

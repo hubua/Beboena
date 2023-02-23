@@ -6,13 +6,13 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\george.khubua\.android\avd\xxhdpi_API33_T13_S23_.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="192.168.2.103:39987" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-02-23T15:43:22.739707200Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-02-23T17:09:08.261586700Z" />
     <targetsSelectedWithDialog>
       <Target>
         <type value="QUICK_BOOT_TARGET" />
