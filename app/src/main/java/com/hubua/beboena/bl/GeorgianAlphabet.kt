@@ -6,8 +6,8 @@ import com.opencsv.CSVReaderBuilder
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
-import java.util.*
-
+import kotlin.random.Random
+import kotlin.math.pow
 
 object GeorgianAlphabet {
 
@@ -93,7 +93,7 @@ object GeorgianAlphabet {
 
         private lateinit var _pref: SharedPreferences
 
-        private val _random = Random()
+        private val _random = Random
 
         private var _currentLetterPositionIndex = 0 // First letter at 0, unlike the Letter Order which starts with 1
 
@@ -101,66 +101,25 @@ object GeorgianAlphabet {
 
         private var _currentSentences: List<String> = emptyList()
 
-        private var _currentPairs: List<Char> = emptyList()
+        private var _currentPairables: List<Char> = emptyList()
+        private var _allPairablesMap: MutableMap<Char, List<Char>> = mutableMapOf()
 
         val currentLetter get() = lettersLearnOrdered[_currentLetterPositionIndex]
 
         val currentSentence get() = _currentSentences[_currentSentencePositionIndex]
-
-        val currentSentences get() =_currentSentences
+        val currentSentences get() =_currentSentences // Only used in UnitTests
 
         val currentSentencesProgress get() = _currentSentencePositionIndex + 1
         val currentSentencesCount get() =_currentSentences.count()
 
-        val currentPairs get () = _currentPairs
-
-        val hasPairs get() = _currentPairs.isNotEmpty()
+        val currentPairables get () = _currentPairables
+        val hasPairs get() = _currentPairables.isNotEmpty()
 
         fun initialize(pref: SharedPreferences) {
             _pref = pref
             val savedPosition = _pref.getInt(SAVED_POSITION_KEY, 0)
 
             setCurrentLetterPosition(savedPosition, false)
-        }
-
-        fun getCurrentLetterPosition(): Int {
-            return _currentLetterPositionIndex
-        }
-
-        private fun setCurrentLetterPosition(positionIndex: Int, updatePref: Boolean = true) {
-
-            _currentLetterPositionIndex = if (positionIndex > 0 && positionIndex < lettersLearnOrdered.count()) positionIndex else 0
-
-            _currentSentences = currentLetter.sentences.shuffled(_random).take(MAX_SENTENCES).sortedBy { it.length }
-            _currentSentencePositionIndex = 0
-
-            _currentPairs = if (currentLetter.learnOrder > MAX_PAIRS)
-            {
-                val learnedResembles = currentLetter.resembles
-                    .filter { lettersMap[it]!!.learnOrder <= currentLetter.learnOrder } + currentLetter.letterModernSpelling
-                val learnedLetters = lettersLearnOrdered
-                    .filter { it.learnOrder <= currentLetter.learnOrder}
-                    .filter { !learnedResembles.contains(it.letterModernSpelling)  }
-                    .shuffled(_random)
-                    .take(MAX_PAIRS - learnedResembles.count())
-                    .map { it.letterModernSpelling }
-                //TODO include letters that were badly learned first
-
-                (learnedResembles + learnedLetters).shuffled(_random) // return result
-            }
-            else
-            {
-                emptyList() // return result
-            }
-
-            if (updatePref) {
-                if (::_pref.isInitialized) {
-                    with(_pref.edit()) {
-                        putInt(SAVED_POSITION_KEY, _currentLetterPositionIndex)
-                        apply()
-                    }
-                }
-            }
         }
 
         fun letterJumpTo(position: Int): Int {
@@ -191,6 +150,78 @@ object GeorgianAlphabet {
                 return false
             }
         }
+
+        fun getCurrentLetterPosition(): Int {
+            return _currentLetterPositionIndex
+        }
+
+        private fun setCurrentLetterPosition(positionIndex: Int, updatePref: Boolean = true) {
+
+            _currentLetterPositionIndex = if (positionIndex > 0 && positionIndex < lettersLearnOrdered.count()) positionIndex else 0
+
+            _currentSentences = currentLetter.sentences.shuffled(_random).take(MAX_SENTENCES).sortedBy { it.length }
+            _currentSentencePositionIndex = 0
+
+            buildPairablesMap()
+            _currentPairables = if (currentLetter.learnOrder > MAX_PAIRS) _allPairablesMap[currentLetter.letterModernSpelling]!! else emptyList()
+
+            if (updatePref) {
+                if (::_pref.isInitialized) {
+                    with(_pref.edit()) {
+                        putInt(SAVED_POSITION_KEY, _currentLetterPositionIndex)
+                        apply()
+                    }
+                }
+            }
+        }
+
+        private fun buildPairablesMap() {
+
+            /*
+            * Resembles - the letters that looks alike
+            * Couples - a letter and one of its resembles
+            * Pairs - old and modern letters counterparts
+            */
+
+            val hist: MutableMap<Set<Char>, Int> = mutableMapOf()
+
+            for (letter in lettersLearnOrdered) {
+
+                val currentLetterLearnedResembles = listOf(letter.letterModernSpelling) + // current letter
+                        letter.resembles.filter { lettersMap[it]!!.learnOrder < letter.learnOrder } // with all its resembles that are already learned
+
+                val previousLettersLearnedResemblesCouples = lettersLearnOrdered
+                    .filter { it.learnOrder < letter.learnOrder} // previously learned letters
+                    .filter { it.resembles.isNotEmpty() } // which have resembles
+                    .associateWith { it.resembles.filter { resemble -> lettersMap[resemble]!!.learnOrder < letter.learnOrder } }  // with resembles that are already learned
+                    .filter { it.value.isNotEmpty() } // which have such resembles
+                    .map { sortedSetOf(it.key.letterModernSpelling, it.value.shuffled(_random).first()) } // take letter and one resemble
+                    .distinct()
+
+                val oneCouple = if (previousLettersLearnedResemblesCouples.count() > 1) {
+                    previousLettersLearnedResemblesCouples.forEach { hist[it] = hist.getOrPut(it) { 0 } + 1 }
+                    val least = hist.filter { it.value == hist.minBy { minItem -> minItem.value }.value }.keys.shuffled().first()
+                    previousLettersLearnedResemblesCouples.forEach { hist[it] = hist[it]!! - 1  }
+                    hist[least] = hist[least]!! + 1
+                    least // return result
+                } else emptySet()
+
+                val otherLearnedLetters = lettersLearnOrdered
+                    .filter { it.learnOrder < currentLetter.learnOrder}
+                    .filter { !(currentLetterLearnedResembles + oneCouple).contains(it.letterModernSpelling)  }
+                    .map { it.letterModernSpelling }
+                    .shuffled(_random)
+
+                val pairables = ((currentLetterLearnedResembles + oneCouple).toSet().toList() + otherLearnedLetters)
+                    .take(MAX_PAIRS)
+                    .shuffled(_random)
+
+                _allPairablesMap[letter.letterModernSpelling] = pairables
+
+            }
+
+        }
+
 
     }
 
@@ -241,4 +272,18 @@ fun String.toSpaceNormalized(): String {
 
 fun String.toChar(): Char {
     return this.toCharArray()[0]
+}
+
+fun <T> List<T>.takeOneRandomWeighted(random: Random): T {
+
+    if (this.isEmpty())
+        throw java.lang.IllegalArgumentException("Collection is empty")
+
+    val C = 1.2F
+
+    val w = (0..this.size).withIndex().associate { it.index to (C.pow(it.value) - 1) }
+    val r = w.values.max() * random.nextFloat()
+    val i = w.toList().last { r >= it.second}.first
+
+    return this[i]
 }

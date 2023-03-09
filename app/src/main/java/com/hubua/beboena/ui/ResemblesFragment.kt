@@ -45,7 +45,7 @@ class ResemblesFragment : Fragment() {
 
     private var matchedCorrectCount: Int = 0
     //private var matchedWrongCount: Int = 0
-    private val matchDone get() = matchedCorrectCount == cursor.currentPairs.count()
+    private val matchDone get() = matchedCorrectCount == cursor.currentPairables.count()
     //private val matchPass get() = matchedCorrectCount == cursor.currentPairs.count() && matchedWrongCount < 3
 
     private var _isBtnClickSuspended = AtomicBoolean(false) // Allows reference wrapper over value
@@ -79,7 +79,7 @@ class ResemblesFragment : Fragment() {
 
         binding.tablePairs.removeAllViews()
 
-        for (item in cursor.currentPairs) {
+        for (item in cursor.currentPairables) {
 
             val layoutParamsRow = TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 0, 1.0F)
             val layoutParamsBtn = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 0.5F)
@@ -231,8 +231,8 @@ class ResemblesFragment : Fragment() {
             binding.tablePairs.startAnimation(anim)
         }
 
-        val pairsCharL = cursor.currentPairs.withIndex()
-        val pairsCharR = cursor.currentPairs.shuffled()
+        val pairsCharL = cursor.currentPairables.withIndex()
+        val pairsCharR = cursor.currentPairables.shuffled()
 
         for ((index, charL) in pairsCharL) {
             val btnL = _btnsL[index]

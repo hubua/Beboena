@@ -64,7 +64,7 @@ class TranscriptFragment : Fragment() {
         )
         binding.txtCurrentLetter.text = spannable
 
-        binding.pbTranscriptProgress.max = cursor.currentSentences.count()
+        binding.pbTranscriptProgress.max = cursor.currentSentencesCount
 
         binding.edtTranscription.hint = if (cursor.currentLetter.letterReadsAsSpells) resources.getString(R.string.txt_translate_sentence_hint) else resources.getString(R.string.txt_translate_sentence_hint_as_reads)
 
