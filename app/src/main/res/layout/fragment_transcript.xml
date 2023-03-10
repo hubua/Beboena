@@ -70,7 +70,7 @@
             android:background="@drawable/edt_rounded_background"
             android:gravity="top"
             android:hint="@string/txt_translate_sentence_hint"
-            android:inputType="textVisiblePassword|textMultiLine"
+            android:inputType="textMultiLine|textNoSuggestions|textVisiblePassword"
             android:padding="8dp"
             android:selectAllOnFocus="false"
             android:singleLine="false"

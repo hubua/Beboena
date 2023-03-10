@@ -112,6 +112,8 @@
 Publish
 ==============================
 
+* Build / Generate Signed Bundle
+
 - Google Play Console                           https://play.google.com/apps/publish/
 - Publish your app                              https://developer.android.com/studio/publish
 
@@ -151,8 +153,9 @@ Features todo
 Known issues
 ------------------------------
 
-java.lang.UnsupportedOperationException: at android.view.RenderNodeAnimator.pause
-https://stackoverflow.com/questions/26749280/custom-circular-reveal-transition-results-in-java-lang-unsupportedoperationexce
+* https://stackoverflow.com/questions/45462683/programmatically-disable-auto-suggestions-on-gboard
+* https://stackoverflow.com/questions/26749280/custom-circular-reveal-transition-results-in-java-lang-unsupportedoperationexce
+* java.lang.UnsupportedOperationException: at android.view.RenderNodeAnimator.pause
 
 
 [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
