@@ -12,7 +12,8 @@ class ContactDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it, R.style.DialogTheme)
-                .setMessage(R.string.txt_contact)
+                .setTitle(R.string.app_version)
+                .setMessage(getString(R.string.txt_contact))
                 .setNegativeButton(R.string.btn_close) { dialog, _ -> dialog.cancel() }
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
