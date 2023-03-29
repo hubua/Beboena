@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.hubua.beboena.R
+import com.hubua.beboena.bl.Analytics
 import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.databinding.FragmentResultBinding
 import com.kobakei.ratethisapp.RateThisApp
+import kotlin.math.roundToLong
 
 
 /**
@@ -56,7 +58,8 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
         RateThisApp.onCreate(context) // Increments launch times -------------------------
 
         val soundResId: Int
-        binding.btnTryAgain.visibility = View.GONE // Show when Satisfactory (Good) or Poor ------------------------
+        val analyticsScore: Char
+        binding.btnTryAgain.visibility = View.GONE // Show when Satisfactory (Good/Nice) or Poor ------------------------
         binding.btnNextLetter.visibility = View.GONE // Show when Excellent or Satisfactory
         binding.btnPrevLetter.visibility = View.GONE // Show when Poor or Fail
 
@@ -65,6 +68,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
                 binding.txtResult.text = resources.getString(R.string.txt_result_excellent)
                 binding.imgSmiley.setImageResource(R.drawable.smile_excellent)
                 soundResId = R.raw.result_excellent_1
+                analyticsScore = 'A'
 
                 binding.btnNextLetter.visibility = View.VISIBLE
             }
@@ -72,6 +76,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
                 binding.txtResult.text = resources.getString(R.string.txt_result_fail)
                 binding.imgSmiley.setImageResource(R.drawable.smile_fail)
                 soundResId = R.raw.result_fail
+                analyticsScore = 'D'
 
                 binding.btnPrevLetter.visibility = View.VISIBLE
             }
@@ -79,6 +84,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
                 binding.txtResult.text = resources.getString(R.string.txt_result_satisfactory)
                 binding.imgSmiley.setImageResource(R.drawable.smile_satisfactory)
                 soundResId = R.raw.result_satisfactory
+                analyticsScore = 'B'
 
                 binding.btnTryAgain.visibility = View.VISIBLE
                 binding.btnNextLetter.visibility = View.VISIBLE
@@ -87,6 +93,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
                 binding.txtResult.text = resources.getString(R.string.txt_result_poor)
                 binding.imgSmiley.setImageResource(R.drawable.smile_poor)
                 soundResId = R.raw.result_poor
+                analyticsScore = 'C'
 
                 binding.btnTryAgain.visibility = View.VISIBLE
                 binding.btnPrevLetter.visibility = View.VISIBLE
@@ -102,6 +109,8 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
+
+            Analytics.logLevelEnd("Transcript", "TRY_AGAIN")
         }
 
         binding.btnNextLetter.setOnClickListener {
@@ -113,6 +122,8 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
+
+            Analytics.logLevelEnd("Transcript", "MOVE_NEXT")
         }
 
         binding.btnPrevLetter.setOnClickListener {
@@ -122,6 +133,8 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
+
+            Analytics.logLevelEnd("Transcript", "MOVE_PREV")
         }
 
         if (AppSettings.isEnableSounds) {
@@ -132,6 +145,9 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
             mediaPlayer?.setOnPreparedListener(this@ResultFragment)
             mediaPlayer?.prepareAsync() // prepare async to not block main UI thread
         }
+
+        Analytics.logScreenView(ResultFragment::class.simpleName!!)
+        Analytics.logPostScore(analyticsScore.toString(), (correctCount * 100f / (correctCount + incorrectCount)).roundToLong())
     }
 
     override fun onPrepared(mediaPlayer: MediaPlayer?) {

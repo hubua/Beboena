@@ -178,7 +178,7 @@ object GeorgianAlphabet {
         private fun buildPairablesMap() {
 
             /*
-            * Resembles - the letters that looks alike
+            * Resembles - the letters that look alike
             * Couples - a letter and one of its resembles
             * Pairs - old and modern letters counterparts
             */

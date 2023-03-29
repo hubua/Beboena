@@ -21,6 +21,7 @@ import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.hubua.beboena.R
+import com.hubua.beboena.bl.Analytics
 import com.hubua.beboena.bl.AppSettings
 import com.hubua.beboena.bl.GeorgianAlphabet
 import com.hubua.beboena.databinding.FragmentResemblesBinding
@@ -201,6 +202,8 @@ class ResemblesFragment : Fragment() {
     private fun onBtnContinueClick(view: View) {
 
         view.findNavController().navigate(ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript())
+
+        Analytics.logLevelEnd("Resembles", "CONTINUE")
     }
 
     private fun onBtnAgainClick() {
@@ -210,6 +213,8 @@ class ResemblesFragment : Fragment() {
         switchControlsState(true)
 
         _isBtnClickSuspended.set(false)
+
+        Analytics.logLevelEnd("Resembles", "AGAIN")
     }
 
     private fun showPairsToMatch(reset: Boolean = false) {

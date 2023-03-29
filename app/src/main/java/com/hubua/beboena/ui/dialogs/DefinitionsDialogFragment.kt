@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.hubua.beboena.R
+import com.hubua.beboena.bl.Analytics
 
 class DefinitionsDialogFragment : DialogFragment() {
 
@@ -25,6 +26,8 @@ class DefinitionsDialogFragment : DialogFragment() {
         val txtReferences = view.findViewById<TextView>(R.id.txt_references)
         txtReferences.text = html
         txtReferences.movementMethod = ScrollingMovementMethod()
+
+        Analytics.logScreenView(DefinitionsDialogFragment::class.simpleName!!)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

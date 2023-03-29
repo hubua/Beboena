@@ -109,10 +109,29 @@
 
 - Fonts edited with FontForge-2019-08-01-Windows.exe
 
+## Analytics
+
+- https://console.firebase.google.com/
+- https://console.firebase.google.com/project/_/analytics/debugview
+- https://firebase.google.com/docs/android/setup#next_steps
+- https://firebase.google.com/docs/analytics/get-started?technology=android&platform=android
+- https://analytics.google.com/analytics/web/?authuser=0&hl=en#/a255545015p358093999/admin/customdefinitions/hub (Custom definitions / Custom metrics)
+- https://medium.com/lost-but-coding/setting-up-firebase-analytics-event-custom-parameters-dimensions-and-metrics-219cc3f3c356
+
+`adb shell setprop debug.firebase.analytics.app com.hubua.beboena`
+`adb shell setprop debug.firebase.analytics.app .none.`
+
+### Restore `/app/google-services.json`
+
+- https://support.google.com/firebase/answer/7015592
+- https://console.firebase.google.com/project/beboena-fbd73/settings/general/android:com.hubua.beboena
+
 Publish
 ==============================
 
+* Increase `versionCode` in app `build.gradle`
 * Build / Generate Signed Bundle
+* GPC / Release / Production / Create new release
 
 - Google Play Console                           https://play.google.com/apps/publish/
 - Publish your app                              https://developer.android.com/studio/publish

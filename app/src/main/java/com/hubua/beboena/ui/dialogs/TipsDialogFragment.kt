@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
 import com.hubua.beboena.R
+import com.hubua.beboena.bl.Analytics
 
 class TipsDialogFragment : DialogFragment() {
 
@@ -36,6 +37,8 @@ class TipsDialogFragment : DialogFragment() {
 
         webviewTips.loadUrl("file:///android_asset/html/tips.html")
         webviewScrollable = webviewTips
+
+        Analytics.logScreenView(TipsDialogFragment::class.simpleName!!)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

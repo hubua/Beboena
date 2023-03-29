@@ -1,8 +1,13 @@
-// Access views in the layout XML just as if they were properties
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-// Pass typed data between fragments
-apply plugin: "androidx.navigation.safeargs"
+plugins {
+    // Access views in the layout XML just as if they were properties
+    id 'com.android.application'
+    id 'kotlin-android'
+    // Pass typed data between fragments
+    id 'androidx.navigation.safeargs'
+
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
 
 android {
     namespace 'com.hubua.beboena'
@@ -26,7 +31,7 @@ android {
     compileSdkVersion 33
     defaultConfig {
         applicationId "com.hubua.beboena"
-        versionCode 11
+        versionCode 13
         versionName "2.0"
         minSdkVersion 22
         targetSdkVersion 33
@@ -69,4 +74,9 @@ dependencies {
 
     implementation 'com.opencsv:opencsv:5.2'
     implementation 'com.github.kobakei:Android-RateThisApp:1.2.0'
+
+    implementation platform('com.google.firebase:firebase-bom:31.2.3')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
 }

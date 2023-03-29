@@ -117,6 +117,8 @@ class TranscriptFragment : Fragment() {
             true
         }
         */
+
+        Analytics.logScreenView(TranscriptFragment::class.simpleName!!)
     }
 
     private fun onBtnCheckClick() {

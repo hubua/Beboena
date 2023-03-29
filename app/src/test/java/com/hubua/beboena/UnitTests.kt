@@ -263,13 +263,14 @@ class UnitTests {
     @Test
     fun debug_random() {
 
+        val COUNT = 1000
         var n = 0
-        for (i in 0..1000) {
+        for (i in 0..COUNT) {
             val showAllCaps = (Random.nextInt(5) == 0) // Probability of 20%
-            if (showAllCaps) { n++ }
+            n += if (showAllCaps) 1 else 0
 
         }
-        println("${n / 1000.0 * 100} %")
+        println("${n * 100f / COUNT } %")
     }
 
     /*
