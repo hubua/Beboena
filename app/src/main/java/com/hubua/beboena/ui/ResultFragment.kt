@@ -110,7 +110,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
 
-            Analytics.logLevelEnd("Transcript", "TRY_AGAIN")
+            Analytics.logLevelEnd(Analytics.LevelName.TRANSCRIPT, "TRY_AGAIN")
         }
 
         binding.btnNextLetter.setOnClickListener {
@@ -123,7 +123,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
 
-            Analytics.logLevelEnd("Transcript", "MOVE_NEXT")
+            Analytics.logLevelEnd(Analytics.LevelName.TRANSCRIPT, "MOVE_NEXT")
         }
 
         binding.btnPrevLetter.setOnClickListener {
@@ -134,7 +134,7 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
 
-            Analytics.logLevelEnd("Transcript", "MOVE_PREV")
+            Analytics.logLevelEnd(Analytics.LevelName.TRANSCRIPT, "MOVE_PREV")
         }
 
         if (AppSettings.isEnableSounds) {

@@ -203,7 +203,7 @@ class ResemblesFragment : Fragment() {
 
         view.findNavController().navigate(ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript())
 
-        Analytics.logLevelEnd("Resembles", "CONTINUE")
+        Analytics.logLevelEnd(Analytics.LevelName.RESEMBLES, "CONTINUE")
     }
 
     private fun onBtnAgainClick() {
@@ -214,7 +214,7 @@ class ResemblesFragment : Fragment() {
 
         _isBtnClickSuspended.set(false)
 
-        Analytics.logLevelEnd("Resembles", "AGAIN")
+        Analytics.logLevelEnd(Analytics.LevelName.RESEMBLES, "AGAIN")
     }
 
     private fun showPairsToMatch(reset: Boolean = false) {

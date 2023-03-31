@@ -7,9 +7,20 @@ import com.google.firebase.ktx.Firebase
 
 object Analytics {
 
+    enum class LevelName(val analyticsName: String) {
+        // String values used in Looker Studio analytics filter
+        RESEMBLES("Resembles"),
+        TRANSCRIPT("Transcript")
+    }
+
     private val firebaseAnalytics = Firebase.analytics
 
     private val currentLetter get() = GeorgianAlphabet.Cursor.currentLetter
+
+    private fun buildLevelStr(): String {
+        // Looker Studio analytics filter match to Letter \d{3} - \p{L}
+        return "Letter ${currentLetter.learnOrder.toString().padStart(3, '0')} - ${currentLetter.letterModernSpelling}"
+    }
 
     fun logScreenView(name: String) {
         // https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.Event#public-static-final-string-screen_view
@@ -18,11 +29,11 @@ object Analytics {
         }
     }
 
-    fun logLevelEnd(levelName: String, success: String) {
+    fun logLevelEnd(levelName: LevelName, success: String) {
         // https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.Event#public-static-final-string-level_end
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LEVEL_END) {
-            param(FirebaseAnalytics.Param.LEVEL_NAME, levelName)
-            param(FirebaseAnalytics.Param.LEVEL, "Letter ${currentLetter.learnOrder.toString().padStart(3, '0')} - ${currentLetter.letterModernSpelling}")
+            param(FirebaseAnalytics.Param.LEVEL_NAME, levelName.analyticsName)
+            param(FirebaseAnalytics.Param.LEVEL, buildLevelStr())
             param(FirebaseAnalytics.Param.SUCCESS, success)
         }
     }
@@ -30,7 +41,7 @@ object Analytics {
     fun logPostScore(score: String, percent: Long) {
         // https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.Event#public-static-final-string-post_score
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.POST_SCORE) {
-            param(FirebaseAnalytics.Param.LEVEL, "Letter ${currentLetter.learnOrder.toString().padStart(3, '0')} - ${currentLetter.letterModernSpelling}")
+            param(FirebaseAnalytics.Param.LEVEL, buildLevelStr())
             param(FirebaseAnalytics.Param.SCORE, score)
             param("score_percent", percent)
         }
