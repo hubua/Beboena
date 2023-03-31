@@ -116,6 +116,7 @@ class ResemblesFragment : Fragment() {
         mediaPlayerCorrect = MediaPlayer.create(context, R.raw.answer_correct)
         mediaPlayerWrong = MediaPlayer.create(context, R.raw.answer_wrong)
 
+        Analytics.logScreenView(ResemblesFragment::class.simpleName!!)
     }
 
     private val btnMatchPairClick = View.OnClickListener { button ->
@@ -201,20 +202,20 @@ class ResemblesFragment : Fragment() {
 
     private fun onBtnContinueClick(view: View) {
 
-        view.findNavController().navigate(ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript())
-
         Analytics.logLevelEnd(Analytics.LevelName.RESEMBLES, "CONTINUE")
+
+        view.findNavController().navigate(ResemblesFragmentDirections.actionFrgResemblesToFrgTranscript())
     }
 
     private fun onBtnAgainClick() {
+
+        Analytics.logLevelEnd(Analytics.LevelName.RESEMBLES, "AGAIN")
 
         showPairsToMatch(true)
 
         switchControlsState(true)
 
         _isBtnClickSuspended.set(false)
-
-        Analytics.logLevelEnd(Analytics.LevelName.RESEMBLES, "AGAIN")
     }
 
     private fun showPairsToMatch(reset: Boolean = false) {

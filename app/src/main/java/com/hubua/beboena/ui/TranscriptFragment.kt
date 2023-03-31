@@ -92,17 +92,19 @@ class TranscriptFragment : Fragment() {
 
         showSentenceToTranscript()
 
-        /*
-        // DEBUG Longest sentence first for layout check
-        val longestSentence = GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
-        binding.txtSentence.text = longestSentence!!.toKhucuri()
-        //binding.txtSentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
-        */
-
         switchControlsState(true)
 
         mediaPlayerCorrect = MediaPlayer.create(context, R.raw.answer_correct)
         mediaPlayerWrong = MediaPlayer.create(context, R.raw.answer_wrong)
+
+        Analytics.logScreenView(TranscriptFragment::class.simpleName!!)
+
+        /*
+            // DEBUG Longest sentence first for layout check
+            val longestSentence = GeorgianAlphabet.lettersLearnOrdered.flatMap { it.sentences }.maxBy { it.length }
+            binding.txtSentence.text = longestSentence!!.toKhucuri()
+            //binding.txtSentence.text = "აქა აკურთხევდით ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ".toKhucuri(withCapital = true)
+        */
 
         /*
         // DEBUG Show transcription prompt
@@ -118,7 +120,6 @@ class TranscriptFragment : Fragment() {
         }
         */
 
-        Analytics.logScreenView(TranscriptFragment::class.simpleName!!)
     }
 
     private fun onBtnCheckClick() {

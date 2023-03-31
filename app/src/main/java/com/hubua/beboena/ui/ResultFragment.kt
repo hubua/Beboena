@@ -104,16 +104,18 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
 
         binding.btnTryAgain.setOnClickListener {
 
+            Analytics.logLevelEnd(Analytics.LevelName.TRANSCRIPT, "TRY_AGAIN")
+
             GeorgianAlphabet.Cursor.letterTryAgain()
 
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
-
-            Analytics.logLevelEnd(Analytics.LevelName.TRANSCRIPT, "TRY_AGAIN")
         }
 
         binding.btnNextLetter.setOnClickListener {
+
+            Analytics.logLevelEnd(Analytics.LevelName.TRANSCRIPT, "MOVE_NEXT")
 
             RateThisApp.showRateDialogIfNeeded(context, R.style.DialogTheme)
 
@@ -122,19 +124,17 @@ class ResultFragment : Fragment(), MediaPlayer.OnPreparedListener {
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
-
-            Analytics.logLevelEnd(Analytics.LevelName.TRANSCRIPT, "MOVE_NEXT")
         }
 
         binding.btnPrevLetter.setOnClickListener {
+
+            Analytics.logLevelEnd(Analytics.LevelName.TRANSCRIPT, "MOVE_PREV")
 
             GeorgianAlphabet.Cursor.letterMovePrev()
 
             view.findNavController().navigate(
                 ResultFragmentDirections.actionFrgResultToFrgHomeLetters()
             )
-
-            Analytics.logLevelEnd(Analytics.LevelName.TRANSCRIPT, "MOVE_PREV")
         }
 
         if (AppSettings.isEnableSounds) {

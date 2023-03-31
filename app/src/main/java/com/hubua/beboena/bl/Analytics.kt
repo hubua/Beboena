@@ -18,8 +18,8 @@ object Analytics {
     private val currentLetter get() = GeorgianAlphabet.Cursor.currentLetter
 
     private fun buildLevelStr(): String {
-        // Looker Studio analytics filter match to Letter \d{3} - \p{L}
-        return "Letter ${currentLetter.learnOrder.toString().padStart(3, '0')} - ${currentLetter.letterModernSpelling}"
+        // Looker Studio analytics filter match to L \d{3} - \p{L}
+        return "L ${currentLetter.learnOrder.toString().padStart(3, '0')} - ${currentLetter.letterModernSpelling}"
     }
 
     fun logScreenView(name: String) {
