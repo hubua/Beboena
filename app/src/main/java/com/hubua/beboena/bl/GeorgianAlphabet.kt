@@ -102,7 +102,6 @@ object GeorgianAlphabet {
         private var _currentSentences: List<String> = emptyList()
 
         private var _currentPairables: List<Char> = emptyList()
-        private var _allPairablesMap: MutableMap<Char, List<Char>> = mutableMapOf()
 
         val currentLetter get() = lettersLearnOrdered[_currentLetterPositionIndex]
 
@@ -162,8 +161,7 @@ object GeorgianAlphabet {
             _currentSentences = currentLetter.sentences.shuffled(_random).take(MAX_SENTENCES).sortedBy { it.length }
             _currentSentencePositionIndex = 0
 
-            buildPairablesMap()
-            _currentPairables = if (currentLetter.learnOrder > MAX_PAIRS) _allPairablesMap[currentLetter.letterModernSpelling]!! else emptyList()
+            _currentPairables = if (currentLetter.learnOrder > MAX_PAIRS) buildCurrentPairables() else emptyList()
 
             if (updatePref) {
                 if (::_pref.isInitialized) {
@@ -175,13 +173,15 @@ object GeorgianAlphabet {
             }
         }
 
-        private fun buildPairablesMap() {
+        private fun buildCurrentPairables(): List<Char> {
 
             /*
             * Resembles - the letters that look alike
             * Couples - a letter and one of its resembles
             * Pairs - old and modern letters counterparts
             */
+
+            val allPairablesMap: MutableMap<Char, List<Char>> = mutableMapOf()
 
             val hist: MutableMap<Set<Char>, Int> = mutableMapOf()
 
@@ -216,12 +216,12 @@ object GeorgianAlphabet {
                     .take(MAX_PAIRS)
                     .shuffled(_random)
 
-                _allPairablesMap[letter.letterModernSpelling] = pairables
+                allPairablesMap[letter.letterModernSpelling] = pairables
 
             }
 
+            return allPairablesMap[currentLetter.letterModernSpelling]!!
         }
-
 
     }
 
