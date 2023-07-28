@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <d:devices xmlns:d="http://schemas.android.com/sdk/devices/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <d:device>
-    <d:name>xhdpi API29 Q10 (J3)</d:name>
+    <d:name>xhdpi 9:16 API29 Q10 (J3)</d:name>
     <d:manufacturer>User</d:manufacturer>
     <d:meta/>
     <d:hardware>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <d:devices xmlns:d="http://schemas.android.com/sdk/devices/6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <d:device>
-    <d:name>xxhdpi API33 T13 (S23)</d:name>
+    <d:name>xxhdpi 1:2.17 API33 T13 (S23)</d:name>
     <d:manufacturer>User</d:manufacturer>
     <d:meta/>
     <d:hardware>
