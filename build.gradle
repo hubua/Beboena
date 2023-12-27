@@ -1,21 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.8.0'
+    ext.kotlin_version = '1.9.10'
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.2'
+        classpath 'com.android.tools.build:gradle:8.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         //def nav_version = '2.4.1'
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.6.0"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.7.6"
 
-        classpath 'com.google.gms:google-services:4.3.15'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.7'
+        classpath 'com.google.gms:google-services:4.4.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.9'
     }
 }
 
@@ -33,4 +33,5 @@ task clean(type: Delete) {
 
 task preBuild {
     assert file("./app/google-services.json").exists(), "Firebase analytics google-services.json doesn't exist"
+    // Get from https://console.firebase.google.com/project/beboena-fbd73/settings/general/android:com.hubua.beboena
 }
