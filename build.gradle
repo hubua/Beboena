@@ -32,6 +32,5 @@ task clean(type: Delete) {
 }
 
 task preBuild {
-    assert file("./app/google-services.json").exists(), "Firebase analytics google-services.json doesn't exist"
-    // Get from https://console.firebase.google.com/project/beboena-fbd73/settings/general/android:com.hubua.beboena
+    assert file("./app/google-services.json").exists(), "Firebase analytics google-services.json doesn't exist, see README.md"
 }

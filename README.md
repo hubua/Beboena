@@ -39,8 +39,6 @@
 
 ### UI
 
-- Material Design for Android                   https://developer.android.com/guide/topics/ui/look-and-feel/
-- Design app themes with Theme Editor           https://developer.android.com/studio/write/theme-editor
 - Material design icons                         https://material.io/resources/icons/
 
 - Build a Responsive UI with ConstraintLayout   https://developer.android.com/training/constraint-layout/
@@ -52,13 +50,6 @@
 - Dialogs                                       https://developer.android.com/guide/topics/ui/dialogs
 
 - Settings                                      https://developer.android.com/guide/topics/ui/settings.html
-
-#### UI notifications
-
-- https://developer.android.com/training/snackbar/showing
-- https://developer.android.com/guide/topics/ui/notifiers/toasts
-- https://github.com/GrenderG/Toasty
-- https://github.com/Muddz/StyleableToast
 
 #### Rate
 
@@ -121,7 +112,7 @@
 `adb shell setprop debug.firebase.analytics.app com.hubua.beboena`
 `adb shell setprop debug.firebase.analytics.app .none.`
 
-### Restore `/app/google-services.json`
+### Restore `./app/google-services.json`
 
 - https://support.google.com/firebase/answer/7015592
 - https://console.firebase.google.com/project/beboena-fbd73/settings/general/android:com.hubua.beboena
@@ -158,16 +149,12 @@ Privacy Policies
 Features todo
 ==============================
 
-- better result icons, ask help from artists
 - Sync words with LOGA / Update LOGA
-- აბა რა ასოა, მთავრული, დასამახსოვრებლად რთული, ერთმანეთთან მსგავსი
 - გართლებული რეჟიმი როდესაც წინადადება რამდენიმე წამში ნელ ნელა ქრებაб ულიმიტო დრო, countdown for letters from middle
 - ბოლო ორი სამი წინადადება სულ მთავრული
 - არადამაკმაყოფილებელი ზღვრის გადაწევა ზემოთ, 50-ის მაგივრად 75%
 - წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
-- App content target audience children and families
-- ტექსტები ნუსხურად როგორც პრაქტიკული საკითხავი
-- App Quality Insights Firebase https://console.firebase.google.com/project/beboena-85f4d/overview?utm_source=studio
+- better result icons, ask help from artists
 
 Known issues
 ------------------------------
