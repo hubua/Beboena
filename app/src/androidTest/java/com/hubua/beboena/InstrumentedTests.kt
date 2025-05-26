@@ -1,12 +1,10 @@
 package com.hubua.beboena
 
 import android.content.Context
-import androidx.test.InstrumentationRegistry
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.core.app.ApplicationProvider
 import com.hubua.beboena.bl.GeorgianAlphabet
 
 import org.junit.Test
-import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.BeforeClass
@@ -16,7 +14,6 @@ import org.junit.BeforeClass
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-@RunWith(AndroidJUnit4::class)
 class InstrumentedTests {
 
     companion object {
@@ -26,7 +23,7 @@ class InstrumentedTests {
         @JvmStatic
         @BeforeClass
         fun setup() {
-            appContext = InstrumentationRegistry.getTargetContext()
+            appContext = ApplicationProvider.getApplicationContext()
         }
     }
 
@@ -34,7 +31,6 @@ class InstrumentedTests {
     fun useAppContext() {
         // Context of the app under test.
         assertEquals("com.hubua.beboena", appContext.packageName)
-
     }
 
     @Test
@@ -42,8 +38,8 @@ class InstrumentedTests {
 
         val strOga = appContext.assets.open("oga.tsv")
         val strResembles = appContext.assets.open("resembles.txt")
-        val strSentences = appContext.assets.open("sentences.txt")
-        GeorgianAlphabet.initialize(strOga, strResembles, strSentences);
+        val strSentences = appContext.assets.open("sentences1.txt")
+        GeorgianAlphabet.initialize(strOga, strResembles, strSentences)
 
         val letters = GeorgianAlphabet.lettersLearnOrdered
 
