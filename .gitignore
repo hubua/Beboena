@@ -1,14 +1,39 @@
+# Android Studio
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-/app/release
+.idea/
+!.idea/codeStyles/
+!.idea/dictionaries/
+
 .externalNativeBuild
+.kotlin
+
+# Gradle files
+.gradle/
+build/
+local.properties
+
+# App signing files
+app/release/
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
+
+# Log Files
+*.log
+
+# Generated files
+bin/
+gen/
+out/
+
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
