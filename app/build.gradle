@@ -28,13 +28,13 @@ android {
         jvmTarget = JavaVersion.VERSION_11
     }
 
-    compileSdkVersion 35
+    compileSdkVersion 36
     defaultConfig {
         applicationId "com.hubua.beboena"
         versionCode 14
         versionName "2.1"
         minSdkVersion 22
-        targetSdkVersion 35
+        targetSdkVersion 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs 'en', 'ka'
     }
@@ -72,19 +72,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.6.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test:runner:1.7.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
 
-    implementation 'androidx.core:core-ktx:1.16.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.9.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.9.0'
+    implementation 'androidx.core:core-ktx:1.17.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.9.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.9.5'
 
-    implementation 'com.opencsv:opencsv:5.11'
+    implementation 'com.opencsv:opencsv:5.12.0'
     implementation 'com.github.kobakei:Android-RateThisApp:1.2.0'
 
     implementation platform('com.google.firebase:firebase-bom:33.14.0')

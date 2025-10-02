@@ -22,6 +22,7 @@ object Analytics {
         return "L ${currentLetter.learnOrder.toString().padStart(3, '0')} - ${currentLetter.letterModernSpelling}"
     }
 
+    //TODO FIX ALL DEPRECATED and TEST
     fun logScreenView(name: String) {
         // https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.Event#public-static-final-string-screen_view
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
