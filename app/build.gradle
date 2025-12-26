@@ -36,7 +36,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        resConfigs 'en', 'ka'
+        resourceConfigurations += ['en', 'ka']
     }
     buildTypes {
         release {
