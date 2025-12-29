@@ -1,8 +1,7 @@
 package com.hubua.beboena.bl
 
 import android.content.SharedPreferences
-import com.opencsv.CSVParserBuilder
-import com.opencsv.CSVReaderBuilder
+import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
@@ -19,10 +18,16 @@ object GeorgianAlphabet {
 
     fun initialize(strOga: InputStream, strResembles: InputStream, vararg strSentences: InputStream) {
 
-        val isr = InputStreamReader(strOga, StandardCharsets.UTF_8)
-        val tsvParser = CSVParserBuilder().withSeparator('\t').build()
-        val tsvReader = CSVReaderBuilder(isr).withCSVParser(tsvParser).build()
-        val ogaList = tsvReader.readAll().drop(1)
+        val ogaList = ArrayList<List<String>>()
+        BufferedReader(InputStreamReader(strOga, StandardCharsets.UTF_8)).use { reader ->
+            reader.lineSequence()
+                .drop(1) // Skip header row
+                .filter { it.isNotBlank() }
+                .forEach { line ->
+                    val columns = line.split('\t').map { it.trim() } // Split on tab character and trim
+                    ogaList.add(columns)
+            }
+        }
 
         val resemblesList = strResembles.bufferedReader().use { it.readLines() }
 

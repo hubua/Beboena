@@ -31,8 +31,8 @@ android {
     compileSdkVersion 36
     defaultConfig {
         applicationId "com.hubua.beboena"
-        versionCode 14
-        versionName "2.1"
+        versionCode 16
+        versionName "2.1.36"
         minSdkVersion 22
         targetSdkVersion 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -84,11 +84,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.9.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.9.5'
 
-    implementation 'com.opencsv:opencsv:5.12.0'
     implementation 'com.github.kobakei:Android-RateThisApp:1.2.0'
 
     implementation platform('com.google.firebase:firebase-bom:33.14.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
-
 }
