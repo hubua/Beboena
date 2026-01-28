@@ -33,7 +33,7 @@ android {
         applicationId "com.hubua.beboena"
         versionCode 17
         versionName "2.2.36"
-        minSdkVersion 22
+        minSdkVersion 23
         targetSdkVersion 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += ['en', 'ka']

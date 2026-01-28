@@ -9,6 +9,9 @@
         <item name="android:windowBackground">@color/colorWindowBackground</item>
         <item name="android:editTextBackground">@android:color/holo_orange_dark</item>
 
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">true</item>
+
         <item name="android:buttonStyle">@style/RoundedButton</item>
     </style>
 
