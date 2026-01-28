@@ -39,9 +39,9 @@
 
 ### UI
 
+- Material design icons                         https://material.io/resources/icons/
 - Material Design for Android                   https://developer.android.com/guide/topics/ui/look-and-feel/
 - Design app themes with Theme Editor           https://developer.android.com/studio/write/theme-editor
-- Material design icons                         https://material.io/resources/icons/
 
 - Build a Responsive UI with ConstraintLayout   https://developer.android.com/training/constraint-layout/
 
@@ -53,12 +53,8 @@
 
 - Settings                                      https://developer.android.com/guide/topics/ui/settings.html
 
-#### UI notifications
-
-- https://developer.android.com/training/snackbar/showing
-- https://developer.android.com/guide/topics/ui/notifiers/toasts
-- https://github.com/GrenderG/Toasty
-- https://github.com/Muddz/StyleableToast
+- Popup message notifications					https://developer.android.com/training/snackbar/showing
+- Toasts notifications 							https://developer.android.com/guide/topics/ui/notifiers/toasts
 
 #### Rate
 
@@ -75,22 +71,12 @@
 - Data storage      https://developer.android.com/guide/topics/data/data-storage
 - Auto backup       https://developer.android.com/guide/topics/data/autobackup
 
-- CSV               http://zetcode.com/articles/opencsv/
-
 ### Unit tests
 
-- https://medium.com/@yair.kukielka/android-unit-tests-explained-219b04dc55b5
-- https://medium.com/@yair.kukielka/android-unit-tests-explained-part-2-a0f1e1413569
+- Local unit tests
+- Instrumented tests
 
-### Emulator
-
-- Use Windows Hypervisor Platform https://devblogs.microsoft.com/visualstudio/hyper-v-android-emulator-support/
-
-- HAXM  https://github.com/intel/haxm/blob/master/docs/manual-windows.md
-- SDP   https://github.com/intuit/sdp
-
-`bcdedit /set hypervisorlaunchtype off`
-`bcdedit /set hypervisorlaunchtype auto`
+### Emulator and debugging
 
 - Enable wireless debugging in developer options
 `%LOCALAPPDATA%\Android\sdk\platform-tools`
@@ -99,9 +85,9 @@
 
 ## Kotlin
 
-- https://try.kotlinlang.org/
-- http://kotlinlang.org/docs/reference/
-- https://kotlinlang.org/docs/reference/coding-conventions.html
+- https://play.kotlinlang.org/
+- https://kotlinlang.org/docs/reference/
+- https://kotlinlang.org/docs/coding-conventions.html
 - https://developer.android.com/kotlin/style-guide
 - https://antonioleiva.com/listeners-several-functions-kotlin/
 
@@ -159,11 +145,12 @@ Features todo
 ==============================
 
 - better result icons, ask help from artists
+- show correct answers once or twice
+- Remove resizability and orientation restrictions in your app to support large screen devices
 - Sync words with LOGA / Update LOGA
 - აბა რა ასოა, მთავრული, დასამახსოვრებლად რთული, ერთმანეთთან მსგავსი
 - გართლებული რეჟიმი როდესაც წინადადება რამდენიმე წამში ნელ ნელა ქრებაб ულიმიტო დრო, countdown for letters from middle
 - ბოლო ორი სამი წინადადება სულ მთავრული
-- არადამაკმაყოფილებელი ზღვრის გადაწევა ზემოთ, 50-ის მაგივრად 75%
 - წინადადების თარგმნისას, დაფიქსირება იმ ასოების რომლებშიც შეცდომა ხდება, და შეთავაზება ამ ასოების გადამეორების.
 - App content target audience children and families
 - ტექსტები ნუსხურად როგორც პრაქტიკული საკითხავი

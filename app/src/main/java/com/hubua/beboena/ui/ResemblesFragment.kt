@@ -80,7 +80,7 @@ class ResemblesFragment : Fragment() {
 
         binding.tablePairs.removeAllViews()
 
-        for (item in cursor.currentPairables) {
+        repeat(cursor.currentPairables.size) {
 
             val layoutParamsRow = TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 0, 1.0F)
             val layoutParamsBtn = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 0.5F)
@@ -244,11 +244,14 @@ class ResemblesFragment : Fragment() {
             val btnL = _btnsL[index]
             val btnR = _btnsR[index]
 
-            btnL.text = GeorgianAlphabet.lettersMap[charL]!!.nuskhuri.toString()
-            btnL.tag = GeorgianAlphabet.lettersMap[charL]!!.letterModernSpelling
+            val letterL = GeorgianAlphabet.lettersMap[charL]!!
+            val letterR = GeorgianAlphabet.lettersMap[pairsCharR[index]]!!
 
-            btnR.text = GeorgianAlphabet.lettersMap[pairsCharR[index]]!!.mkhedruli.toString()
-            btnR.tag = GeorgianAlphabet.lettersMap[pairsCharR[index]]!!.letterModernSpelling
+            btnL.text = if (!AppSettings.isAllCaps) letterL.nuskhuri.toString() else letterL.asomtavruli.toString()
+            btnL.tag = letterL.letterModernSpelling
+
+            btnR.text = letterR.mkhedruli.toString()
+            btnR.tag = letterR.letterModernSpelling
         }
     }
 
